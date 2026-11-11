@@ -6,7 +6,9 @@
   "base_url": "https://api.openai.com/v1",
   "api_key_env": "OPENAI_API_KEY",
   "temperature": 0.5,
-  "num_ctx": 8192,
+  "num_ctx": 16384,
+  "num_predict": 2048,
+  "timeout": 600,
   "json_mode": true,
   "seeds": [
     1,

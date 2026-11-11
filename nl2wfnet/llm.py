@@ -17,14 +17,14 @@ import requests
 
 class OllamaClient:
     def __init__(self, model="qwen2.5:7b", host="http://localhost:11434", temperature=0.5,
-                 num_ctx=8192, json_mode=True, timeout=600):
+                 num_ctx=16384, json_mode=True, timeout=600, num_predict=2048):
         self.model, self.host, self.temperature = model, host.rstrip("/"), temperature
-        self.num_ctx, self.json_mode, self.timeout = num_ctx, json_mode, timeout
+        self.num_ctx, self.json_mode, self.timeout, self.num_predict = num_ctx, json_mode, timeout, num_predict
         self.name = f"ollama:{model}"
 
     def chat(self, messages, seed=0):
         body = {"model": self.model, "messages": messages, "stream": False,
-                "options": {"temperature": self.temperature, "seed": seed, "num_ctx": self.num_ctx}}
+                "options": {"temperature": self.temperature, "seed": seed, "num_ctx": self.num_ctx, "num_predict": self.num_predict}}
         if self.json_mode:
             body["format"] = "json"
         t0 = time.time()
@@ -33,7 +33,9 @@ class OllamaClient:
         data = r.json()
         return data["message"]["content"], {
             "latency_s": round(time.time() - t0, 2),
-            "prompt_tokens": data.get("prompt_eval_count"), "output_tokens": data.get("eval_count")}
+            "prompt_tokens": data.get("prompt_eval_count"), 
+            "output_tokens": data.get("eval_count"),
+            "done_reason": data.get("done_reason")}
 
 
 class OpenAICompatibleClient:
@@ -95,7 +97,7 @@ def make_client(cfg):
     kind = cfg.get("client", "ollama")
     if kind == "ollama":
         return OllamaClient(cfg["model"], cfg.get("host", "http://localhost:11434"), cfg.get("temperature", 0.5),
-                            cfg.get("num_ctx", 8192), cfg.get("json_mode", True))
+                            cfg.get("num_ctx", 16384), cfg.get("json_mode", True), cfg.get("timeout", 600), cfg.get("num_predict", 2048))
     if kind == "openai":
         return OpenAICompatibleClient(cfg["model"], cfg.get("base_url", "https://api.openai.com/v1"),
                                       cfg.get("api_key_env", "OPENAI_API_KEY"), cfg.get("temperature", 0.5),

@@ -5,6 +5,7 @@ Both approaches use exactly the same loop and the same repair budget.
 import json
 import re
 import time
+import requests
 
 from .prompts import build_messages, repair_message, PROMPT_VERSION
 from .tree import validate_tree, parse_tree
@@ -56,7 +57,11 @@ def generate(approach, description, client, seed=0, max_repairs=2, case_id=""):
     for attempt in range(max_repairs + 1):
         if hasattr(client, "key"):
             client.key = f"{case_id}_{approach}_s{seed}_a{attempt}"
-        raw, meta = client.chat(messages, seed=seed)
+        try:
+            raw, meta = client.chat(messages, seed=seed)
+        except requests.exceptions.Timeout:
+            raw, meta = "", {"timeout": True}
+            break
         doc, errors = check_output(approach, raw)
         record["attempts"].append({"raw": raw, "errors": errors, **(meta or {})})
         if not errors:
