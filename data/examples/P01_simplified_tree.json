@@ -1,0 +1,73 @@
+{
+  "process_name": "recruitment (simplified)",
+  "tree": {
+    "op": "seq",
+    "children": [
+      {
+        "activity": "submit CV"
+      },
+      {
+        "op": "xor",
+        "children": [
+          {
+            "op": "seq",
+            "children": [
+              {
+                "activity": "screening negative"
+              },
+              {
+                "activity": "reject candidate"
+              }
+            ]
+          },
+          {
+            "op": "seq",
+            "children": [
+              {
+                "activity": "screening positive"
+              },
+              {
+                "op": "and",
+                "children": [
+                  {
+                    "op": "xor",
+                    "children": [
+                      {
+                        "activity": "technical interview positive"
+                      },
+                      {
+                        "activity": "technical interview negative"
+                      }
+                    ]
+                  },
+                  {
+                    "op": "xor",
+                    "children": [
+                      {
+                        "activity": "manager interview positive"
+                      },
+                      {
+                        "activity": "manager interview negative"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": "xor",
+                "children": [
+                  {
+                    "activity": "make offer"
+                  },
+                  {
+                    "activity": "reject candidate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

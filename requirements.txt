@@ -1,0 +1,5 @@
+requests>=2.28
+openpyxl>=3.1
+pandas>=2.0
+matplotlib>=3.7
+# optional: Graphviz binary ('dot') for PNG export of WF-nets; pytest

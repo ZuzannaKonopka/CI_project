@@ -1,0 +1,65 @@
+{
+  "places": [
+    "i",
+    "p1",
+    "p2",
+    "p3",
+    "o"
+  ],
+  "transitions": [
+    {
+      "id": "t1",
+      "label": "submit CV"
+    },
+    {
+      "id": "t2",
+      "label": "technical interview"
+    },
+    {
+      "id": "t3",
+      "label": "manager interview"
+    },
+    {
+      "id": "t4",
+      "label": "make decision"
+    }
+  ],
+  "arcs": [
+    [
+      "i",
+      "t1"
+    ],
+    [
+      "t1",
+      "p1"
+    ],
+    [
+      "t1",
+      "p2"
+    ],
+    [
+      "p1",
+      "t2"
+    ],
+    [
+      "p2",
+      "t3"
+    ],
+    [
+      "t2",
+      "p3"
+    ],
+    [
+      "t3",
+      "p3"
+    ],
+    [
+      "p3",
+      "t4"
+    ],
+    [
+      "t4",
+      "o"
+    ]
+  ]
+}

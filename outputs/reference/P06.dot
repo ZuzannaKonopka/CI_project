@@ -1,0 +1,36 @@
+digraph "P06" {
+  rankdir=LR;
+  node [fontname="Helvetica"];
+  "i" [shape=circle, width=0.35, fixedsize=true, label="&#9679;", fontsize=18];
+  "o" [shape=circle, width=0.35, fixedsize=true, peripheries=2, label=""];
+  "p0" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p1" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p2" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p3" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p4" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p5" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "t0" [shape=box, style=rounded, label="write code"];
+  "t1" [shape=box, style=rounded, label="open pull request"];
+  "t2" [shape=box, style=filled, fillcolor=black, label="", width=0.15, height=0.45];
+  "t3" [shape=box, style=filled, fillcolor=black, label="", width=0.15, height=0.45];
+  "t4" [shape=box, style=rounded, label="review code"];
+  "t5" [shape=box, style=rounded, label="revise code"];
+  "t6" [shape=box, style=rounded, label="merge code"];
+  "t7" [shape=box, style=rounded, label="deploy code"];
+  "i" -> "t0";
+  "t0" -> "p0";
+  "p0" -> "t1";
+  "t1" -> "p1";
+  "p1" -> "t2";
+  "t2" -> "p3";
+  "p3" -> "t4";
+  "t4" -> "p4";
+  "p4" -> "t5";
+  "t5" -> "p3";
+  "p4" -> "t3";
+  "t3" -> "p2";
+  "p2" -> "t6";
+  "t6" -> "p5";
+  "p5" -> "t7";
+  "t7" -> "o";
+}

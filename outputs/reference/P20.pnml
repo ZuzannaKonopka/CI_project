@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml><net id="P20" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel"><page id="page1">
+<place id="i"><name><text>i</text></name><initialMarking><text>1</text></initialMarking></place>
+<place id="o"><name><text>o</text></name></place>
+<place id="p0"><name><text>p0</text></name></place>
+<place id="p1"><name><text>p1</text></name></place>
+<place id="p2"><name><text>p2</text></name></place>
+<place id="p3"><name><text>p3</text></name></place>
+<place id="p4"><name><text>p4</text></name></place>
+<place id="p5"><name><text>p5</text></name></place>
+<place id="p6"><name><text>p6</text></name></place>
+<place id="p7"><name><text>p7</text></name></place>
+<place id="p8"><name><text>p8</text></name></place>
+<place id="p9"><name><text>p9</text></name></place>
+<place id="p10"><name><text>p10</text></name></place>
+<place id="p11"><name><text>p11</text></name></place>
+<place id="p12"><name><text>p12</text></name></place>
+<place id="p13"><name><text>p13</text></name></place>
+<place id="p14"><name><text>p14</text></name></place>
+<place id="p15"><name><text>p15</text></name></place>
+<place id="p16"><name><text>p16</text></name></place>
+<place id="p17"><name><text>p17</text></name></place>
+<place id="p18"><name><text>p18</text></name></place>
+<place id="p19"><name><text>p19</text></name></place>
+<place id="p20"><name><text>p20</text></name></place>
+<place id="p21"><name><text>p21</text></name></place>
+<place id="p22"><name><text>p22</text></name></place>
+<place id="p23"><name><text>p23</text></name></place>
+<place id="p24"><name><text>p24</text></name></place>
+<place id="p25"><name><text>p25</text></name></place>
+<place id="p26"><name><text>p26</text></name></place>
+<place id="p27"><name><text>p27</text></name></place>
+<place id="p28"><name><text>p28</text></name></place>
+<place id="p29"><name><text>p29</text></name></place>
+<transition id="t0"><name><text>apply for apartment</text></name></transition>
+<transition id="t1"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t2"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t3"><name><text>check references</text></name></transition>
+<transition id="t4"><name><text>check credit score</text></name></transition>
+<transition id="t5"><name><text>notify rejection</text></name></transition>
+<transition id="t6"><name><text>accept tenant</text></name></transition>
+<transition id="t7"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t8"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t9"><name><text>send draft lease</text></name></transition>
+<transition id="t10"><name><text>revise lease</text></name></transition>
+<transition id="t11"><name><text>sign lease</text></name></transition>
+<transition id="t12"><name><text>set up electricity</text></name></transition>
+<transition id="t13"><name><text>set up internet</text></name></transition>
+<transition id="t14"><name><text>buy home insurance</text></name></transition>
+<transition id="t15"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t16"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t17"><name><text>set up electricity</text></name></transition>
+<transition id="t18"><name><text>set up internet</text></name></transition>
+<transition id="t19"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t20"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t21"><name><text>set up electricity</text></name></transition>
+<transition id="t22"><name><text>buy home insurance</text></name></transition>
+<transition id="t23"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t24"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t25"><name><text>set up internet</text></name></transition>
+<transition id="t26"><name><text>buy home insurance</text></name></transition>
+<transition id="t27"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t28"><name><text>tau</text></name><toolspecific tool="ProM" version="6.4" activity="$invisible$"/></transition>
+<transition id="t29"><name><text>set up electricity</text></name></transition>
+<transition id="t30"><name><text>set up internet</text></name></transition>
+<transition id="t31"><name><text>buy home insurance</text></name></transition>
+<transition id="t32"><name><text>hand over keys</text></name></transition>
+<arc id="a0" source="i" target="t0"/>
+<arc id="a1" source="t0" target="p0"/>
+<arc id="a2" source="p0" target="t1"/>
+<arc id="a3" source="t2" target="p1"/>
+<arc id="a4" source="t1" target="p2"/>
+<arc id="a5" source="p3" target="t2"/>
+<arc id="a6" source="p2" target="t3"/>
+<arc id="a7" source="t3" target="p3"/>
+<arc id="a8" source="t1" target="p4"/>
+<arc id="a9" source="p5" target="t2"/>
+<arc id="a10" source="p4" target="t4"/>
+<arc id="a11" source="t4" target="p5"/>
+<arc id="a12" source="p1" target="t5"/>
+<arc id="a13" source="t5" target="o"/>
+<arc id="a14" source="p1" target="t6"/>
+<arc id="a15" source="t6" target="p6"/>
+<arc id="a16" source="p6" target="t7"/>
+<arc id="a17" source="t7" target="p8"/>
+<arc id="a18" source="p8" target="t9"/>
+<arc id="a19" source="t9" target="p9"/>
+<arc id="a20" source="p9" target="t10"/>
+<arc id="a21" source="t10" target="p8"/>
+<arc id="a22" source="p9" target="t8"/>
+<arc id="a23" source="t8" target="p7"/>
+<arc id="a24" source="p7" target="t11"/>
+<arc id="a25" source="t11" target="p10"/>
+<arc id="a26" source="p10" target="t12"/>
+<arc id="a27" source="t12" target="p11"/>
+<arc id="a28" source="p10" target="t13"/>
+<arc id="a29" source="t13" target="p11"/>
+<arc id="a30" source="p10" target="t14"/>
+<arc id="a31" source="t14" target="p11"/>
+<arc id="a32" source="p10" target="t15"/>
+<arc id="a33" source="t16" target="p11"/>
+<arc id="a34" source="t15" target="p12"/>
+<arc id="a35" source="p13" target="t16"/>
+<arc id="a36" source="p12" target="t17"/>
+<arc id="a37" source="t17" target="p13"/>
+<arc id="a38" source="t15" target="p14"/>
+<arc id="a39" source="p15" target="t16"/>
+<arc id="a40" source="p14" target="t18"/>
+<arc id="a41" source="t18" target="p15"/>
+<arc id="a42" source="p10" target="t19"/>
+<arc id="a43" source="t20" target="p11"/>
+<arc id="a44" source="t19" target="p16"/>
+<arc id="a45" source="p17" target="t20"/>
+<arc id="a46" source="p16" target="t21"/>
+<arc id="a47" source="t21" target="p17"/>
+<arc id="a48" source="t19" target="p18"/>
+<arc id="a49" source="p19" target="t20"/>
+<arc id="a50" source="p18" target="t22"/>
+<arc id="a51" source="t22" target="p19"/>
+<arc id="a52" source="p10" target="t23"/>
+<arc id="a53" source="t24" target="p11"/>
+<arc id="a54" source="t23" target="p20"/>
+<arc id="a55" source="p21" target="t24"/>
+<arc id="a56" source="p20" target="t25"/>
+<arc id="a57" source="t25" target="p21"/>
+<arc id="a58" source="t23" target="p22"/>
+<arc id="a59" source="p23" target="t24"/>
+<arc id="a60" source="p22" target="t26"/>
+<arc id="a61" source="t26" target="p23"/>
+<arc id="a62" source="p10" target="t27"/>
+<arc id="a63" source="t28" target="p11"/>
+<arc id="a64" source="t27" target="p24"/>
+<arc id="a65" source="p25" target="t28"/>
+<arc id="a66" source="p24" target="t29"/>
+<arc id="a67" source="t29" target="p25"/>
+<arc id="a68" source="t27" target="p26"/>
+<arc id="a69" source="p27" target="t28"/>
+<arc id="a70" source="p26" target="t30"/>
+<arc id="a71" source="t30" target="p27"/>
+<arc id="a72" source="t27" target="p28"/>
+<arc id="a73" source="p29" target="t28"/>
+<arc id="a74" source="p28" target="t31"/>
+<arc id="a75" source="t31" target="p29"/>
+<arc id="a76" source="p11" target="t32"/>
+<arc id="a77" source="t32" target="o"/>
+</page><finalmarkings><marking><place idref="o"><text>1</text></place></marking></finalmarkings></net></pnml>

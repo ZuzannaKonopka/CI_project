@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Process tree document (nl2wfnet intermediate format v1.0)",
+  "description": "Leaves are activities or the silent step tau; inner nodes are operators seq, xor, and, or, loop. The semantic rule 'loop with silent do and redo' is checked by nl2wfnet.tree.validate_tree only.",
+  "type": "object",
+  "required": [
+    "process_name",
+    "tree"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "process_name": {
+      "type": "string"
+    },
+    "tree": {
+      "$ref": "#/$defs/node"
+    }
+  },
+  "$defs": {
+    "node": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "activity"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "activity": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "tau"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tau": {
+              "const": true
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "op",
+            "children"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "enum": [
+                "seq",
+                "xor",
+                "and",
+                "or",
+                "loop"
+              ]
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "op": {
+                    "const": "loop"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "children": {
+                    "maxItems": 2
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "op": {
+                    "const": "or"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "children": {
+                    "maxItems": 4
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

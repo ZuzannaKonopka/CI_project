@@ -1,0 +1,4 @@
+{
+  "_comment": "Manual label mappings that override automatic matching: {case_id: {generated label: reference label}}. Add entries after checking results/<run>/label_maps.json.",
+  "P01": {}
+}

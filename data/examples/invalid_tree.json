@@ -1,0 +1,28 @@
+{
+  "process_name": "broken",
+  "tree": {
+    "op": "sequence",
+    "children": [
+      {
+        "activity": "submit CV"
+      },
+      {
+        "op": "loop",
+        "children": [
+          {
+            "activity": "check"
+          }
+        ]
+      },
+      {
+        "op": "xor",
+        "children": [
+          {
+            "activity": ""
+          }
+        ],
+        "label": "x"
+      }
+    ]
+  }
+}

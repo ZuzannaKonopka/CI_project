@@ -1,0 +1,18 @@
+{
+  "_comment": "Frozen before Milestone 3. Change only during Milestone 2 (dev split) and log changes in docs/prompt_log.md. Copy-paste workflow: one seed, because a chat UI has no seed control.",
+  "client": "manual",
+  "model": "manual",
+  "host": "http://localhost:11434",
+  "base_url": "https://api.openai.com/v1",
+  "api_key_env": "OPENAI_API_KEY",
+  "temperature": 0.5,
+  "num_ctx": 8192,
+  "json_mode": true,
+  "seeds": [
+    1
+  ],
+  "max_repairs": 2,
+  "trace_max_len": 12,
+  "label_threshold": 0.5,
+  "benchmark": "data/benchmark.json"
+}

@@ -1,0 +1,1071 @@
+[
+  {
+    "id": "P01",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor",
+      "and"
+    ],
+    "description": "A candidate submits a CV. Then HR performs a preliminary screening. If the screening is positive, a technical interview and an interview with the manager are held; if it is negative, the application is rejected. Both interviews can take place in any order. Each interview ends with a positive or negative assessment. The candidate receives an offer only if both assessments are positive; otherwise the application is rejected.",
+    "reference": {
+      "process_name": "recruitment",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "submit CV"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "screening negative"
+                  },
+                  {
+                    "activity": "reject candidate"
+                  }
+                ]
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "screening positive"
+                  },
+                  {
+                    "op": "xor",
+                    "children": [
+                      {
+                        "op": "seq",
+                        "children": [
+                          {
+                            "op": "and",
+                            "children": [
+                              {
+                                "activity": "technical interview positive"
+                              },
+                              {
+                                "activity": "manager interview positive"
+                              }
+                            ]
+                          },
+                          {
+                            "activity": "make offer"
+                          }
+                        ]
+                      },
+                      {
+                        "op": "seq",
+                        "children": [
+                          {
+                            "op": "and",
+                            "children": [
+                              {
+                                "activity": "technical interview positive"
+                              },
+                              {
+                                "activity": "manager interview negative"
+                              }
+                            ]
+                          },
+                          {
+                            "activity": "reject candidate"
+                          }
+                        ]
+                      },
+                      {
+                        "op": "seq",
+                        "children": [
+                          {
+                            "op": "and",
+                            "children": [
+                              {
+                                "activity": "technical interview negative"
+                              },
+                              {
+                                "activity": "manager interview positive"
+                              }
+                            ]
+                          },
+                          {
+                            "activity": "reject candidate"
+                          }
+                        ]
+                      },
+                      {
+                        "op": "seq",
+                        "children": [
+                          {
+                            "op": "and",
+                            "children": [
+                              {
+                                "activity": "technical interview negative"
+                              },
+                              {
+                                "activity": "manager interview negative"
+                              }
+                            ]
+                          },
+                          {
+                            "activity": "reject candidate"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": "Exact language needs duplicated labels: the final decision depends on both interview outcomes. In the tree the outcome combination is chosen as one XOR, so the trace language is exact but the moment of choice differs from the text."
+  },
+  {
+    "id": "P02",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "or"
+    ],
+    "description": "An employee submits a travel request, which is then approved by the manager. After approval, the employee books a flight, books a hotel and/or rents a car - depending on the trip, one, two or all three of these may be needed. Finally, the employee submits an expense report.",
+    "reference": {
+      "process_name": "business trip",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "submit travel request"
+          },
+          {
+            "activity": "approve request"
+          },
+          {
+            "op": "or",
+            "children": [
+              {
+                "activity": "book flight"
+              },
+              {
+                "activity": "book hotel"
+              },
+              {
+                "activity": "rent car"
+              }
+            ]
+          },
+          {
+            "activity": "submit expense report"
+          }
+        ]
+      }
+    },
+    "notes": "'and/or' signals inclusive OR."
+  },
+  {
+    "id": "P03",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "loop"
+    ],
+    "description": "An applicant submits the documents. The office checks whether they are complete. If something is missing, the applicant is asked to supplement the documents and resubmits them, after which the completeness check is repeated. When the documents are complete, the application is registered.",
+    "reference": {
+      "process_name": "document submission",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "submit documents"
+          },
+          {
+            "op": "loop",
+            "children": [
+              {
+                "activity": "check completeness"
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "request missing documents"
+                  },
+                  {
+                    "activity": "resubmit documents"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "activity": "register application"
+          }
+        ]
+      }
+    },
+    "notes": "Loop: do = check, redo = request + resubmit."
+  },
+  {
+    "id": "P04",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor",
+      "and"
+    ],
+    "description": "A customer places an order in the online shop, and the system checks whether the items are in stock. If they are, the payment is processed; after that, the invoice is sent and the package is shipped, in any order. If the items are not in stock, the order is cancelled.",
+    "reference": {
+      "process_name": "online order",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "place order"
+          },
+          {
+            "activity": "check stock"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "process payment"
+                  },
+                  {
+                    "op": "and",
+                    "children": [
+                      {
+                        "activity": "send invoice"
+                      },
+                      {
+                        "activity": "ship package"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "activity": "cancel order"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P05",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor",
+      "and"
+    ],
+    "description": "A client submits a loan application. The bank checks the client's credit history and verifies the client's income; the two checks can be done in any order. When both checks are finished, the bank decides. If the loan is approved, the client signs the contract and the money is paid out. Otherwise, the client is notified of the rejection.",
+    "reference": {
+      "process_name": "loan application",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "submit loan application"
+          },
+          {
+            "op": "and",
+            "children": [
+              {
+                "activity": "check credit history"
+              },
+              {
+                "activity": "verify income"
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "approve loan"
+                  },
+                  {
+                    "activity": "sign contract"
+                  },
+                  {
+                    "activity": "pay out loan"
+                  }
+                ]
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "reject loan"
+                  },
+                  {
+                    "activity": "notify client of rejection"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": "The decision itself is modelled as the two outcome activities 'approve loan' / 'reject loan'."
+  },
+  {
+    "id": "P06",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "loop"
+    ],
+    "description": "A developer writes the code and opens a pull request. A reviewer then reviews the code. If the reviewer requests changes, the developer revises the code and the reviewer reviews it again; this can repeat several times. Once the code is approved, it is merged and deployed.",
+    "reference": {
+      "process_name": "code review",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "write code"
+          },
+          {
+            "activity": "open pull request"
+          },
+          {
+            "op": "loop",
+            "children": [
+              {
+                "activity": "review code"
+              },
+              {
+                "activity": "revise code"
+              }
+            ]
+          },
+          {
+            "activity": "merge code"
+          },
+          {
+            "activity": "deploy code"
+          }
+        ]
+      }
+    },
+    "notes": "Loop: do = review, redo = revise."
+  },
+  {
+    "id": "P07",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "or"
+    ],
+    "description": "A customer brings the car to the garage, and a mechanic inspects it. Depending on the result, the mechanic changes the oil, replaces the brakes and/or replaces the tyres - any one, two or all three of these may be needed. Finally, the customer pays and collects the car.",
+    "reference": {
+      "process_name": "car service",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "bring car to garage"
+          },
+          {
+            "activity": "inspect car"
+          },
+          {
+            "op": "or",
+            "children": [
+              {
+                "activity": "change oil"
+              },
+              {
+                "activity": "replace brakes"
+              },
+              {
+                "activity": "replace tyres"
+              }
+            ]
+          },
+          {
+            "activity": "pay"
+          },
+          {
+            "activity": "collect car"
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P08",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor",
+      "tau"
+    ],
+    "description": "A participant registers for the conference and pays the registration fee. Optionally, the participant can also book a place in a workshop. Finally, the participant receives a confirmation e-mail.",
+    "reference": {
+      "process_name": "conference registration",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "register for conference"
+          },
+          {
+            "activity": "pay registration fee"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "book workshop"
+              },
+              {
+                "tau": true
+              }
+            ]
+          },
+          {
+            "activity": "receive confirmation"
+          }
+        ]
+      }
+    },
+    "notes": "Optional step = xor with a silent step (tau)."
+  },
+  {
+    "id": "P09",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor",
+      "loop"
+    ],
+    "description": "A customer submits an insurance claim, and the insurer checks it. If information is missing, the insurer requests additional information, the customer provides it, and the claim is checked again. When the claim is complete, the insurer either pays the compensation or rejects the claim.",
+    "reference": {
+      "process_name": "insurance claim",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "submit claim"
+          },
+          {
+            "op": "loop",
+            "children": [
+              {
+                "activity": "check claim"
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "request additional information"
+                  },
+                  {
+                    "activity": "provide additional information"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "pay compensation"
+              },
+              {
+                "activity": "reject claim"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": "Loop whose redo part is a sequence."
+  },
+  {
+    "id": "P10",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor",
+      "and"
+    ],
+    "description": "A guest places an order with the waiter. The kitchen prepares the meal while the bar prepares the drinks. When both are ready, the waiter serves the order. At the end, the guest pays either in cash or by card.",
+    "reference": {
+      "process_name": "restaurant order",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "place order"
+          },
+          {
+            "op": "and",
+            "children": [
+              {
+                "activity": "prepare meal"
+              },
+              {
+                "activity": "prepare drinks"
+              }
+            ]
+          },
+          {
+            "activity": "serve order"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "pay in cash"
+              },
+              {
+                "activity": "pay by card"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P11",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "and",
+      "or"
+    ],
+    "description": "The organiser sets the date of the event. Then the venue is booked and the invitations are sent, in any order. In addition, the organiser arranges catering, books a band and/or hires a photographer - at least one of these, possibly all. Finally, the event takes place.",
+    "reference": {
+      "process_name": "event organisation",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "set event date"
+          },
+          {
+            "op": "and",
+            "children": [
+              {
+                "activity": "book venue"
+              },
+              {
+                "activity": "send invitations"
+              }
+            ]
+          },
+          {
+            "op": "or",
+            "children": [
+              {
+                "activity": "arrange catering"
+              },
+              {
+                "activity": "book band"
+              },
+              {
+                "activity": "hire photographer"
+              }
+            ]
+          },
+          {
+            "activity": "hold event"
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P12",
+    "split": "dev",
+    "operators": [
+      "seq",
+      "xor"
+    ],
+    "description": "A customer requests a return of a product. The seller either rejects or approves the request. If the request is approved, the customer ships the product back and the warehouse inspects it. After the inspection, the customer receives either a refund or a replacement product.",
+    "reference": {
+      "process_name": "product return",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "request return"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "reject return"
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "approve return"
+                  },
+                  {
+                    "activity": "ship product back"
+                  },
+                  {
+                    "activity": "inspect product"
+                  },
+                  {
+                    "op": "xor",
+                    "children": [
+                      {
+                        "activity": "issue refund"
+                      },
+                      {
+                        "activity": "send replacement"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": "Nested exclusive choices."
+  },
+  {
+    "id": "P13",
+    "split": "test",
+    "operators": [
+      "seq",
+      "and"
+    ],
+    "description": "HR prepares an employment contract, and the new employee signs it. After that, the IT department creates the employee's accounts, the facility team prepares a desk, and the manager plans the training; these three tasks can be done in any order. When all of them are done, the employee starts work.",
+    "reference": {
+      "process_name": "employee onboarding",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "prepare contract"
+          },
+          {
+            "activity": "sign contract"
+          },
+          {
+            "op": "and",
+            "children": [
+              {
+                "activity": "create IT accounts"
+              },
+              {
+                "activity": "prepare desk"
+              },
+              {
+                "activity": "plan training"
+              }
+            ]
+          },
+          {
+            "activity": "start work"
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P14",
+    "split": "test",
+    "operators": [
+      "seq",
+      "xor",
+      "loop"
+    ],
+    "description": "A researcher writes a grant proposal, and the supervisor reviews it. If the proposal needs improvement, the researcher revises it and the supervisor reviews it again, until it is good enough. The proposal is then submitted to the funding agency, which either accepts or rejects it.",
+    "reference": {
+      "process_name": "grant proposal",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "write proposal"
+          },
+          {
+            "op": "loop",
+            "children": [
+              {
+                "activity": "review proposal"
+              },
+              {
+                "activity": "revise proposal"
+              }
+            ]
+          },
+          {
+            "activity": "submit proposal"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "accept proposal"
+              },
+              {
+                "activity": "reject proposal"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P15",
+    "split": "test",
+    "operators": [
+      "seq",
+      "or"
+    ],
+    "description": "The owner orders an inspection of the flat. Based on the inspection, the contractor paints the walls, replaces the windows, renovates the bathroom and/or installs a new floor; any combination of these works may be carried out, but at least one. After the works, the owner carries out the final acceptance.",
+    "reference": {
+      "process_name": "home renovation",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "order inspection"
+          },
+          {
+            "op": "or",
+            "children": [
+              {
+                "activity": "paint walls"
+              },
+              {
+                "activity": "replace windows"
+              },
+              {
+                "activity": "renovate bathroom"
+              },
+              {
+                "activity": "install floor"
+              }
+            ]
+          },
+          {
+            "activity": "carry out final acceptance"
+          }
+        ]
+      }
+    },
+    "notes": "Inclusive OR with 4 branches (15 combinations)."
+  },
+  {
+    "id": "P16",
+    "split": "test",
+    "operators": [
+      "seq",
+      "xor",
+      "tau"
+    ],
+    "description": "A reader searches the library catalogue for a book. If the book is currently not available, the reader reserves it and waits for a notification that it has been returned. The reader then borrows the book and later returns it.",
+    "reference": {
+      "process_name": "library loan",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "search catalogue"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "tau": true
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "reserve book"
+                  },
+                  {
+                    "activity": "receive notification"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "activity": "borrow book"
+          },
+          {
+            "activity": "return book"
+          }
+        ]
+      }
+    },
+    "notes": "Skippable sequence: the reservation happens only if the book is unavailable."
+  },
+  {
+    "id": "P17",
+    "split": "test",
+    "operators": [
+      "seq",
+      "and",
+      "loop"
+    ],
+    "description": "A machine produces a part, and a quality inspector inspects it. If a defect is found, the part is reworked and inspected again; this is repeated until the part has no defects. Then the part is packed and labelled, in any order, and finally shipped.",
+    "reference": {
+      "process_name": "manufacturing",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "produce part"
+          },
+          {
+            "op": "loop",
+            "children": [
+              {
+                "activity": "inspect part"
+              },
+              {
+                "activity": "rework part"
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "children": [
+              {
+                "activity": "pack part"
+              },
+              {
+                "activity": "label part"
+              }
+            ]
+          },
+          {
+            "activity": "ship part"
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P18",
+    "split": "test",
+    "operators": [
+      "seq",
+      "xor",
+      "or"
+    ],
+    "description": "An applicant fills in the visa application form. The applicant also attaches an invitation letter, a hotel booking and/or a return ticket - at least one of these documents. Then the applicant pays the fee and attends an interview at the consulate. Finally, the consulate either issues the visa or refuses it.",
+    "reference": {
+      "process_name": "visa application",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "fill in application form"
+          },
+          {
+            "op": "or",
+            "children": [
+              {
+                "activity": "attach invitation letter"
+              },
+              {
+                "activity": "attach hotel booking"
+              },
+              {
+                "activity": "attach return ticket"
+              }
+            ]
+          },
+          {
+            "activity": "pay fee"
+          },
+          {
+            "activity": "attend interview"
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "issue visa"
+              },
+              {
+                "activity": "refuse visa"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": ""
+  },
+  {
+    "id": "P19",
+    "split": "test",
+    "operators": [
+      "seq",
+      "xor",
+      "loop"
+    ],
+    "description": "A user reports an incident, and the helpdesk classifies it. A simple incident is resolved directly by the helpdesk; otherwise, it is forwarded to a specialist, who diagnoses and fixes the problem. If the user is not satisfied with the solution, the incident is reopened and handled again in the same way. When the user is satisfied, the incident is closed.",
+    "reference": {
+      "process_name": "IT incident",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "report incident"
+          },
+          {
+            "activity": "classify incident"
+          },
+          {
+            "op": "loop",
+            "children": [
+              {
+                "op": "xor",
+                "children": [
+                  {
+                    "activity": "resolve at helpdesk"
+                  },
+                  {
+                    "op": "seq",
+                    "children": [
+                      {
+                        "activity": "forward to specialist"
+                      },
+                      {
+                        "activity": "diagnose problem"
+                      },
+                      {
+                        "activity": "fix problem"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "activity": "reopen incident"
+              }
+            ]
+          },
+          {
+            "activity": "close incident"
+          }
+        ]
+      }
+    },
+    "notes": "Interpretation: 'handled again' repeats the resolution (helpdesk or specialist); the classification happens only once."
+  },
+  {
+    "id": "P20",
+    "split": "test",
+    "operators": [
+      "seq",
+      "xor",
+      "and",
+      "or",
+      "loop"
+    ],
+    "description": "A prospective tenant applies for an apartment. The landlord checks the tenant's references and credit score, in any order. If the tenant is rejected, the landlord notifies the tenant. If the tenant is accepted, the landlord sends a draft lease; if the tenant asks for changes, the landlord revises the lease and sends it again, until both agree. The tenant then signs the lease and sets up electricity, internet and/or home insurance - at least one of these. Finally, the keys are handed over.",
+    "reference": {
+      "process_name": "apartment rental",
+      "tree": {
+        "op": "seq",
+        "children": [
+          {
+            "activity": "apply for apartment"
+          },
+          {
+            "op": "and",
+            "children": [
+              {
+                "activity": "check references"
+              },
+              {
+                "activity": "check credit score"
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "children": [
+              {
+                "activity": "notify rejection"
+              },
+              {
+                "op": "seq",
+                "children": [
+                  {
+                    "activity": "accept tenant"
+                  },
+                  {
+                    "op": "loop",
+                    "children": [
+                      {
+                        "activity": "send draft lease"
+                      },
+                      {
+                        "activity": "revise lease"
+                      }
+                    ]
+                  },
+                  {
+                    "activity": "sign lease"
+                  },
+                  {
+                    "op": "or",
+                    "children": [
+                      {
+                        "activity": "set up electricity"
+                      },
+                      {
+                        "activity": "set up internet"
+                      },
+                      {
+                        "activity": "buy home insurance"
+                      }
+                    ]
+                  },
+                  {
+                    "activity": "hand over keys"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "notes": "Combines all five operators."
+  }
+]

@@ -1,0 +1,24 @@
+digraph "P08" {
+  rankdir=LR;
+  node [fontname="Helvetica"];
+  "i" [shape=circle, width=0.35, fixedsize=true, label="&#9679;", fontsize=18];
+  "o" [shape=circle, width=0.35, fixedsize=true, peripheries=2, label=""];
+  "p0" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p1" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "p2" [shape=circle, width=0.35, fixedsize=true, label=""];
+  "t0" [shape=box, style=rounded, label="register for conference"];
+  "t1" [shape=box, style=rounded, label="pay registration fee"];
+  "t2" [shape=box, style=rounded, label="book workshop"];
+  "t3" [shape=box, style=filled, fillcolor=black, label="", width=0.15, height=0.45];
+  "t4" [shape=box, style=rounded, label="receive confirmation"];
+  "i" -> "t0";
+  "t0" -> "p0";
+  "p0" -> "t1";
+  "t1" -> "p1";
+  "p1" -> "t2";
+  "t2" -> "p2";
+  "p1" -> "t3";
+  "t3" -> "p2";
+  "p2" -> "t4";
+  "t4" -> "o";
+}
