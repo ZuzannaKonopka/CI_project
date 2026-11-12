@@ -221,47 +221,147 @@ To check that the measures detect real modelling errors, each typical error was 
 
 ## **Milestone 2 – LLM stage and baseline**
 
-**Goal:** make both pipelines run end-to-end on the 12 dev cases, improve the prompts there, then freeze the setup.
+**Goal:** run both pipelines end-to-end with a real LLM on the 12 dev cases, develop the prompt there, then freeze the setup. Both approaches were run with Qwen 2.5 7B (Ollama, local GPU) in 5 prompt versions × 72 generations = 360 dev generations. The final prompt v1.5 and `config.json` are frozen for Milestone 3.
 
-Stage 1 with an LLM: prompts for both approaches (same rules and worked examples), clients for Ollama + Qwen, an OpenAI-compatible server and a ChatGPT copy-paste workflow, a repair loop that sends validator messages back to the LLM (≤ 2 attempts, both approaches), and storage of every raw answer.
-
-### What is implemented
+### What was built
 | Component | Where | Notes |
 |---|---|---|
-| Prompts for both approaches | `nl2wfnet/prompts.py` | same rules, same wording cues, same 2 worked examples (ATM, pizza – not in the benchmark); version tracker in `docs/prompt_log.md` |
-| LLM clients | `nl2wfnet/llm.py` | Ollama (default `qwen2.5:7b`), any OpenAI-compatible server, manual chat-UI workflow |
+| Prompts for both approaches | `nl2wfnet/prompts.py` | same 3-step rules, same wording cues, same 4 worked examples (ATM, pizza, gym, car inspection – not in the benchmark); `PROMPT_VERSION = "v1.5"` |
+| LLM clients | `nl2wfnet/llm.py` | Ollama (used for all results), any OpenAI-compatible server, manual chat-UI workflow |
 | Configurations | `config.json`, `configs/{ollama,openai,manual}.json` | selected with `--config` |
-| Generation + repair loop | `nl2wfnet/pipeline.py` | JSON mode; up to 2 repairs for format/structure errors, identical for both approaches |
+| Generation + repair loop | `nl2wfnet/pipeline.py` | JSON mode; up to 2 repairs for format/structure errors, identical for both approaches; a timeout counts as a failed attempt |
 | Run records | `runs/<run>/<approach>/<case>_s<seed>.json` | prompt version, model, seed, every raw answer, validator errors, repairs, tokens, latency |
-| Label matching | `nl2wfnet/labels.py` | stemmed token overlap + character similarity, synonyms, antonym guard, manual overrides |
-| Evaluation | `nl2wfnet/metrics.py`, `report.py` | 4 dimensions, error taxonomy, tables, figures |
+| Label matching | `nl2wfnet/labels.py` | stemmed token overlap + character similarity, synonyms, antonym guard, manual overrides (`data/label_overrides.json`); every mapping stored in `results/<run>/label_maps.json` |
+| Evaluation and report | `nl2wfnet/metrics.py`, `report.py` | 4 dimensions, error taxonomy, paired statistics, tables, figures |
 | Prompt export for ChatGPT | `scripts/m2_export_chat_prompts.py` | dev cases only |
-| Tests | `tests/test_m2_*.py` | 9 tests (local fake Ollama / OpenAI servers, manual workflow, repair loop, prompt fairness) |
+| Prompt log | `docs/prompt_log.md` | every version, reason, run and result |
+| Tests | `tests/test_m2_*.py` | 9 tests with local fake Ollama / OpenAI servers (no real LLM needed) |
 
 ### Models and settings
 | Setting | Value | Why |
 |---|---|---|
-| Main model | `qwen2.5:7b` via Ollama (local) | open model, runs on a laptop, no API cost; fixed version via Ollama tag |
-| Alternative | any OpenAI-compatible model (`configs/openai.json`) or ChatGPT copy-paste (`configs/manual.json`) | prompt design and fallback if no local GPU |
-| Temperature | 0.5 | some variation between seeds, so 3 runs per case are meaningful |
-| Seeds | 1, 2, 3 (manual workflow: 1) | repeated runs per case |
-| Output | JSON mode (`format: json` / `response_format: json_object`) | forces syntactically valid JSON |
-| Context | 8192 tokens | system prompt + 2 examples + task fit easily (baseline prompt ≈ 6000 characters) |
+| Model | `qwen2.5:7b` via Ollama (local GPU) | open model, no API cost, fixed version via Ollama tag |
+| Alternatives (not used for results) | OpenAI-compatible server (`configs/openai.json`), ChatGPT copy-paste (`configs/manual.json`) | prompt checks and fallback |
+| Temperature | 0.5 | variation between seeds, so 3 runs per case are meaningful |
+| Seeds | 1, 2, 3 | repeated runs per case and approach |
+| Output | JSON mode (`format: json`) | forces syntactically valid JSON |
+| Context (`num_ctx`) | 16384 tokens | system prompt + 4 examples (≈ 3 000 tokens for the baseline) + repairs |
+| Max. answer (`num_predict`) | 2048 tokens | prevents endless generation |
+| Timeout | 600 s, counts as a failed attempt | a hanging request uses one repair instead of stopping the run |
 | Repairs | max. 2, only for format/structure errors | same budget for both approaches; soundness is never repaired, it is measured |
+
+### The final prompt (v1.5)
+Each request has 10 messages: system prompt → 4 worked examples (user description + expected answer) → task. The user messages are identical for both approaches.
+
+| Part | Proposed (process tree) | Baseline (WF-net) |
+|---|---|---|
+| Shared rules | Step 1 activities: one per action, label = "verb object", active voice; actors, states and conditions are not activities. Step 2 decisions: a check stays an activity; approved/rejected → one activity per result, no "decide" step. Step 3 control flow: wording cues, explicit loop pattern (do = repeated check, redo = corrections), optional step = xor with τ. | same |
+| Answer format | `{"process_name", "activities", "tree"}`, 5 operators with arity rules | `{"process_name", "activities", "places", "transitions", "arcs"}`, how to build each construct, self-check of arcs |
+| Worked examples | ATM (loop, OR, optional), pizza (parallel, choice), gym (decision with named results), car inspection (loop) as process trees | the same 4 processes as WF-nets, generated from the trees by our converter |
+| Repair message | `Your JSON is not valid: - <validator errors> Fix only these problems, keep all activities, and return the complete corrected JSON object only.` | same |
+
+### Fairness rules
+- Same model, temperature, seeds, context size and JSON mode for both approaches.
+- Same task description, rules and worked examples (each in its own output format; the WF-net examples are generated from the trees, so both show exactly the same process).
+- Repairs are triggered only by format/structure errors – **never by soundness**, which is a measured outcome.
+- Prompts were changed only on dev cases; every change is in `docs/prompt_log.md`. Test cases P13–P20 were never used.
+
+### Prompt development (12 dev cases, 72 generations per version)
+| Version | Validity P / B | Soundness P / B | Activity F1 P / B | Trace F1 P / B | Trace F1 diff. [95 % CI] | W / T / L | p | Repairs P / B |
+|---|---|---|---|---|---|---|---|---|
+| v1.1 | 0.944 / 0.139 | 0.944 / 0.083 | 0.821 / 0.120 | 0.283 / 0.032 | +0.251 [+0.059, +0.467] | 7 / 4 / 1 | 0.039 | 0.4 / 2.0 |
+| v1.2 | 0.861 / 0.222 | 0.861 / 0.139 | 0.703 / 0.194 | 0.314 / 0.015 | +0.299 [+0.084, +0.539] | 7 / 5 / 0 | 0.016 | 0.4 / 1.9 |
+| v1.3 | 0.778 / 0.194 | 0.778 / 0.083 | 0.651 / 0.156 | 0.309 / 0.004 | +0.305 [+0.108, +0.526] | 6 / 6 / 0 | 0.031 | 0.6 / 1.9 |
+| v1.4 | 0.861 / 0.222 | 0.861 / 0.111 | 0.760 / 0.180 | 0.308 / 0.000 | +0.308 [+0.107, +0.533] | 9 / 3 / 0 | 0.004 | 0.5 / 1.8 |
+| v1.5 | 0.889 / 0.444 | 0.889 / 0.194 | 0.816 / 0.417 | 0.407 / 0.060 | +0.347 [+0.088, +0.598] | 8 / 2 / 2 | 0.049 | 0.2 / 1.7 |
+
+P = proposed, B = baseline; means over 36 runs per approach; paired test over the 12 cases. v1.0 has no result: its first run stopped after a request timeout and was restarted with the v1.1 settings (run `dev_v1`). Rule changes in v1.2–v1.4 did not move trace F1 (0.28–0.31); the explicit loop pattern in v1.5 raised it to 0.41. **v1.5 was selected and frozen** (best trace F1 for both approaches).
+
+### Dev results with the final prompt (run `dev_v1_5`)
+From `results/dev_v1_5/summary.md` (client `ollama:qwen2.5:7b`, prompt v1.5, 12 cases, 3 runs per case and approach). Mean ± SD over 36 runs; paired comparison over cases (runs averaged per case first), exact two-sided Wilcoxon signed-rank test, 95 % bootstrap CI.
+
+| Measure | Proposed (tree) | Baseline (direct) | Mean diff [95 % CI] | W / T / L | p |
+|---|---|---|---|---|---|
+| Validity | 0.889 ± 0.314 | 0.444 ± 0.497 | +0.444 [+0.139, +0.694] | 11 / 0 / 1 | 0.023 |
+| Soundness | 0.889 ± 0.314 | 0.194 ± 0.396 | +0.694 [+0.389, +0.917] | 11 / 0 / 1 | 0.003 |
+| Activity F1 | 0.816 ± 0.315 | 0.417 ± 0.471 | +0.399 [+0.103, +0.651] | 11 / 0 / 1 | 0.015 |
+| Footprint similarity | 0.764 ± 0.301 | 0.164 ± 0.312 | +0.600 [+0.344, +0.811] | 11 / 0 / 1 | 0.003 |
+| Trace precision | 0.409 ± 0.424 | 0.056 ± 0.196 | +0.353 [+0.092, +0.615] | 8 / 2 / 2 | 0.041 |
+| Trace recall | 0.474 ± 0.409 | 0.069 ± 0.240 | +0.405 [+0.131, +0.669] | 8 / 2 / 2 | 0.020 |
+| **Trace F1 (primary)** | 0.407 ± 0.404 | 0.060 ± 0.208 | +0.347 [+0.088, +0.598] | 8 / 2 / 2 | 0.049 |
+| Repairs used | 0.2 | 1.7 | – | – | – |
+| Output length (chars) | 499.6 | 986.1 | – | – | – |
+
+**Trace F1 per operator** (cases containing the operator):
+
+| Operator | Cases | Proposed | Baseline |
+|---|---|---|---|
+| xor | 7 | 0.266 | 0.056 |
+| and | 5 | 0.508 | 0.000 |
+| or | 3 | 0.908 | 0.000 |
+| loop | 3 | 0.100 | 0.111 |
+| τ (optional step) | 1 | 0.000 | 0.389 |
+
+**Trace F1 per case:**
+
+| Case | Operators | Proposed | Baseline | |
+|---|---|---|---|---|
+| P01 | seq, xor, and | 0.000 | 0.000 | tie |
+| P02 | seq, or | 0.724 | 0.000 | win |
+| P03 | seq, loop | 0.014 | 0.333 | loss |
+| P04 | seq, xor, and | 0.762 | 0.000 | win |
+| P05 | seq, xor, and | 0.111 | 0.000 | win |
+| P06 | seq, loop | 0.286 | 0.000 | win |
+| P07 | seq, or | 1.000 | 0.000 | win |
+| P08 | seq, xor, tau | 0.000 | 0.389 | loss |
+| P09 | seq, xor, loop | 0.000 | 0.000 | tie |
+| P10 | seq, xor, and | 0.667 | 0.000 | win |
+| P11 | seq, and, or | 1.000 | 0.000 | win |
+| P12 | seq, xor | 0.321 | 0.000 | win |
+
+**Error types** (share of runs; a run can have several):
+
+| Error type | Proposed | Baseline |
+|---|---|---|
+| correct | 22% | 3% |
+| extra / unmatched activity | 31% | 17% |
+| invalid after repairs | 11% | 56% |
+| missing activity | 28% | 8% |
+| unsound: cannot always complete | 0% | 25% |
+| unsound: dead transition | 0% | 25% |
+| wrong control flow | 25% | 11% |
+
+### Interpretation
+- **Validity and soundness (H1, H2 on dev):** 89 % of the process trees are valid, and every valid tree is a sound WF-net (validity = soundness). Direct generation gives 44 % valid answers, but only 19 % sound nets: most valid direct nets cannot always complete or contain dead transitions.
+- **Behaviour (H3 on dev):** trace F1 0.407 vs. 0.060, difference +0.347 [+0.088, +0.598], 8 wins / 2 ties / 2 losses, p = 0.049. The difference was significant (p < 0.05) in every prompt version.
+- **Where the tree helps most:** inclusive OR (0.91 vs. 0.00) and parallel branches (0.51 vs. 0.00) – the converter builds these structures, while the directly generated nets never reproduced them.
+- **What remains hard:** loops (0.10 vs. 0.11) and the optional step (P08: 0.00 vs. 0.39); losses in P03 and P08; P01 is 0 for both (the exact model needs one branch per combination of interview outcomes).
+- **Error profile:** the proposed approach fails on content (missing / extra activities, wrong control flow), the baseline on structure (invalid or unsound nets).
+
+### Limitations
+- One small model (7B); results may differ for larger models.
+- 12 dev cases, and the prompt was selected on them, so the dev results are optimistic. The unbiased comparison is the frozen run on the 8 held-out cases (Milestone 3).
+- Trace F1 is strict: one missing or wrong activity brings it close to 0; per-operator values are based on 1–7 cases.
+- Label matching is heuristic; all mappings are stored in `label_maps.json` and can be checked.
+
+### Tests (9 for Milestone 2)
+| File | Tests | What is guaranteed |
+|---|---|---|
+| `test_m2_clients.py` | 5 | fake OpenAI server: request body, seed, temperature, JSON mode, key read from the environment; a key in the config is rejected; manual workflow writes the prompt and reads the answer; all config files build a client; identical user messages and valid worked examples in both formats |
+| `test_m2_pipeline.py` | 4 | JSON extraction from fenced answers; fake Ollama server; repair loop sends validator errors back and accepts the fix; repair budget of 2 respected |
 
 ---
 
 ## **Milestone 3 - Experiment and results (final)**
 
-**Goal:** answer the research question once, with the frozen setup, on unseen cases.
+**Goal:** answer the research question once, with the frozen setup (prompt v1.5 + `config.json`), on unseen cases.
 
 ### Protocol
 - **8 test cases × 3 seeds × 2 approaches = 48 generations** with a frozen setup, `python scripts/m3_experiment.py --run-name final_v1`.
 - The script stores a hash of the config + prompts in `runs/final_v1/FROZEN.txt`.
 - Unit of analysis: the **case** (runs averaged per case).
 - Primary measure: **trace F1** (H3). Secondary: validity (H1), soundness (H2), activity F1, footprint, repairs, output length.
-- Statistics: mean difference with 95 % bootstrap CI, exact two-sided Wilcoxon signed-rank test, wins/ties/losses.
-  With 8 cases the power is low: effect sizes and intervals matter more than p-values.
+- Statistics: mean difference with 95 % bootstrap CI, exact two-sided Wilcoxon signed-rank test, wins/ties/losses. With 8 cases the power is low: effect sizes and intervals matter more than p-values.
 - Analysis per operator, per case, and by automatic error type (invalid, missing/extra activity, unsound, wrong control flow).
 
 ### Outputs (`results/final_v1/`)
@@ -281,7 +381,7 @@ natural_lang_WFnet_project/
 │   ├── wfnet.py         # Petri nets, tree -> WF-net, WF-net JSON, PNML/DOT
 │   ├── analysis.py      # soundness, bounded traces, footprints
 │   ├── benchmark.py     # spreadsheet -> benchmark.json
-│   ├── prompts.py       # prompts for both approaches
+│   ├── prompts.py       # prompts for both approaches (v1.5, frozen)
 │   ├── llm.py           # Ollama / OpenAI-compatible / manual
 │   ├── pipeline.py      # prompt -> LLM -> validate -> repair
 │   ├── labels.py        # label matching
@@ -292,11 +392,11 @@ natural_lang_WFnet_project/
 ├── scripts/             # m1_*, m2_*, m3_*, generate.py, evaluate.py
 ├── tests/               # test_m1_*.py (53), test_m2_*.py (9), test_m3_stats.py (2), run_all.py
 ├── data/                # benchmark_v1.xlsx, benchmark.json, label_overrides.json, examples/ (hand-written)
-├── docs/                # prompt_log.md
+├── docs/                # prompt_log.md (all prompt versions and results)
 ├── schema/              # process_tree.schema.json
 ├── outputs/reference/   # PNML, DOT, PNG of 20 reference WF-nets + benchmark_report.csv
 ├── runs/                # raw LLM records (created by scripts)
-└── results/             # metric_validation/, m1_case_studies/, <run>/
+└── results/             # metric_validation/, m1_case_studies/, dev_v1 … dev_v1_5/
 ```
 
 ## **Reproducing the Experiments**
@@ -313,16 +413,17 @@ python scripts/m1_case_studies.py     # results/m1_case_studies/
 ### Milestone 2
 `m2_develop.py` = `generate.py` + `evaluate.py` in one step. Use one of them, not both.
 
-#### Ollama (main setup)
+#### Ollama (setup used for all results)
 ```bash
-ollama pull qwen2.5:7b                     # needs a running Ollama server
+ollama pull qwen2.5:7b                     # needs a running Ollama server (GPU recommended)
 python tests/run_all.py m2                 # 9 tests
-python scripts/m2_develop.py --run-name dev_v1
+python scripts/m2_develop.py --run-name dev_v1_5    # final prompt v1.5, 72 generations
 ```
+Outputs: `runs/dev_v1_5/` (raw records) and `results/dev_v1_5/` (`summary.md`, `per_run.csv`, `per_case.csv`, `paired_tests.csv`, `per_operator.csv`, `label_maps.json`, 3 figures). A stopped run can be restarted with the same command; finished generations are skipped.
 
 #### OpenAI-compatible server
 ```bash
-$env:OPENAI_API_KEY="..."          # Use correct API KEY       
+$env:OPENAI_API_KEY="..."                # Use correct API key
 python scripts/m2_develop.py --config configs/openai.json --run-name dev_openai_v1
 ```
 
