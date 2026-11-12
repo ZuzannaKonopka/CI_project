@@ -338,12 +338,6 @@ From `results/dev_v1_5/summary.md` (client `ollama:qwen2.5:7b`, prompt v1.5, 12 
 - **What remains hard:** loops (0.10 vs. 0.11) and the optional step (P08: 0.00 vs. 0.39); losses in P03 and P08; P01 is 0 for both (the exact model needs one branch per combination of interview outcomes).
 - **Error profile:** the proposed approach fails on content (missing / extra activities, wrong control flow), the baseline on structure (invalid or unsound nets).
 
-### Limitations
-- One small model (7B); results may differ for larger models.
-- 12 dev cases, and the prompt was selected on them, so the dev results are optimistic. The unbiased comparison is the frozen run on the 8 held-out cases (Milestone 3).
-- Trace F1 is strict: one missing or wrong activity brings it close to 0; per-operator values are based on 1–7 cases.
-- Label matching is heuristic; all mappings are stored in `label_maps.json` and can be checked.
-
 ### Tests (9 for Milestone 2)
 | File | Tests | What is guaranteed |
 |---|---|---|
