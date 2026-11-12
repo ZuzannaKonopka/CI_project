@@ -1,4 +1,12 @@
 {
-  "_comment": "Manual label mappings that override automatic matching: {case_id: {generated label: reference label}}. Add entries after checking results/<run>/label_maps.json.",
-  "P01": {}
+  "_comment": "Manual label mappings that override automatic matching: {case_id: {generated label: reference label}}. Only labels with the same meaning; checked in results/dev_v1_4/per_run.csv (unmatched_labels).",
+  "P03": {"ask for supplementation": "request missing documents",
+          "ask to supplement": "request missing documents"},
+  "P05": {"pay out money": "pay out loan"},
+  "P08": {"send confirmation email": "receive confirmation"},
+  "P11": {"event takes place": "hold event"},
+  "P12": {"refund customer": "issue refund",
+          "receive refund": "issue refund",
+          "replace product": "send replacement",
+          "receive replacement product": "send replacement"}
 }

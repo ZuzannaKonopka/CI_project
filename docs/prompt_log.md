@@ -14,9 +14,7 @@ Before Milestone 3 the final prompt version and configuration are frozen. (`scri
 | v1.2 | 11.11.2026 | Added conservative interpretation rules, clarified when AND should be used, and reinforced consistent activity labels and JSON output requirements. | To reduce unsupported dependencies, unnecessary parallel branches and inconsistent activity naming. | `dev_v1_2` | 0.314 ± 0.418 / 0.015 ± 0.068  |
 | v1.3 | 11.11.2026 | Added explicit activity completeness checks, clarified the distinction between XOR, AND and OR, refined loop-handling rules, and introduced additional WF-net structural validation requirements. | To reduce missing and unmatched activities, improve control-flow interpretation (especially XOR and loops), and prevent structurally invalid direct WF-net outputs. | `dev_v1_3` | 0.309 ± 0.438 / 0.004 ± 0.020 |
 | v1.4 | 12.11.2026 | Rewrite from the v1.1 base: explicit labelling convention (verb + object, active voice), decision rule (conditions are not activities; named results replace the decision), loop rule (no outcome activities), activities list before the model, third worked example (gym membership), WF-net examples renumbered in flow order; same changes for both approaches. | v1.2/v1.3 did not raise trace F1. In dev_v1–dev_v1_3 most errors were missing/extra activities (39–42%) caused by outcome activities for loop conditions (P03, P06, P09) and checked conditions (P04, P12); the baseline was invalid in 81–86% of runs. | `dev_v1_4` | 0.308 ± 0.412 / 0.000 ± 0.000 |
-
-
-| v1.5 | 12.11.2026 | Added conservative interpretation rules, clarified when AND should be used, and reinforced consistent activity labels and JSON output requirements. | To reduce unsupported dependencies, unnecessary parallel branches and inconsistent activity naming. | - | 0.314 ± 0.418 / 0.015 ± 0.068  |
+| v1.5 | 12.11.2026 | Loop handling: explicit do/redo pattern, no activities for loop conditions, fourth worked example (car inspection) in both formats. | Loop cases P03, P06, P09 scored 0.00–0.13 in all previous versions. | `dev_v1_5` | - |
 
 
 ## **Development protocol**
