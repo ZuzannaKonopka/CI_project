@@ -1,0 +1,50 @@
+{
+ "approach": "baseline",
+ "case": "P02",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"travel request process\",\n\"activities\": [\"submit travel request\", \"approve request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": \"approve request\"}, {\"id\": \"t3\", \"label\": \"book flight\"}, {\"id\": \"t4\", \"label\": \"book hotel\"}, {\"id\": \"t5\", \"label\": \"rent car\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t3\", \"p3\"], [\"t4\", \"p4\"], [\"t5\", \"p5\"], [\"p3\", \"t6\"], [\"p4\", \"t6\"], [\"p5\", \"t6\"], [\"p6\", \"t7\"], [\"p7\", \"t7\"], [\"p8\", \"t8\"], [\"p9\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "transition 't6' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 8.11,
+   "prompt_tokens": 3587,
+   "output_tokens": 353,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request process\",\n\"activities\": [\"submit travel request\", \"approve request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": \"approve request\"}, {\"id\": \"t3\", \"label\": \"book flight\"}, {\"id\": \"t4\", \"label\": \"book hotel\"}, {\"id\": \"t5\", \"label\": \"rent car\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t3\", \"p3\"], [\"t4\", \"p4\"], [\"t5\", \"p5\"], [\"p3\", \"t6\"], [\"p4\", \"t6\"], [\"p5\", \"t6\"], [\"p2\", \"t6\"], [\"p6\", \"t7\"], [\"p7\", \"t7\"], [\"p8\", \"t7\"], [\"p9\", \"t7\"], [\"t7\", \"o\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "transition 't8' needs at least one input and one output place",
+    "transition 't6' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 8.13,
+   "prompt_tokens": 4016,
+   "output_tokens": 361,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request process\",\n\"activities\": [\"submit travel request\", \"approve request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": \"approve request\"}, {\"id\": \"t3\", \"label\": \"book flight\"}, {\"id\": \"t4\", \"label\": \"book hotel\"}, {\"id\": \"t5\", \"label\": \"rent car\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t3\", \"p3\"], [\"t4\", \"p4\"], [\"t5\", \"p5\"], [\"p3\", \"t6\"], [\"p4\", \"t6\"], [\"p5\", \"t6\"], [\"p3\", \"t6\"], [\"p4\", \"t6\"], [\"p5\", \"t6\"], [\"p6\", \"t7\"], [\"p7\", \"t7\"], [\"p8\", \"t7\"], [\"p9\", \"t7\"], [\"p10\", \"t7\"], [\"t7\", \"o\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "transition 't8' needs at least one input and one output place",
+    "transition 't6' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9', 'p10']"
+   ],
+   "latency_s": 8.59,
+   "prompt_tokens": 4469,
+   "output_tokens": 391,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 24.82,
+ "output_chars": 904
+}

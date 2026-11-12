@@ -1,0 +1,68 @@
+{
+ "approach": "baseline",
+ "case": "P02",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"travel request\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": \"approve travel request\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"p3\", \"t5\"], [\"p3\", \"t6\"], [\"t8\", \"o\"], [\"p3\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t4\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"t7\", \"p5\"], [\"p5\", \"t4\"], [\"p5\", \"t5\"], [\"p5\", \"t6\"], [\"t7\", \"p6\"], [\"p6\", \"t4\"], [\"p6\", \"t5\"], [\"p6\", \"t6\"], [\"t8\", \"p7\"], [\"p7\", \"t8\"], [\"p8\", \"t8\"], [\"p9\", \"t8\"], [\"p10\", \"t8\"]]}",
+   "errors": [
+    "arc ['p10', 't8'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 9.62,
+   "prompt_tokens": 3587,
+   "output_tokens": 452,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": \"approve travel request\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"p3\", \"t5\"], [\"p3\", \"t6\"], [\"t8\", \"o\"], [\"p3\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t4\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"t7\", \"p5\"], [\"p5\", \"t4\"], [\"p5\", \"t5\"], [\"p5\", \"t6\"], [\"t7\", \"p6\"], [\"p6\", \"t4\"], [\"p6\", \"t5\"], [\"p6\", \"t6\"], [\"t8\", \"p7\"], [\"p7\", \"t8\"]]}",
+   "errors": [
+    "transition 't4' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "transition 't6' needs at least one input and one output place",
+    "node i is not on a path from source to sink",
+    "node p1 is not on a path from source to sink",
+    "node p2 is not on a path from source to sink",
+    "node p3 is not on a path from source to sink",
+    "node p4 is not on a path from source to sink",
+    "node p5 is not on a path from source to sink",
+    "node p6 is not on a path from source to sink",
+    "node p7 is not on a path from source to sink",
+    "node o is not on a path from source to sink",
+    "node t1 is not on a path from source to sink",
+    "node t2 is not on a path from source to sink",
+    "node t3 is not on a path from source to sink",
+    "node t4 is not on a path from source to sink",
+    "node t5 is not on a path from source to sink",
+    "node t6 is not on a path from source to sink",
+    "node t7 is not on a path from source to sink",
+    "node t8 is not on a path from source to sink"
+   ],
+   "latency_s": 9.14,
+   "prompt_tokens": 4101,
+   "output_tokens": 419,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": \"approve travel request\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"p3\", \"t5\"], [\"p3\", \"t6\"], [\"t3\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"o\"], [\"p7\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t4\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"t7\", \"p5\"], [\"p5\", \"t4\"], [\"p5\", \"t5\"], [\"p5\", \"t6\"], [\"t7\", \"p6\"], [\"p6\", \"t4\"], [\"p6\", \"t5\"], [\"p6\", \"t6\"]]}",
+   "errors": [
+    "transition 't4' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "transition 't6' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p8', 'p9']",
+    "expected exactly one sink place, found ['p8', 'p9', 'o']"
+   ],
+   "latency_s": 9.3,
+   "prompt_tokens": 4670,
+   "output_tokens": 427,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 28.06,
+ "output_chars": 973
+}

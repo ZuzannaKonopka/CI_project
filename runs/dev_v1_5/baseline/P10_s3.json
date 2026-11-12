@@ -1,0 +1,50 @@
+{
+ "approach": "baseline",
+ "case": "P10",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"place order\"}, {\"id\": \"t2\", \"label\": \"prepare meal\"}, {\"id\": \"t3\", \"label\": \"prepare drinks\"}, {\"id\": \"t4\", \"label\": \"serve order\"}, {\"id\": \"t5\", \"label\": \"pay cash\"}, {\"id\": \"t6\", \"label\": \"pay card\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t6\"], [\"t4\", \"o\"], [\"t5\", \"o\"], [\"t6\", \"o\"], [\"p2\", \"t7\"], [\"p3\", \"t7\"], [\"t7\", \"o\"]]}",
+   "errors": [
+    "transition 't8' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p4', 'p5', 'p6', 'p7', 'p8']",
+    "expected exactly one sink place, found ['p4', 'p5', 'p6', 'p7', 'p8', 'o']"
+   ],
+   "latency_s": 7.48,
+   "prompt_tokens": 3574,
+   "output_tokens": 317,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"place order\"}, {\"id\": \"t2\", \"label\": \"prepare meal\"}, {\"id\": \"t3\", \"label\": \"prepare drinks\"}, {\"id\": \"t4\", \"label\": \"serve order\"}, {\"id\": \"t5\", \"label\": \"pay cash\"}, {\"id\": \"t6\", \"label\": \"pay card\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t6\"], [\"t4\", \"p4\"], [\"t5\", \"p5\"], [\"t6\", \"p6\"], [\"p4\", \"t7\"], [\"p5\", \"t7\"], [\"p6\", \"t7\"], [\"t7\", \"o\"], [\"p4\", \"t8\"], [\"p5\", \"t8\"], [\"p6\", \"t8\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p7', 'p8']",
+    "expected exactly one sink place, found ['p7', 'p8', 'o']"
+   ],
+   "latency_s": 8.31,
+   "prompt_tokens": 4002,
+   "output_tokens": 359,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"place order\"}, {\"id\": \"t2\", \"label\": \"prepare meal\"}, {\"id\": \"t3\", \"label\": \"prepare drinks\"}, {\"id\": \"t4\", \"label\": \"serve order\"}, {\"id\": \"t5\", \"label\": \"pay cash\"}, {\"id\": \"t6\", \"label\": \"pay card\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t6\"], [\"t4\", \"p7\"], [\"t5\", \"p8\"], [\"p7\", \"t7\"], [\"p8\", \"t7\"], [\"t7\", \"o\"], [\"p7\", \"t8\"], [\"p8\", \"t8\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "transition 't6' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p4', 'p5', 'p6']",
+    "expected exactly one sink place, found ['p4', 'p5', 'p6', 'o']"
+   ],
+   "latency_s": 7.88,
+   "prompt_tokens": 4432,
+   "output_tokens": 335,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 23.68,
+ "output_chars": 770
+}

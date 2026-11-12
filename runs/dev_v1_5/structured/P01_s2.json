@@ -1,0 +1,92 @@
+{
+ "approach": "structured",
+ "case": "P01",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"job application\",\n\"activities\": [\"submit CV\", \"perform screening\", \"screening positive\", \"screening negative\", \"technical interview\", \"manager interview\", \"positive assessment\", \"negative assessment\", \"send offer\", \"reject application\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit CV\"}, {\"activity\": \"perform screening\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"screening positive\"}, {\"activity\": \"screening negative\"}]}, {\"op\": \"and\", \"children\": [{\"op\": \"seq\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"positive assessment\"}, {\"activity\": \"manager interview\"}, {\"activity\": \"positive assessment\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"send offer\"}, {\"activity\": \"reject application\"}]}]}]}}",
+   "errors": [],
+   "latency_s": 5.06,
+   "prompt_tokens": 1770,
+   "output_tokens": 180,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "job application",
+  "activities": [
+   "submit CV",
+   "perform screening",
+   "screening positive",
+   "screening negative",
+   "technical interview",
+   "manager interview",
+   "positive assessment",
+   "negative assessment",
+   "send offer",
+   "reject application"
+  ],
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit CV"
+    },
+    {
+     "activity": "perform screening"
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "activity": "screening positive"
+      },
+      {
+       "activity": "screening negative"
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "op": "seq",
+       "children": [
+        {
+         "activity": "technical interview"
+        },
+        {
+         "activity": "positive assessment"
+        },
+        {
+         "activity": "manager interview"
+        },
+        {
+         "activity": "positive assessment"
+        }
+       ]
+      },
+      {
+       "op": "or",
+       "children": [
+        {
+         "activity": "send offer"
+        },
+        {
+         "activity": "reject application"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 5.06,
+ "output_chars": 751
+}

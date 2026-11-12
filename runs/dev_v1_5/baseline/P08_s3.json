@@ -1,0 +1,134 @@
+{
+ "approach": "baseline",
+ "case": "P08",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"conference registration\",\n\"activities\": [\"register for conference\", \"pay registration fee\", \"book workshop\", \"send confirmation e-mail\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"register for conference\"}, {\"id\": \"t2\", \"label\": \"pay registration fee\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book workshop\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"send confirmation e-mail\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t5\"], [\"t4\", \"p4\"], [\"t5\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p5']",
+    "expected exactly one sink place, found ['p5', 'o']"
+   ],
+   "latency_s": 6.57,
+   "prompt_tokens": 3563,
+   "output_tokens": 265,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"conference registration\",\n\"activities\": [\"register for conference\", \"pay registration fee\", \"book workshop\", \"send confirmation e-mail\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"register for conference\"}, {\"id\": \"t2\", \"label\": \"pay registration fee\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book workshop\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"send confirmation e-mail\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t5\"], [\"t4\", \"p4\"], [\"t5\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [],
+   "latency_s": 6.62,
+   "prompt_tokens": 3891,
+   "output_tokens": 261,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "conference registration",
+  "activities": [
+   "register for conference",
+   "pay registration fee",
+   "book workshop",
+   "send confirmation e-mail"
+  ],
+  "places": [
+   "i",
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "o"
+  ],
+  "transitions": [
+   {
+    "id": "t1",
+    "label": "register for conference"
+   },
+   {
+    "id": "t2",
+    "label": "pay registration fee"
+   },
+   {
+    "id": "t3",
+    "label": null
+   },
+   {
+    "id": "t4",
+    "label": "book workshop"
+   },
+   {
+    "id": "t5",
+    "label": null
+   },
+   {
+    "id": "t6",
+    "label": "send confirmation e-mail"
+   }
+  ],
+  "arcs": [
+   [
+    "i",
+    "t1"
+   ],
+   [
+    "t1",
+    "p1"
+   ],
+   [
+    "p1",
+    "t2"
+   ],
+   [
+    "p1",
+    "t3"
+   ],
+   [
+    "t2",
+    "p2"
+   ],
+   [
+    "t3",
+    "p3"
+   ],
+   [
+    "p2",
+    "t4"
+   ],
+   [
+    "p3",
+    "t4"
+   ],
+   [
+    "p2",
+    "t5"
+   ],
+   [
+    "p3",
+    "t5"
+   ],
+   [
+    "t4",
+    "p4"
+   ],
+   [
+    "t5",
+    "p4"
+   ],
+   [
+    "p4",
+    "t6"
+   ],
+   [
+    "t6",
+    "o"
+   ]
+  ]
+ },
+ "n_repairs": 1,
+ "total_latency_s": 13.19,
+ "output_chars": 668
+}

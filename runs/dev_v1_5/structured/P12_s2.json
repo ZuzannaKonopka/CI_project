@@ -1,0 +1,80 @@
+{
+ "approach": "structured",
+ "case": "P12",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"product return\",\n\"activities\": [\"request return\", \"reject request\", \"approve request\", \"ship product\", \"inspect product\", \"refund customer\", \"provide replacement\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"request return\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"reject request\"}, {\"activity\": \"approve request\"}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"ship product\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"inspect product\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"refund customer\"}, {\"activity\": \"provide replacement\"}]}]}]}]}}",
+   "errors": [],
+   "latency_s": 4.56,
+   "prompt_tokens": 1744,
+   "output_tokens": 143,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "product return",
+  "activities": [
+   "request return",
+   "reject request",
+   "approve request",
+   "ship product",
+   "inspect product",
+   "refund customer",
+   "provide replacement"
+  ],
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "request return"
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "activity": "reject request"
+      },
+      {
+       "activity": "approve request"
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "ship product"
+      },
+      {
+       "op": "and",
+       "children": [
+        {
+         "activity": "inspect product"
+        },
+        {
+         "op": "or",
+         "children": [
+          {
+           "activity": "refund customer"
+          },
+          {
+           "activity": "provide replacement"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 4.56,
+ "output_chars": 564
+}

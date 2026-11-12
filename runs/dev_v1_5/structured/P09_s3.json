@@ -1,0 +1,80 @@
+{
+ "approach": "structured",
+ "case": "P09",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim again\", \"pay compensation\", \"reject claim\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit claim\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check claim\"}, {\"op\": \"seq\", \"children\": [{\"activity\": \"request information\"}, {\"activity\": \"provide information\"}]}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check claim again\"}, {\"op\": \"seq\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}]}}",
+   "errors": [],
+   "latency_s": 4.55,
+   "prompt_tokens": 1745,
+   "output_tokens": 145,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "insurance claim",
+  "activities": [
+   "submit claim",
+   "check claim",
+   "request information",
+   "provide information",
+   "check claim again",
+   "pay compensation",
+   "reject claim"
+  ],
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit claim"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "activity": "check claim"
+      },
+      {
+       "op": "seq",
+       "children": [
+        {
+         "activity": "request information"
+        },
+        {
+         "activity": "provide information"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "activity": "check claim again"
+      },
+      {
+       "op": "seq",
+       "children": [
+        {
+         "activity": "pay compensation"
+        },
+        {
+         "activity": "reject claim"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 4.55,
+ "output_chars": 571
+}

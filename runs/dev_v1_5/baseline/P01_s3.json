@@ -1,0 +1,54 @@
+{
+ "approach": "baseline",
+ "case": "P01",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"job application\",\n\"activities\": [\"submit CV\", \"screening positive\", \"screening negative\", \"technical interview\", \"manager interview\", \"positive assessment\", \"negative assessment\", \"reject application\", \"send offer\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit CV\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"screening positive\"}, {\"id\": \"t4\", \"label\": \"screening negative\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"technical interview\"}, {\"id\": \"t7\", \"label\": \"manager interview\"}, {\"id\": \"t8\", \"label\": \"positive assessment\"}, {\"id\": \"t9\", \"label\": \"negative assessment\"}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": \"reject application\"}, {\"id\": \"t12\", \"label\": \"send offer\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t6\"], [\"p2\", \"t7\"], [\"t6\", \"p3\"], [\"t7\", \"p4\"], [\"p3\", \"t8\"], [\"p4\", \"t9\"], [\"t8\", \"p5\"], [\"t9\", \"p5\"], [\"p5\", \"t10\"], [\"t10\", \"p6\"], [\"p6\", \"t11\"], [\"p6\", \"t12\"], [\"t12\", \"o\"]]}",
+   "errors": [
+    "transition 't4' needs at least one input and one output place",
+    "transition 't11' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "transition 't2' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p7', 'p8', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['p7', 'p8', 'p9', 'p10', 'p11', 'o']"
+   ],
+   "latency_s": 9.18,
+   "prompt_tokens": 3606,
+   "output_tokens": 429,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"job application\",\n\"activities\": [\"submit CV\", \"screening positive\", \"screening negative\", \"technical interview\", \"manager interview\", \"positive assessment\", \"negative assessment\", \"reject application\", \"send offer\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit CV\"}, {\"id\": \"t2\", \"label\": \"screening positive\"}, {\"id\": \"t3\", \"label\": \"screening negative\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"technical interview\"}, {\"id\": \"t6\", \"label\": \"manager interview\"}, {\"id\": \"t7\", \"label\": \"positive assessment\"}, {\"id\": \"t8\", \"label\": \"negative assessment\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"reject application\"}, {\"id\": \"t11\", \"label\": \"send offer\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t6\"], [\"t5\", \"p4\"], [\"t6\", \"p5\"], [\"p4\", \"t7\"], [\"p5\", \"t8\"], [\"t7\", \"p6\"], [\"t8\", \"p6\"], [\"p4\", \"t9\"], [\"p5\", \"t9\"], [\"t7\", \"t10\"], [\"t8\", \"t10\"], [\"t10\", \"o\"], [\"p6\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [
+    "arc ['t7', 't10'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t8', 't10'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 9.65,
+   "prompt_tokens": 4199,
+   "output_tokens": 450,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"job application\",\n\"activities\": [\"submit CV\", \"screening positive\", \"screening negative\", \"technical interview\", \"manager interview\", \"positive assessment\", \"negative assessment\", \"reject application\", \"send offer\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit CV\"}, {\"id\": \"t2\", \"label\": \"screening positive\"}, {\"id\": \"t3\", \"label\": \"screening negative\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"technical interview\"}, {\"id\": \"t6\", \"label\": \"manager interview\"}, {\"id\": \"t7\", \"label\": \"positive assessment\"}, {\"id\": \"t8\", \"label\": \"negative assessment\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"reject application\"}, {\"id\": \"t11\", \"label\": \"send offer\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"p3\", \"t4\"], [\"p2\", \"t5\"], [\"p3\", \"t6\"], [\"t5\", \"p4\"], [\"t6\", \"p5\"], [\"p4\", \"t7\"], [\"p5\", \"t8\"], [\"t7\", \"p6\"], [\"t8\", \"p6\"], [\"p4\", \"t10\"], [\"p5\", \"t10\"], [\"t10\", \"o\"], [\"p6\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [
+    "transition 't4' needs at least one input and one output place",
+    "transition 't9' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p7', 'p8', 'p9', 'p10']",
+    "expected exactly one sink place, found ['p7', 'p8', 'p9', 'p10', 'o']"
+   ],
+   "latency_s": 9.35,
+   "prompt_tokens": 4740,
+   "output_tokens": 434,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 28.19,
+ "output_chars": 1090
+}

@@ -1,0 +1,46 @@
+{
+ "approach": "baseline",
+ "case": "P09",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim\", \"pay compensation\", \"reject claim\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit claim\"}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request information\"}, {\"id\": \"t4\", \"label\": \"provide information\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p2\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"p5\", \"t7\"], [\"t6\", \"o\"], [\"t7\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['p4', 'p6', 'p7', 'p8', 'p9', 'o']"
+   ],
+   "latency_s": 7.24,
+   "prompt_tokens": 3581,
+   "output_tokens": 302,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim\", \"pay compensation\", \"reject claim\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit claim\"}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request information\"}, {\"id\": \"t4\", \"label\": \"provide information\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p2\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"p5\", \"t7\"], [\"t6\", \"o\"], [\"t7\", \"o\"]]}",
+   "errors": [
+    "expected exactly one sink place, found ['p4', 'o']"
+   ],
+   "latency_s": 6.99,
+   "prompt_tokens": 3974,
+   "output_tokens": 286,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim\", \"pay compensation\", \"reject claim\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit claim\"}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request information\"}, {\"id\": \"t4\", \"label\": \"provide information\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p2\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"p5\", \"t7\"], [\"t6\", \"o\"], [\"t7\", \"o\"]]}",
+   "errors": [
+    "expected exactly one sink place, found ['p4', 'o']"
+   ],
+   "latency_s": 6.98,
+   "prompt_tokens": 4308,
+   "output_tokens": 286,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 21.21,
+ "output_chars": 740
+}

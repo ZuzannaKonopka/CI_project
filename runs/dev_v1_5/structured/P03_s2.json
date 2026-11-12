@@ -1,0 +1,62 @@
+{
+ "approach": "structured",
+ "case": "P03",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"document submission\",\n\"activities\": [\"submit documents\", \"check completeness\", \"ask to supplement\", \"resubmit documents\", \"register application\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}, {\"activity\": \"register application\"}]}}",
+   "errors": [],
+   "latency_s": 3.91,
+   "prompt_tokens": 1744,
+   "output_tokens": 103,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "document submission",
+  "activities": [
+   "submit documents",
+   "check completeness",
+   "ask to supplement",
+   "resubmit documents",
+   "register application"
+  ],
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit documents"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "activity": "check completeness"
+      },
+      {
+       "op": "xor",
+       "children": [
+        {
+         "activity": "ask to supplement"
+        },
+        {
+         "tau": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "activity": "register application"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.91,
+ "output_chars": 418
+}

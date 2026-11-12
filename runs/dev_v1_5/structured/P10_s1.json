@@ -1,0 +1,66 @@
+{
+ "approach": "structured",
+ "case": "P10",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"pay cash\"}, {\"activity\": \"pay card\"}]}]}}",
+   "errors": [],
+   "latency_s": 4.1,
+   "prompt_tokens": 1738,
+   "output_tokens": 112,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "restaurant order",
+  "activities": [
+   "place order",
+   "prepare meal",
+   "prepare drinks",
+   "serve order",
+   "pay cash",
+   "pay card"
+  ],
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "place order"
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "prepare meal"
+      },
+      {
+       "activity": "prepare drinks"
+      }
+     ]
+    },
+    {
+     "activity": "serve order"
+    },
+    {
+     "op": "or",
+     "children": [
+      {
+       "activity": "pay cash"
+      },
+      {
+       "activity": "pay card"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 4.1,
+ "output_chars": 406
+}

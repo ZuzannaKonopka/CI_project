@@ -1,0 +1,205 @@
+{
+ "approach": "baseline",
+ "case": "P11",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"event planning\",\n\"activities\": [\"set event date\", \"book venue\", \"send invitations\", \"arrange catering\", \"book band\", \"hire photographer\", \"hold event\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"set event date\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"hold event\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"t2\", \"p3\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p4\"], [\"t4\", \"p5\"], [\"p2\", \"t5\"], [\"t5\", \"p6\"], [\"p3\", \"t6\"], [\"t6\", \"p7\"], [\"p3\", \"t7\"], [\"t7\", \"p8\"], [\"p3\", \"t8\"], [\"t8\", \"p9\"], [\"p6\", \"t9\"], [\"p7\", \"t9\"], [\"p8\", \"t9\"], [\"p9\", \"t10\"], [\"t10\", \"o\"]]}",
+   "errors": [
+    "transition 't9' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p10']",
+    "expected exactly one sink place, found ['p4', 'p5', 'p10', 'o']"
+   ],
+   "latency_s": 9.28,
+   "prompt_tokens": 3588,
+   "output_tokens": 415,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"event planning\",\n\"activities\": [\"set event date\", \"book venue\", \"send invitations\", \"arrange catering\", \"book band\", \"hire photographer\", \"hold event\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"set event date\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"hold event\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p2\"], [\"p1\", \"t4\"], [\"t4\", \"p3\"], [\"p2\", \"t5\"], [\"t5\", \"p4\"], [\"p3\", \"t6\"], [\"t6\", \"p5\"], [\"p3\", \"t7\"], [\"t7\", \"p6\"], [\"p3\", \"t8\"], [\"t8\", \"p7\"], [\"p4\", \"t9\"], [\"p5\", \"t9\"], [\"p6\", \"t9\"], [\"p7\", \"t9\"], [\"t9\", \"p8\"], [\"p8\", \"t10\"], [\"t10\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p9']",
+    "expected exactly one sink place, found ['p9', 'o']"
+   ],
+   "latency_s": 9.24,
+   "prompt_tokens": 4092,
+   "output_tokens": 418,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"event planning\",\n\"activities\": [\"set event date\", \"book venue\", \"send invitations\", \"arrange catering\", \"book band\", \"hire photographer\", \"hold event\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"set event date\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"hold event\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t2\", \"p2\"], [\"t3\", \"p2\"], [\"p1\", \"t4\"], [\"t4\", \"p3\"], [\"p2\", \"t5\"], [\"t5\", \"p4\"], [\"p3\", \"t6\"], [\"t6\", \"p5\"], [\"p3\", \"t7\"], [\"t7\", \"p6\"], [\"p3\", \"t8\"], [\"t8\", \"p7\"], [\"p4\", \"t9\"], [\"p5\", \"t9\"], [\"p6\", \"t9\"], [\"p7\", \"t9\"], [\"t9\", \"p8\"], [\"p8\", \"t10\"], [\"t10\", \"o\"]]}",
+   "errors": [],
+   "latency_s": 9.21,
+   "prompt_tokens": 4573,
+   "output_tokens": 414,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "event planning",
+  "activities": [
+   "set event date",
+   "book venue",
+   "send invitations",
+   "arrange catering",
+   "book band",
+   "hire photographer",
+   "hold event"
+  ],
+  "places": [
+   "i",
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7",
+   "p8",
+   "o"
+  ],
+  "transitions": [
+   {
+    "id": "t1",
+    "label": "set event date"
+   },
+   {
+    "id": "t2",
+    "label": null
+   },
+   {
+    "id": "t3",
+    "label": "book venue"
+   },
+   {
+    "id": "t4",
+    "label": "send invitations"
+   },
+   {
+    "id": "t5",
+    "label": null
+   },
+   {
+    "id": "t6",
+    "label": "arrange catering"
+   },
+   {
+    "id": "t7",
+    "label": "book band"
+   },
+   {
+    "id": "t8",
+    "label": "hire photographer"
+   },
+   {
+    "id": "t9",
+    "label": null
+   },
+   {
+    "id": "t10",
+    "label": "hold event"
+   }
+  ],
+  "arcs": [
+   [
+    "i",
+    "t1"
+   ],
+   [
+    "t1",
+    "p1"
+   ],
+   [
+    "p1",
+    "t2"
+   ],
+   [
+    "p1",
+    "t3"
+   ],
+   [
+    "t2",
+    "p2"
+   ],
+   [
+    "t3",
+    "p2"
+   ],
+   [
+    "p1",
+    "t4"
+   ],
+   [
+    "t4",
+    "p3"
+   ],
+   [
+    "p2",
+    "t5"
+   ],
+   [
+    "t5",
+    "p4"
+   ],
+   [
+    "p3",
+    "t6"
+   ],
+   [
+    "t6",
+    "p5"
+   ],
+   [
+    "p3",
+    "t7"
+   ],
+   [
+    "t7",
+    "p6"
+   ],
+   [
+    "p3",
+    "t8"
+   ],
+   [
+    "t8",
+    "p7"
+   ],
+   [
+    "p4",
+    "t9"
+   ],
+   [
+    "p5",
+    "t9"
+   ],
+   [
+    "p6",
+    "t9"
+   ],
+   [
+    "p7",
+    "t9"
+   ],
+   [
+    "t9",
+    "p8"
+   ],
+   [
+    "p8",
+    "t10"
+   ],
+   [
+    "t10",
+    "o"
+   ]
+  ]
+ },
+ "n_repairs": 2,
+ "total_latency_s": 27.73,
+ "output_chars": 958
+}
