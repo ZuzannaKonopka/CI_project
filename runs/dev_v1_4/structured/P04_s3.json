@@ -1,0 +1,49 @@
+{
+ "approach": "structured",
+ "case": "P04",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"online order processing\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"if\", \"children\": [{\"condition\": \"items in stock\", \"then\": [{\"op\": \"and\", \"children\": [{\"activity\": \"process payment\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]}], \"otherwise\": {\"activity\": \"cancel order\"}}] }]} }",
+   "errors": [
+    "tree.children[1]: unknown operator 'if', use one of ['and', 'loop', 'or', 'seq', 'xor']",
+    "tree.children[1].children[0]: node needs 'activity', 'tau' or 'op'"
+   ],
+   "latency_s": 3.95,
+   "prompt_tokens": 1489,
+   "output_tokens": 105,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"online order processing\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"if\", \"children\": [{\"condition\": \"items in stock\", \"then\": [{\"op\": \"and\", \"children\": [{\"activity\": \"process payment\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]}]}, {\"activity\": \"cancel order\"}] }]} }",
+   "errors": [
+    "tree.children[1]: unknown operator 'if', use one of ['and', 'loop', 'or', 'seq', 'xor']",
+    "tree.children[1].children[0]: node needs 'activity', 'tau' or 'op'"
+   ],
+   "latency_s": 3.86,
+   "prompt_tokens": 1672,
+   "output_tokens": 102,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"online order processing\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"op\": \"if\", \"children\": [{\"condition\": \"items in stock\", \"then\": [{\"activity\": \"process payment\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]}, {\"activity\": \"cancel order\"}]}]}]}}",
+   "errors": [
+    "tree.children[1]: 'and' needs at least 2 children, got 1",
+    "tree.children[1].children[0]: unknown operator 'if', use one of ['and', 'loop', 'or', 'seq', 'xor']",
+    "tree.children[1].children[0].children[0]: node needs 'activity', 'tau' or 'op'"
+   ],
+   "latency_s": 3.9,
+   "prompt_tokens": 1852,
+   "output_tokens": 101,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 11.7,
+ "output_chars": 360
+}

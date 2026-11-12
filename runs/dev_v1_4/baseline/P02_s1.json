@@ -1,0 +1,71 @@
+{
+ "approach": "baseline",
+ "case": "P02",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"travel request process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\", \"p28\", \"p29\", \"p30\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit travel request\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"approve travel request\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"submit expense report\"}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}, {\"id\": \"t19\", \"label\": null}, {\"id\": \"t20\", \"label\": null}, {\"id\": \"t21\", \"label\": null}, {\"id\": \"t22\", \"label\": null}, {\"id\": \"t23\", \"label\": null}, {\"id\": \"t24\", \"label\": null}, {\"id\": \"t25\", \"label\": null}, {\"id\": \"t26\", \"label\": null}, {\"id\": \"t27\", \"label\": null}, {\"id\": \"t28\", \"label\": null}, {\"id\": \"t29\", \"label\": null}, {\"id\": \"t30\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t3\", \"p3\"], [\"p4\", \"t3\"], [\"p3\", \"t7\"], [\"p5\", \"t3\"], [\"p4\", \"t8\"], [\"p6\", \"t3\"], [\"p5\", \"t9\"], [\"p7\", \"t3\"], [\"p6\", \"t10\"], [\"p7\", \"t11\"], [\"p8\", \"t3\"], [\"p7\", \"t12\"], [\"p9\", \"t3\"], [\"p8\", \"t13\"], [\"p10\", \"t3\"], [\"p9\", \"t14\"], [\"p11\", \"t3\"], [\"p10\", \"t15\"], [\"p12\", \"t3\"], [\"p11\", \"t16\"], [\"p13\", \"t3\"], [\"p12\", \"t17\"], [\"p14\", \"t3\"], [\"p13\", \"t18\"], [\"p15\", \"t3\"], [\"p14\", \"t19\"], [\"p16\", \"t3\"], [\"p15\", \"t20\"], [\"p17\", \"t3\"], [\"p16\", \"t21\"], [\"p18\", \"t3\"], [\"p17\", \"t22\"], [\"p19\", \"t3\"], [\"p18\", \"t23\"], [\"p20\", \"t3\"], [\"p19\", \"t24\"], [\"p21\", \"t3\"], [\"p20\", \"t25\"], [\"p22\", \"t3\"], [\"p21\", \"t26\"], [\"p23\", \"t3\"], [\"p22\", \"t27\"], [\"p24\", \"t3\"], [\"p23\", \"t28\"], [\"p25\", \"t3\"], [\"p24\", \"t29\"], [\"p26\", \"t3\"], [\"p25\", \"t30\"], [\"p27\", \"t10\"], [\"p26\", \"t10\"], [\"p28\", \"t10\"], [\"p27\", \"t10\"], [\"p29\", \"t10\"], [\"p28\", \"t10\"], [\"p30\", \"t10\"], [\"t10\", \"o\"]]}",
+   "errors": [
+    "transition 't16' needs at least one input and one output place",
+    "transition 't27' needs at least one input and one output place",
+    "transition 't25' needs at least one input and one output place",
+    "transition 't4' needs at least one input and one output place",
+    "transition 't14' needs at least one input and one output place",
+    "transition 't28' needs at least one input and one output place",
+    "transition 't21' needs at least one input and one output place",
+    "transition 't9' needs at least one input and one output place",
+    "transition 't18' needs at least one input and one output place",
+    "transition 't30' needs at least one input and one output place",
+    "transition 't13' needs at least one input and one output place",
+    "transition 't17' needs at least one input and one output place",
+    "transition 't8' needs at least one input and one output place",
+    "transition 't20' needs at least one input and one output place",
+    "transition 't29' needs at least one input and one output place",
+    "transition 't12' needs at least one input and one output place",
+    "transition 't22' needs at least one input and one output place",
+    "transition 't15' needs at least one input and one output place",
+    "transition 't24' needs at least one input and one output place",
+    "transition 't6' needs at least one input and one output place",
+    "transition 't19' needs at least one input and one output place",
+    "transition 't23' needs at least one input and one output place",
+    "transition 't7' needs at least one input and one output place",
+    "transition 't11' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "transition 't26' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p28', 'p29', 'p30']"
+   ],
+   "latency_s": 21.45,
+   "prompt_tokens": 2996,
+   "output_tokens": 1176,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\", \"p28\", \"p29\", \"p30\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit travel request\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"approve travel request\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"submit expense report\"}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}, {\"id\": \"t19\", \"label\": null}, {\"id\": \"t20\", \"label\": null}, {\"id\": \"t21\", \"label\": null}, {\"id\": \"t22\", \"label\": null}, {\"id\": \"t23\", \"label\": null}, {\"id\": \"t24\", \"label\": null}, {\"id\": \"t25\", \"label\": null}, {\"id\": \"t26\", \"label\": null}, {\"id\": \"t27\", \"label\": null}, {\"id\": \"t28\", \"label\": null}, {\"id\": \"t29\", \"label\": null}, {\"id\": \"t30\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t3\", \"p3\"], [\"p3\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t8\"], [\"t8\", \"p5\"], [\"p5\", \"t9\"], [\"t9\", \"p6\"], [\"p6\", \"t10\"], [\"t10\", \"o\"], [\"p7\", \"t4\"], [\"p8\", \"t5\"], [\"p9\", \"t6\"], [\"p7\", \"t11\"], [\"p8\", \"t12\"], [\"p9\", \"t13\"], [\"p10\", \"t4\"], [\"p11\", \"t5\"], [\"p12\", \"t6\"], [\"p10\", \"t14\"], [\"p11\", \"t15\"], [\"p12\", \"t16\"], [\"p13\", \"t4\"], [\"p14\", \"t5\"], [\"p15\", \"t6\"], [\"p13\", \"t17\"], [\"p14\", \"t18\"], [\"p15\", \"t19\"], [\"p16\", \"t4\"], [\"p17\", \"t5\"], [\"p18\", \"t6\"], [\"p16\", \"t20\"], [\"p17\", \"t21\"], [\"p18\", \"t22\"], [\"p19\", \"t4\"], [\"p20\", \"t5\"], [\"p21\", \"t6\"], [\"p19\", \"t23\"], [\"p20\", \"t24\"], [\"p21\", \"t25\"], [\"p22\", \"t4\"], [\"p23\", \"t5\"], [\"p24\", \"t6\"], [\"p22\", \"t26\"], [\"p23\", \"t27\"], [\"p24\", \"t28\"], [\"p25\", \"t4\"], [\"p26\", \"t5\"], [\"p27\", \"t6\"], [\"p25\", \"t29\"], [\"p26\", \"t30\"], [\"p27\", \"p30\"], [\"p28\", \"t10\"], [\"p29\", \"t10\"], [\"p30\", \"t10\"]]}",
+   "errors": [
+    "arc ['p27', 'p30'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 21.27,
+   "prompt_tokens": 4333,
+   "output_tokens": 1156,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\", \"p28\", \"p29\", \"p30\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit travel request\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"approve travel request\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": \"submit expense report\"}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}, {\"id\": \"t19\", \"label\": null}, {\"id\": \"t20\", \"label\": null}, {\"id\": \"t21\", \"label\": null}, {\"id\": \"t22\", \"label\": null}, {\"id\": \"t23\", \"label\": null}, {\"id\": \"t24\", \"label\": null}, {\"id\": \"t25\", \"label\": null}, {\"id\": \"t26\", \"label\": null}, {\"id\": \"t27\", \"label\": null}, {\"id\": \"t28\", \"label\": null}, {\"id\": \"t29\", \"label\": null}, {\"id\": \"t30\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t3\", \"p3\"], [\"p3\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t8\"], [\"t8\", \"p5\"], [\"p5\", \"t9\"], [\"t9\", \"p6\"], [\"p6\", \"t10\"], [\"t10\", \"o\"], [\"p7\", \"t4\"], [\"p8\", \"t5\"], [\"p9\", \"t6\"], [\"p7\", \"t11\"], [\"p8\", \"t12\"], [\"p9\", \"t13\"], [\"p10\", \"t4\"], [\"p11\", \"t5\"], [\"p12\", \"t6\"], [\"p10\", \"t14\"], [\"p11\", \"t15\"], [\"p12\", \"t16\"], [\"p13\", \"t4\"], [\"p14\", \"t5\"], [\"p15\", \"t6\"], [\"p13\", \"t17\"], [\"p14\", \"t18\"], [\"p15\", \"t19\"], [\"p16\", \"t4\"], [\"p17\", \"t5\"], [\"p18\", \"t6\"], [\"p16\", \"t20\"], [\"p17\", \"t21\"], [\"p18\", \"t22\"], [\"p19\", \"t4\"], [\"p20\", \"t5\"], [\"p21\", \"t6\"], [\"p19\", \"t23\"], [\"p20\", \"t24\"], [\"p21\", \"t25\"], [\"p22\", \"t4\"], [\"p23\", \"t5\"], [\"p24\", \"t6\"], [\"p22\", \"t26\"], [\"p23\", \"t27\"], [\"p24\", \"t28\"], [\"p25\", \"t4\"], [\"p26\", \"t5\"], [\"p27\", \"t6\"], [\"p25\", \"t29\"], [\"p26\", \"t30\"], [\"p27\", \"p30\"], [\"p28\", \"t10\"], [\"p29\", \"t10\"], [\"p30\", \"t10\"], [\"p28\", \"t11\"], [\"p29\", \"t12\"], [\"p30\", \"t13\"]]}",
+   "errors": [
+    "arc ['p27', 'p30'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 22.04,
+   "prompt_tokens": 5546,
+   "output_tokens": 1186,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 64.76,
+ "output_chars": 2306
+}

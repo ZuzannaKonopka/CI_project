@@ -1,0 +1,77 @@
+{
+ "approach": "structured",
+ "case": "P06",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"activity\": \"review code\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"request changes\"}, {\"activity\": \"revise code\"}, {\"activity\": \"review code\"}]}], \"children2\": [{\"activity\": \"merge code\"}, {\"activity\": \"deploy\"}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'op']",
+    "tree.children[3]: 'loop' needs exactly 2 children [do, redo], got 3"
+   ],
+   "latency_s": 3.78,
+   "prompt_tokens": 1484,
+   "output_tokens": 97,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"activity\": \"review code\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"request changes\"}, {\"activity\": \"revise code\"}, {\"activity\": \"review code\"}]}, {\"activity\": \"merge code\"}, {\"activity\": \"deploy\"}]}}",
+   "errors": [
+    "tree.children[3]: 'loop' needs exactly 2 children [do, redo], got 3"
+   ],
+   "latency_s": 3.72,
+   "prompt_tokens": 1657,
+   "output_tokens": 92,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"activity\": \"review code\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"request changes\"}, {\"activity\": \"revise code\"}]}, {\"activity\": \"merge code\"}, {\"activity\": \"deploy\"}]}}",
+   "errors": [],
+   "latency_s": 3.59,
+   "prompt_tokens": 1799,
+   "output_tokens": 85,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "code review and deployment",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "write code"
+    },
+    {
+     "activity": "open pull request"
+    },
+    {
+     "activity": "review code"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "activity": "request changes"
+      },
+      {
+       "activity": "revise code"
+      }
+     ]
+    },
+    {
+     "activity": "merge code"
+    },
+    {
+     "activity": "deploy"
+    }
+   ]
+  }
+ },
+ "n_repairs": 2,
+ "total_latency_s": 11.09,
+ "output_chars": 319
+}

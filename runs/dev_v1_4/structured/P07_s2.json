@@ -1,0 +1,56 @@
+{
+ "approach": "structured",
+ "case": "P07",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"car service\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"bring car to garage\"}, {\"activity\": \"inspect car\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"change oil\"}, {\"activity\": \"replace brakes\"}, {\"activity\": \"replace tyres\"}]}, {\"activity\": \"pay\"}, {\"activity\": \"collect car\"}]}}",
+   "errors": [],
+   "latency_s": 3.53,
+   "prompt_tokens": 1488,
+   "output_tokens": 83,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "car service",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "bring car to garage"
+    },
+    {
+     "activity": "inspect car"
+    },
+    {
+     "op": "or",
+     "children": [
+      {
+       "activity": "change oil"
+      },
+      {
+       "activity": "replace brakes"
+      },
+      {
+       "activity": "replace tyres"
+      }
+     ]
+    },
+    {
+     "activity": "pay"
+    },
+    {
+     "activity": "collect car"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.53,
+ "output_chars": 303
+}

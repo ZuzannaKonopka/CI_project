@@ -1,0 +1,52 @@
+{
+ "approach": "baseline",
+ "case": "P09",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"insurance claim process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit claim\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check claim\"}, {\"id\": \"t4\", \"label\": \"request additional info\"}, {\"id\": \"t5\", \"label\": \"provide info\"}, {\"id\": \"t6\", \"label\": \"check claim\"}, {\"id\": \"t7\", \"label\": \"pay compensation\"}, {\"id\": \"t8\", \"label\": \"reject claim\"}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t3\", \"p1\"], [\"p2\", \"t2\"], [\"t2\", \"p3\"], [\"p1\", \"t4\"], [\"t4\", \"p4\"], [\"p5\", \"t5\"], [\"t5\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"p1\"], [\"p3\", \"t7\"], [\"p3\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"], [\"p1\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "transition 't3' needs at least one input and one output place",
+    "transition 't1' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p2', 'p5', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 7.85,
+   "prompt_tokens": 2990,
+   "output_tokens": 343,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit claim\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request additional info\"}, {\"id\": \"t4\", \"label\": \"provide info\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}, {\"id\": \"t8\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t2\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t5\"], [\"t5\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p4\"], [\"p4\", \"t6\"], [\"p4\", \"t7\"], [\"t6\", \"o\"], [\"t7\", \"o\"], [\"p4\", \"t8\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "transition 't1' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p5', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p5', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 7.62,
+   "prompt_tokens": 3454,
+   "output_tokens": 331,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit claim\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request additional info\"}, {\"id\": \"t4\", \"label\": \"provide info\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}, {\"id\": \"t8\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t2\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t5\"], [\"t5\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p4\"], [\"p4\", \"t6\"], [\"p4\", \"t7\"], [\"t6\", \"o\"], [\"t7\", \"o\"], [\"p4\", \"t8\"], [\"t8\", \"o\"]]}",
+   "errors": [
+    "transition 't1' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p5', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p5', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 7.62,
+   "prompt_tokens": 3890,
+   "output_tokens": 331,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 23.09,
+ "output_chars": 744
+}

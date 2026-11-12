@@ -1,0 +1,74 @@
+{
+ "approach": "structured",
+ "case": "P04",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"online order process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"check stock\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"process payment\"}, {\"tau\": true}]}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"cancel order\"}, {\"tau\": true}]}]}}",
+   "errors": [],
+   "latency_s": 4.23,
+   "prompt_tokens": 1489,
+   "output_tokens": 116,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "online order process",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "place order"
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "check stock"
+      },
+      {
+       "op": "xor",
+       "children": [
+        {
+         "activity": "process payment"
+        },
+        {
+         "tau": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "send invoice"
+      },
+      {
+       "activity": "ship package"
+      }
+     ]
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "activity": "cancel order"
+      },
+      {
+       "tau": true
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 4.23,
+ "output_chars": 404
+}

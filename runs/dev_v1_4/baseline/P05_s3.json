@@ -1,0 +1,50 @@
+{
+ "approach": "baseline",
+ "case": "P05",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit application\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check credit history\"}, {\"id\": \"t4\", \"label\": \"verify income\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"decide\"}, {\"id\": \"t7\", \"label\": \"approve loan\"}, {\"id\": \"t8\", \"label\": \"sign contract\"}, {\"id\": \"t9\", \"label\": \"pay out money\"}, {\"id\": \"t10\", \"label\": \"notify rejection\"}, {\"id\": \"t11\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p2\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"t7\", \"p5\"], [\"p5\", \"t8\"], [\"p5\", \"t9\"], [\"t8\", \"p6\"], [\"t9\", \"p6\"], [\"p6\", \"t10\"], [\"t10\", \"o\"], [\"p4\", \"t5\"], [\"t5\", \"p7\"], [\"p7\", \"t6\"], [\"t6\", \"p8\"], [\"p8\", \"t10\"], [\"t10\", \"o\"]]}",
+   "errors": [
+    "transition 't11' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['o', 'p9', 'p10', 'p11']"
+   ],
+   "latency_s": 9.87,
+   "prompt_tokens": 3007,
+   "output_tokens": 467,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit application\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check credit history\"}, {\"id\": \"t4\", \"label\": \"verify income\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"decide\"}, {\"id\": \"t7\", \"label\": \"approve loan\"}, {\"id\": \"t8\", \"label\": \"sign contract\"}, {\"id\": \"t9\", \"label\": \"pay out money\"}, {\"id\": \"t10\", \"label\": \"notify rejection\"}, {\"id\": \"t11\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p2\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t5\", \"p3\"], [\"p3\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t8\"], [\"p4\", \"t9\"], [\"t8\", \"p5\"], [\"t9\", \"p5\"], [\"p5\", \"t10\"], [\"t10\", \"p6\"], [\"p6\", \"t11\"], [\"t11\", \"o\"], [\"p3\", \"t5\"], [\"t5\", \"p7\"], [\"p7\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [
+    "transition 't6' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p8', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['o', 'p8', 'p9', 'p10', 'p11']"
+   ],
+   "latency_s": 9.66,
+   "prompt_tokens": 3568,
+   "output_tokens": 461,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit application\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check credit history\"}, {\"id\": \"t4\", \"label\": \"verify income\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"decide\"}, {\"id\": \"t7\", \"label\": \"approve loan\"}, {\"id\": \"t8\", \"label\": \"sign contract\"}, {\"id\": \"t9\", \"label\": \"pay out money\"}, {\"id\": \"t10\", \"label\": \"notify rejection\"}, {\"id\": \"t11\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p2\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"t5\", \"p3\"], [\"p3\", \"t7\"], [\"t7\", \"p4\"], [\"p4\", \"t8\"], [\"p4\", \"t9\"], [\"t8\", \"p5\"], [\"t9\", \"p5\"], [\"p5\", \"t10\"], [\"t10\", \"p6\"], [\"p6\", \"t11\"], [\"t11\", \"o\"], [\"p3\", \"t6\"], [\"t6\", \"p7\"], [\"p7\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p8', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['o', 'p8', 'p9', 'p10', 'p11']"
+   ],
+   "latency_s": 9.79,
+   "prompt_tokens": 4130,
+   "output_tokens": 461,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 29.32,
+ "output_chars": 993
+}

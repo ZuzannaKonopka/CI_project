@@ -1,0 +1,60 @@
+{
+ "approach": "baseline",
+ "case": "P06",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"Code Review and Deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"open pull request\"}, {\"id\": \"t4\", \"label\": \"review code\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"request changes\"}, {\"id\": \"t7\", \"label\": \"revise code\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"review code\"}, {\"id\": \"t10\", \"label\": \"merge code\"}, {\"id\": \"t11\", \"label\": \"deploy code\"}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"p9\"], [\"p9\", \"t10\"], [\"t10\", \"p10\"], [\"p10\", \"t11\"], [\"t11\", \"o\"], [\"p9\", \"t12\"], [\"t12\", \"p11\"], [\"p11\", \"t13\"], [\"p11\", \"t14\"], [\"t14\", \"p12\"], [\"p12\", \"t15\"], [\"t15\", \"p13\"], [\"p13\", \"t16\"], [\"t16\", \"p14\"], [\"p14\", \"t17\"], [\"t17\", \"p15\"], [\"p15\", \"t18\"], [\"t18\", \"p16\"], [\"p16\", \"t19\"], [\"t19\", \"o\"]]}",
+   "errors": [
+    "arc ['p14', 't17'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t17', 'p15'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p15', 't18'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t18', 'p16'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p16', 't19'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t19', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 13.2,
+   "prompt_tokens": 2992,
+   "output_tokens": 676,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"Code Review and Deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"open pull request\"}, {\"id\": \"t4\", \"label\": \"review code\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"request changes\"}, {\"id\": \"t7\", \"label\": \"revise code\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"review code\"}, {\"id\": \"t10\", \"label\": \"merge code\"}, {\"id\": \"t11\", \"label\": \"deploy code\"}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"p9\"], [\"p9\", \"t10\"], [\"t10\", \"p10\"], [\"p10\", \"t11\"], [\"t11\", \"o\"], [\"p9\", \"t12\"], [\"t12\", \"p11\"], [\"p11\", \"t13\"], [\"p11\", \"t14\"], [\"t14\", \"p12\"], [\"p12\", \"t15\"], [\"t15\", \"p13\"], [\"p13\", \"t16\"], [\"t16\", \"p14\"], [\"p14\", \"t17\"], [\"t17\", \"p15\"], [\"p15\", \"t18\"], [\"t18\", \"p16\"], [\"p16\", \"t19\"], [\"t19\", \"o\"]]}",
+   "errors": [
+    "arc ['p14', 't17'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t17', 'p15'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p15', 't18'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t18', 'p16'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p16', 't19'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t19', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 13.31,
+   "prompt_tokens": 3873,
+   "output_tokens": 676,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"Code Review and Deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"open pull request\"}, {\"id\": \"t4\", \"label\": \"review code\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"request changes\"}, {\"id\": \"t7\", \"label\": \"revise code\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"review code\"}, {\"id\": \"t10\", \"label\": \"merge code\"}, {\"id\": \"t11\", \"label\": \"deploy code\"}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"p9\"], [\"p9\", \"t10\"], [\"t10\", \"p10\"], [\"p10\", \"t11\"], [\"t11\", \"o\"], [\"p9\", \"t12\"], [\"t12\", \"p11\"], [\"p11\", \"t13\"], [\"p11\", \"t14\"], [\"t14\", \"p12\"], [\"p12\", \"t15\"], [\"t15\", \"p13\"], [\"p13\", \"t16\"], [\"t16\", \"p14\"], [\"p14\", \"t17\"], [\"t17\", \"p15\"], [\"p15\", \"t18\"], [\"t18\", \"p16\"], [\"p16\", \"t19\"], [\"t19\", \"o\"]]}",
+   "errors": [
+    "arc ['p14', 't17'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t17', 'p15'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p15', 't18'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t18', 'p16'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p16', 't19'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t19', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 13.44,
+   "prompt_tokens": 4754,
+   "output_tokens": 676,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 39.96,
+ "output_chars": 1361
+}

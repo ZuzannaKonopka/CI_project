@@ -1,0 +1,59 @@
+{
+ "approach": "baseline",
+ "case": "P01",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"HR screening process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit CV\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"screen CV\"}, {\"id\": \"t4\", \"label\": \"positive screening\"}, {\"id\": \"t5\", \"label\": \"negative screening\"}, {\"id\": \"t6\", \"label\": \"technical interview\"}, {\"id\": \"t7\", \"label\": \"manager interview\"}, {\"id\": \"t8\", \"label\": \"positive assessment\"}, {\"id\": \"t9\", \"label\": \"negative assessment\"}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": \"positive assessment\"}, {\"id\": \"t12\", \"label\": \"negative assessment\"}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": \"positive offer\"}, {\"id\": \"t15\", \"label\": \"negative offer\"}, {\"id\": \"t16\", \"label\": \"reject application\"}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"p5\"], [\"p5\", \"t8\"], [\"t8\", \"p6\"], [\"p6\", \"t10\"], [\"t10\", \"p7\"], [\"p7\", \"t14\"], [\"t14\", \"o\"], [\"p5\", \"t7\"], [\"p7\", \"t11\"], [\"t11\", \"p8\"], [\"p8\", \"t13\"], [\"t13\", \"p9\"], [\"p9\", \"t16\"], [\"t16\", \"o\"], [\"p6\", \"t9\"], [\"p8\", \"t12\"], [\"t12\", \"p10\"], [\"p10\", \"t15\"], [\"t15\", \"o\"]]}",
+   "errors": [
+    "transition 't9' needs at least one input and one output place",
+    "transition 't18' needs at least one input and one output place",
+    "transition 't17' needs at least one input and one output place",
+    "transition 't7' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18']",
+    "expected exactly one sink place, found ['o', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18']"
+   ],
+   "latency_s": 12.51,
+   "prompt_tokens": 3015,
+   "output_tokens": 628,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"HR screening process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit CV\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"screen CV\"}, {\"id\": \"t4\", \"label\": \"positive screening\"}, {\"id\": \"t5\", \"label\": \"negative screening\"}, {\"id\": \"t6\", \"label\": \"technical interview\"}, {\"id\": \"t7\", \"label\": \"manager interview\"}, {\"id\": \"t8\", \"label\": \"positive assessment\"}, {\"id\": \"t9\", \"label\": \"negative assessment\"}, {\"id\": \"t10\", \"label\": \"positive offer\"}, {\"id\": \"t11\", \"label\": \"negative offer\"}, {\"id\": \"t12\", \"label\": \"reject application\"}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"p5\"], [\"p5\", \"t8\"], [\"t8\", \"p6\"], [\"p6\", \"t10\"], [\"t10\", \"o\"], [\"p6\", \"t13\"], [\"t13\", \"p7\"], [\"p7\", \"t14\"], [\"t14\", \"o\"], [\"p6\", \"t9\"], [\"t9\", \"p8\"], [\"p8\", \"t11\"], [\"t11\", \"o\"], [\"p8\", \"t12\"], [\"t12\", \"p9\"], [\"p9\", \"t15\"], [\"t15\", \"o\"], [\"p0\", \"t5\"], [\"t5\", \"p11\"], [\"p11\", \"t16\"], [\"t16\", \"o\"]]}",
+   "errors": [
+    "transition 't18' needs at least one input and one output place",
+    "transition 't17' needs at least one input and one output place",
+    "transition 't7' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p10', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18']",
+    "expected exactly one sink place, found ['o', 'p10', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18']"
+   ],
+   "latency_s": 12.7,
+   "prompt_tokens": 3854,
+   "output_tokens": 638,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"HR screening process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit CV\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"screen CV\"}, {\"id\": \"t4\", \"label\": \"positive screening\"}, {\"id\": \"t5\", \"label\": \"negative screening\"}, {\"id\": \"t6\", \"label\": \"technical interview\"}, {\"id\": \"t7\", \"label\": \"manager interview\"}, {\"id\": \"t8\", \"label\": \"positive assessment\"}, {\"id\": \"t9\", \"label\": \"negative assessment\"}, {\"id\": \"t10\", \"label\": \"positive offer\"}, {\"id\": \"t11\", \"label\": \"negative offer\"}, {\"id\": \"t12\", \"label\": \"reject application\"}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"p5\"], [\"p5\", \"t8\"], [\"t8\", \"p6\"], [\"p6\", \"t10\"], [\"t10\", \"o\"], [\"p6\", \"t13\"], [\"t13\", \"p7\"], [\"p7\", \"t14\"], [\"t14\", \"o\"], [\"p6\", \"t9\"], [\"t9\", \"p8\"], [\"p8\", \"t11\"], [\"t11\", \"o\"], [\"p8\", \"t12\"], [\"t12\", \"p9\"], [\"p9\", \"t15\"], [\"t15\", \"o\"], [\"p4\", \"t5\"], [\"t5\", \"p11\"], [\"p11\", \"t16\"], [\"t16\", \"o\"]]}",
+   "errors": [
+    "transition 't18' needs at least one input and one output place",
+    "transition 't17' needs at least one input and one output place",
+    "transition 't7' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p10', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18']",
+    "expected exactly one sink place, found ['o', 'p10', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18']"
+   ],
+   "latency_s": 12.83,
+   "prompt_tokens": 4671,
+   "output_tokens": 638,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 38.04,
+ "output_chars": 1382
+}

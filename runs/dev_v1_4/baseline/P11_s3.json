@@ -1,0 +1,235 @@
+{
+ "approach": "baseline",
+ "case": "P11",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"Event Organisation\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"set event date\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": \"event takes place\"}, {\"id\": \"t13\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"p9\"], [\"p9\", \"t10\"], [\"t10\", \"p10\"], [\"p10\", \"t11\"], [\"t11\", \"p11\"], [\"p11\", \"t12\"], [\"t12\", \"o\"], [\"p11\", \"t13\"], [\"t13\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 11.72,
+   "prompt_tokens": 2997,
+   "output_tokens": 580,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"Event Organisation\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"set event date\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": \"event takes place\"}, {\"id\": \"t13\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"p9\"], [\"p9\", \"t10\"], [\"t10\", \"p10\"], [\"p10\", \"t11\"], [\"t11\", \"p11\"], [\"p11\", \"t12\"], [\"t12\", \"o\"], [\"p11\", \"t13\"], [\"t13\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 11.8,
+   "prompt_tokens": 3786,
+   "output_tokens": 580,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"Event Organisation\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"set event date\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": \"event takes place\"}, {\"id\": \"t13\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"p9\"], [\"p9\", \"t10\"], [\"t10\", \"p10\"], [\"p10\", \"t11\"], [\"t11\", \"p11\"], [\"p11\", \"t12\"], [\"t12\", \"o\"], [\"p11\", \"t13\"], [\"t13\", \"o\"]]}",
+   "errors": [],
+   "latency_s": 10.52,
+   "prompt_tokens": 4575,
+   "output_tokens": 500,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "Event Organisation",
+  "places": [
+   "i",
+   "o",
+   "p0",
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7",
+   "p8",
+   "p9",
+   "p10",
+   "p11"
+  ],
+  "transitions": [
+   {
+    "id": "t0",
+    "label": "set event date"
+   },
+   {
+    "id": "t1",
+    "label": null
+   },
+   {
+    "id": "t2",
+    "label": null
+   },
+   {
+    "id": "t3",
+    "label": "book venue"
+   },
+   {
+    "id": "t4",
+    "label": "send invitations"
+   },
+   {
+    "id": "t5",
+    "label": null
+   },
+   {
+    "id": "t6",
+    "label": "arrange catering"
+   },
+   {
+    "id": "t7",
+    "label": "book band"
+   },
+   {
+    "id": "t8",
+    "label": "hire photographer"
+   },
+   {
+    "id": "t9",
+    "label": null
+   },
+   {
+    "id": "t10",
+    "label": null
+   },
+   {
+    "id": "t11",
+    "label": null
+   },
+   {
+    "id": "t12",
+    "label": "event takes place"
+   },
+   {
+    "id": "t13",
+    "label": null
+   }
+  ],
+  "arcs": [
+   [
+    "i",
+    "t0"
+   ],
+   [
+    "t0",
+    "p0"
+   ],
+   [
+    "p0",
+    "t1"
+   ],
+   [
+    "t1",
+    "p1"
+   ],
+   [
+    "p1",
+    "t2"
+   ],
+   [
+    "t2",
+    "p2"
+   ],
+   [
+    "p2",
+    "t3"
+   ],
+   [
+    "t3",
+    "p3"
+   ],
+   [
+    "p3",
+    "t4"
+   ],
+   [
+    "t4",
+    "p4"
+   ],
+   [
+    "p4",
+    "t5"
+   ],
+   [
+    "t5",
+    "p5"
+   ],
+   [
+    "p5",
+    "t6"
+   ],
+   [
+    "t6",
+    "p6"
+   ],
+   [
+    "p6",
+    "t7"
+   ],
+   [
+    "t7",
+    "p7"
+   ],
+   [
+    "p7",
+    "t8"
+   ],
+   [
+    "t8",
+    "p8"
+   ],
+   [
+    "p8",
+    "t9"
+   ],
+   [
+    "t9",
+    "p9"
+   ],
+   [
+    "p9",
+    "t10"
+   ],
+   [
+    "t10",
+    "p10"
+   ],
+   [
+    "p10",
+    "t11"
+   ],
+   [
+    "t11",
+    "p11"
+   ],
+   [
+    "p11",
+    "t12"
+   ],
+   [
+    "t12",
+    "o"
+   ],
+   [
+    "p11",
+    "t13"
+   ],
+   [
+    "t13",
+    "o"
+   ]
+  ]
+ },
+ "n_repairs": 2,
+ "total_latency_s": 34.05,
+ "output_chars": 1058
+}

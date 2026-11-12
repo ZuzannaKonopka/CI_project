@@ -1,0 +1,50 @@
+{
+ "approach": "baseline",
+ "case": "P04",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.4",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"online shop order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"check stock\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"process payment\"}, {\"id\": \"t5\", \"label\": \"send invoice\"}, {\"id\": \"t6\", \"label\": \"ship package\"}, {\"id\": \"t7\", \"label\": \"cancel order\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t5\"], [\"p3\", \"t6\"], [\"t5\", \"p4\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"t7\", \"o\"]]}",
+   "errors": [
+    "transition 't3' needs at least one input and one output place",
+    "transition 't1' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p1', 'p5', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p5', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 7.11,
+   "prompt_tokens": 2997,
+   "output_tokens": 287,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"online shop order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": \"check stock\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"process payment\"}, {\"id\": \"t4\", \"label\": \"send invoice\"}, {\"id\": \"t5\", \"label\": \"ship package\"}, {\"id\": \"t6\", \"label\": \"cancel order\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t3\", \"p3\"], [\"t4\", \"p3\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "transition 't1' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p1', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['o', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11']"
+   ],
+   "latency_s": 6.76,
+   "prompt_tokens": 3409,
+   "output_tokens": 277,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"online shop order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": \"check stock\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"process payment\"}, {\"id\": \"t4\", \"label\": \"send invoice\"}, {\"id\": \"t5\", \"label\": \"ship package\"}, {\"id\": \"t6\", \"label\": \"cancel order\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t3\", \"p3\"], [\"t4\", \"p3\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t3\"], [\"p4\", \"t4\"], [\"p4\", \"t5\"], [\"p4\", \"o\"]]}",
+   "errors": [
+    "arc ['p4', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 7.08,
+   "prompt_tokens": 3823,
+   "output_tokens": 299,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 20.95,
+ "output_chars": 646
+}
