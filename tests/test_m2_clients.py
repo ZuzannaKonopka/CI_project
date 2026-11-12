@@ -87,7 +87,8 @@ def test_all_config_files_build_a_client():
 
 def test_prompts_are_fair_and_examples_valid():
     s, b = build_messages("structured", "X."), build_messages("baseline", "X.")
-    assert len(s) == len(b) == 6                               # system + 2 examples (user/assistant) + task
+    assert len(s) == len(b) == 2 + 2 * len(EXAMPLES)           # system + examples (user/assistant) + task
     assert [m["content"] for m in s[1::2]] == [m["content"] for m in b[1::2]]   # identical user turns
     for ex in EXAMPLES:
         assert validate_tree(ex["structured"]["tree"]) == [] and validate_wfnet_json(ex["baseline"]) == []
+        assert ex["structured"]["activities"] == ex["baseline"]["activities"]     # same plan in both formats
