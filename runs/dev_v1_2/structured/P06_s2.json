@@ -1,0 +1,58 @@
+{
+ "approach": "structured",
+ "case": "P06",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"review code\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"request changes\"}, {\"activity\": \"revise code\"}]}]}, {\"activity\": \"merge and deploy\"}]}}",
+   "errors": [],
+   "latency_s": 3.65,
+   "prompt_tokens": 1308,
+   "output_tokens": 90,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "code review and deployment",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "write code"
+    },
+    {
+     "activity": "open pull request"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "activity": "review code"
+      },
+      {
+       "op": "and",
+       "children": [
+        {
+         "activity": "request changes"
+        },
+        {
+         "activity": "revise code"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "activity": "merge and deploy"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.65,
+ "output_chars": 330
+}

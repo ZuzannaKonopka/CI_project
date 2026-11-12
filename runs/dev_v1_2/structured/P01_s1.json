@@ -1,0 +1,96 @@
+{
+ "approach": "structured",
+ "case": "P01",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"HR process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit CV\"}, {\"activity\": \"screening\"}, {\"op\": \"xor\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}, {\"tau\": true}]}, {\"op\": \"and\", \"children\": [{\"op\": \"or\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"positive assessment\"}, {\"activity\": \"positive assessment\"}]}, {\"activity\": \"receive offer\"}]} }",
+   "errors": [],
+   "latency_s": 12.33,
+   "prompt_tokens": 1331,
+   "output_tokens": 165,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "HR process",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit CV"
+    },
+    {
+     "activity": "screening"
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "op": "and",
+       "children": [
+        {
+         "activity": "technical interview"
+        },
+        {
+         "activity": "manager interview"
+        }
+       ]
+      },
+      {
+       "tau": true
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "op": "or",
+       "children": [
+        {
+         "activity": "technical interview"
+        },
+        {
+         "activity": "manager interview"
+        }
+       ]
+      },
+      {
+       "op": "or",
+       "children": [
+        {
+         "activity": "technical interview"
+        },
+        {
+         "activity": "manager interview"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "positive assessment"
+      },
+      {
+       "activity": "positive assessment"
+      }
+     ]
+    },
+    {
+     "activity": "receive offer"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 12.33,
+ "output_chars": 630
+}

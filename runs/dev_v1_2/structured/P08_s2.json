@@ -1,0 +1,45 @@
+{
+ "approach": "structured",
+ "case": "P08",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"conference registration\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop\"}, {\"tau\": true}]}], \"children\": [{\"activity\": \"receive confirmation e-mail\"}]}}",
+   "errors": [
+    "tree: 'seq' needs at least 2 children, got 1"
+   ],
+   "latency_s": 3.37,
+   "prompt_tokens": 1288,
+   "output_tokens": 74,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"conference registration\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop\"}, {\"tau\": true}]}], \"children\": [{\"activity\": \"receive confirmation e-mail\"}]}}",
+   "errors": [
+    "tree: 'seq' needs at least 2 children, got 1"
+   ],
+   "latency_s": 3.4,
+   "prompt_tokens": 1406,
+   "output_tokens": 74,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"conference registration\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop\"}, {\"tau\": true}]}], \"children\": [{\"activity\": \"receive confirmation e-mail\"}]}}",
+   "errors": [
+    "tree: 'seq' needs at least 2 children, got 1"
+   ],
+   "latency_s": 3.38,
+   "prompt_tokens": 1524,
+   "output_tokens": 74,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 10.15,
+ "output_chars": 293
+}

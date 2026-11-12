@@ -1,0 +1,48 @@
+{
+ "approach": "structured",
+ "case": "P03",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}], \"do\": {\"activity\": \"resubmit documents\"}, \"redo\": {\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"activity\": \"register application\"}]}}]}}",
+   "errors": [
+    "tree.children[1]: operator node must contain only 'op' and 'children', found ['children', 'do', 'op', 'redo']",
+    "tree.children[1]: 'loop' needs exactly 2 children [do, redo], got 1"
+   ],
+   "latency_s": 4.29,
+   "prompt_tokens": 1305,
+   "output_tokens": 120,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}], \"do\": {\"activity\": \"resubmit documents\"}, \"redo\": {\"activity\": \"check completeness\"}, \"children\": [{\"activity\": \"register application\"}]}]}}",
+   "errors": [
+    "tree.children[1]: operator node must contain only 'op' and 'children', found ['children', 'do', 'op', 'redo']",
+    "tree.children[1]: 'loop' needs exactly 2 children [do, redo], got 1"
+   ],
+   "latency_s": 4.05,
+   "prompt_tokens": 1506,
+   "output_tokens": 113,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}], \"do\": {\"activity\": \"resubmit documents\"}, \"redo\": {\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"activity\": \"register application\"}]}}]}}",
+   "errors": [
+    "tree.children[1]: operator node must contain only 'op' and 'children', found ['children', 'do', 'op', 'redo']",
+    "tree.children[1]: 'loop' needs exactly 2 children [do, redo], got 1"
+   ],
+   "latency_s": 4.16,
+   "prompt_tokens": 1700,
+   "output_tokens": 120,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 12.51,
+ "output_chars": 437
+}

@@ -1,0 +1,61 @@
+{
+ "approach": "structured",
+ "case": "P05",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit loan application\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"check credit history\"}, {\"activity\": \"verify income\"}]}, {\"activity\": \"decide loan approval\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"sign contract\"}, {\"activity\": \"pay out money\"}]}, {\"activity\": \"notify client of rejection\"}]}}",
+   "errors": [],
+   "latency_s": 3.78,
+   "prompt_tokens": 1323,
+   "output_tokens": 100,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "loan application process",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit loan application"
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "check credit history"
+      },
+      {
+       "activity": "verify income"
+      }
+     ]
+    },
+    {
+     "activity": "decide loan approval"
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "activity": "sign contract"
+      },
+      {
+       "activity": "pay out money"
+      }
+     ]
+    },
+    {
+     "activity": "notify client of rejection"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.78,
+ "output_chars": 393
+}

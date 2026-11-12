@@ -1,0 +1,66 @@
+{
+ "approach": "structured",
+ "case": "P12",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"return process\", \"tree\": {\"op\": \"xor\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"reject request\"}, {\"tau\": true}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"approve request\"}, {\"activity\": \"ship product back\"}, {\"activity\": \"inspect product\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"refund customer\"}, {\"activity\": \"send replacement\"}]}]}]}}",
+   "errors": [],
+   "latency_s": 3.84,
+   "prompt_tokens": 1305,
+   "output_tokens": 101,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "return process",
+  "tree": {
+   "op": "xor",
+   "children": [
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "reject request"
+      },
+      {
+       "tau": true
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "approve request"
+      },
+      {
+       "activity": "ship product back"
+      },
+      {
+       "activity": "inspect product"
+      },
+      {
+       "op": "or",
+       "children": [
+        {
+         "activity": "refund customer"
+        },
+        {
+         "activity": "send replacement"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.84,
+ "output_chars": 372
+}

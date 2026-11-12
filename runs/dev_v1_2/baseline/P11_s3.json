@@ -1,0 +1,75 @@
+{
+ "approach": "baseline",
+ "case": "P11",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"event planning\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"set event date\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": \"event takes place\"}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}, {\"id\": \"t19\", \"label\": null}, {\"id\": \"t20\", \"label\": null}, {\"id\": \"t21\", \"label\": null}, {\"id\": \"t22\", \"label\": null}, {\"id\": \"t23\", \"label\": null}, {\"id\": \"t24\", \"label\": null}, {\"id\": \"t25\", \"label\": null}, {\"id\": \"t26\", \"label\": null}, {\"id\": \"t27\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p2\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"p2\", \"t7\"], [\"p2\", \"t8\"], [\"t6\", \"p3\"], [\"t7\", \"p3\"], [\"t8\", \"p3\"], [\"p3\", \"t9\"], [\"p3\", \"t10\"], [\"p3\", \"t11\"], [\"p3\", \"t12\"], [\"p3\", \"t13\"], [\"t9\", \"p4\"], [\"t10\", \"p4\"], [\"t11\", \"p4\"], [\"t12\", \"p4\"], [\"t13\", \"p4\"], [\"p4\", \"t14\"], [\"t14\", \"o\"], [\"p4\", \"t15\"], [\"p4\", \"t16\"], [\"p4\", \"t17\"], [\"p4\", \"t18\"], [\"p4\", \"t19\"], [\"p4\", \"t20\"], [\"p4\", \"t21\"], [\"p4\", \"t22\"], [\"p4\", \"t23\"], [\"p4\", \"t24\"], [\"p4\", \"t25\"], [\"p4\", \"t26\"], [\"p4\", \"t27\"], [\"t15\", \"p5\"], [\"t16\", \"p5\"], [\"t17\", \"p5\"], [\"t18\", \"p5\"], [\"t19\", \"p5\"], [\"t20\", \"p5\"], [\"t21\", \"p5\"], [\"t22\", \"p5\"], [\"t23\", \"p5\"], [\"t24\", \"p5\"], [\"t25\", \"p5\"], [\"t26\", \"p5\"], [\"t27\", \"p5\"], [\"p5\", \"t14\"]]}",
+   "errors": [
+    "transition 't5' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 19.11,
+   "prompt_tokens": 2743,
+   "output_tokens": 1011,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"event planning\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"set event date\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": \"event takes place\"}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}, {\"id\": \"t19\", \"label\": null}, {\"id\": \"t20\", \"label\": null}, {\"id\": \"t21\", \"label\": null}, {\"id\": \"t22\", \"label\": null}, {\"id\": \"t23\", \"label\": null}, {\"id\": \"t24\", \"label\": null}, {\"id\": \"t25\", \"label\": null}, {\"id\": \"t26\", \"label\": null}, {\"id\": \"t27\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p2\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"p2\", \"t7\"], [\"p2\", \"t8\"], [\"p2\", \"t9\"], [\"p2\", \"t10\"], [\"p2\", \"t11\"], [\"p2\", \"t12\"], [\"p2\", \"t13\"], [\"p2\", \"t15\"], [\"p2\", \"t16\"], [\"p2\", \"t17\"], [\"p2\", \"t18\"], [\"p2\", \"t19\"], [\"p2\", \"t20\"], [\"p2\", \"t21\"], [\"p2\", \"t22\"], [\"p2\", \"t23\"], [\"p2\", \"t24\"], [\"p2\", \"t25\"], [\"p2\", \"t26\"], [\"p2\", \"t27\"], [\"t3\", \"p3\"], [\"t4\", \"p3\"], [\"t5\", \"p4\"], [\"t6\", \"p4\"], [\"t7\", \"p4\"], [\"t8\", \"p4\"], [\"t9\", \"p5\"], [\"t10\", \"p5\"], [\"t11\", \"p5\"], [\"t12\", \"p5\"], [\"t13\", \"p5\"], [\"t14\", \"o\"], [\"p5\", \"t14\"]]}",
+   "errors": [
+    "transition 't17' needs at least one input and one output place",
+    "transition 't27' needs at least one input and one output place",
+    "transition 't26' needs at least one input and one output place",
+    "transition 't18' needs at least one input and one output place",
+    "transition 't24' needs at least one input and one output place",
+    "transition 't22' needs at least one input and one output place",
+    "transition 't15' needs at least one input and one output place",
+    "transition 't21' needs at least one input and one output place",
+    "transition 't19' needs at least one input and one output place",
+    "transition 't16' needs at least one input and one output place",
+    "transition 't23' needs at least one input and one output place",
+    "transition 't25' needs at least one input and one output place",
+    "transition 't20' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p3', 'p4', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 17.75,
+   "prompt_tokens": 4031,
+   "output_tokens": 909,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"event planning\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"set event date\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"book venue\"}, {\"id\": \"t4\", \"label\": \"send invitations\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"arrange catering\"}, {\"id\": \"t7\", \"label\": \"book band\"}, {\"id\": \"t8\", \"label\": \"hire photographer\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": \"event takes place\"}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}, {\"id\": \"t18\", \"label\": null}, {\"id\": \"t19\", \"label\": null}, {\"id\": \"t20\", \"label\": null}, {\"id\": \"t21\", \"label\": null}, {\"id\": \"t22\", \"label\": null}, {\"id\": \"t23\", \"label\": null}, {\"id\": \"t24\", \"label\": null}, {\"id\": \"t25\", \"label\": null}, {\"id\": \"t26\", \"label\": null}, {\"id\": \"t27\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t3\", \"p2\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"p2\", \"t6\"], [\"p2\", \"t7\"], [\"p2\", \"t8\"], [\"p2\", \"t9\"], [\"p2\", \"t10\"], [\"p2\", \"t11\"], [\"p2\", \"t12\"], [\"p2\", \"t13\"], [\"p2\", \"t15\"], [\"p2\", \"t16\"], [\"p2\", \"t17\"], [\"p2\", \"t18\"], [\"p2\", \"t19\"], [\"p2\", \"t20\"], [\"p2\", \"t21\"], [\"p2\", \"t22\"], [\"p2\", \"t23\"], [\"p2\", \"t24\"], [\"p2\", \"t25\"], [\"p2\", \"t26\"], [\"p2\", \"t27\"], [\"t3\", \"p3\"], [\"t4\", \"p3\"], [\"p3\", \"t5\"], [\"p3\", \"t6\"], [\"p3\", \"t7\"], [\"p3\", \"t8\"], [\"p3\", \"t9\"], [\"p3\", \"t10\"], [\"p3\", \"t11\"], [\"p3\", \"t12\"], [\"p3\", \"t13\"], [\"p3\", \"t14\"], [\"p3\", \"t15\"], [\"p3\", \"t16\"], [\"p3\", \"t17\"], [\"p3\", \"t18\"], [\"p3\", \"t19\"], [\"p3\", \"t20\"], [\"p3\", \"t21\"], [\"p3\", \"t22\"], [\"p3\", \"t23\"], [\"p3\", \"t24\"], [\"p3\", \"t25\"], [\"p3\", \"t26\"], [\"p3\", \"t27\"], [\"t5\", \"p4\"], [\"t6\", \"p4\"], [\"t7\", \"p4\"], [\"t8\", \"p4\"], [\"t9\", \"p5\"], [\"t10\", \"p5\"], [\"t11\", \"p5\"], [\"t12\", \"p5\"], [\"t13\", \"p5\"], [\"t14\", \"o\"], [\"p5\", \"t14\"]]}",
+   "errors": [
+    "transition 't17' needs at least one input and one output place",
+    "transition 't27' needs at least one input and one output place",
+    "transition 't26' needs at least one input and one output place",
+    "transition 't18' needs at least one input and one output place",
+    "transition 't24' needs at least one input and one output place",
+    "transition 't22' needs at least one input and one output place",
+    "transition 't15' needs at least one input and one output place",
+    "transition 't21' needs at least one input and one output place",
+    "transition 't19' needs at least one input and one output place",
+    "transition 't16' needs at least one input and one output place",
+    "transition 't23' needs at least one input and one output place",
+    "transition 't25' needs at least one input and one output place",
+    "transition 't20' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p4', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 21.23,
+   "prompt_tokens": 5103,
+   "output_tokens": 1111,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 58.1,
+ "output_chars": 2175
+}

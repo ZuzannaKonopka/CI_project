@@ -1,0 +1,53 @@
+{
+ "approach": "structured",
+ "case": "P02",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"travel request process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit travel request\"}, {\"activity\": \"approve travel request\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"book flight\"}, {\"activity\": \"book hotel\"}, {\"activity\": \"rent car\"}]}, {\"activity\": \"submit expense report\"}]}}",
+   "errors": [],
+   "latency_s": 3.67,
+   "prompt_tokens": 1312,
+   "output_tokens": 79,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "travel request process",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit travel request"
+    },
+    {
+     "activity": "approve travel request"
+    },
+    {
+     "op": "or",
+     "children": [
+      {
+       "activity": "book flight"
+      },
+      {
+       "activity": "book hotel"
+      },
+      {
+       "activity": "rent car"
+      }
+     ]
+    },
+    {
+     "activity": "submit expense report"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.67,
+ "output_chars": 308
+}
