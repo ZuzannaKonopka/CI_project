@@ -1,0 +1,55 @@
+{
+ "approach": "structured",
+ "case": "P03",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask for supplementation\"}, {\"tau\": true}]}]}, {\"activity\": \"register application\"}]}}",
+   "errors": [],
+   "latency_s": 3.62,
+   "prompt_tokens": 808,
+   "output_tokens": 77,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "document submission",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit documents"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "activity": "check completeness"
+      },
+      {
+       "op": "xor",
+       "children": [
+        {
+         "activity": "ask for supplementation"
+        },
+        {
+         "tau": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "activity": "register application"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.62,
+ "output_chars": 299
+}

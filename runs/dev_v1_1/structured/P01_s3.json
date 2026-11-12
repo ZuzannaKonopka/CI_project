@@ -1,0 +1,85 @@
+{
+ "approach": "structured",
+ "case": "P01",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"HR process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit CV\"}, {\"activity\": \"screening\"}, {\"op\": \"xor\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"technical interview assessment\"}, {\"activity\": \"manager interview assessment\"}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"positive technical assessment\"}, {\"activity\": \"positive manager assessment\"}]}]} }",
+   "errors": [],
+   "latency_s": 4.5,
+   "prompt_tokens": 834,
+   "output_tokens": 147,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "HR process",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit CV"
+    },
+    {
+     "activity": "screening"
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "op": "and",
+       "children": [
+        {
+         "activity": "technical interview"
+        },
+        {
+         "activity": "manager interview"
+        }
+       ]
+      },
+      {
+       "op": "or",
+       "children": [
+        {
+         "activity": "technical interview"
+        },
+        {
+         "activity": "manager interview"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "technical interview assessment"
+      },
+      {
+       "activity": "manager interview assessment"
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "positive technical assessment"
+      },
+      {
+       "activity": "positive manager assessment"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 4.5,
+ "output_chars": 596
+}

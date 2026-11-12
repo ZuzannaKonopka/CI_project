@@ -1,0 +1,48 @@
+{
+ "approach": "baseline",
+ "case": "P05",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit loan application\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check credit history\"}, {\"id\": \"t4\", \"label\": \"verify income\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"decide\"}, {\"id\": \"t7\", \"label\": \"approve loan\"}, {\"id\": \"t8\", \"label\": \"sign contract\"}, {\"id\": \"t9\", \"label\": \"pay out money\"}, {\"id\": \"t10\", \"label\": \"notify rejection\"}, {\"id\": \"t11\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p2\"], [\"p1\", \"t3\"], [\"p2\", \"t4\"], [\"t3\", \"p3\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"p7\", \"t9\"], [\"t8\", \"p8\"], [\"t9\", \"p8\"], [\"p8\", \"t10\"], [\"t10\", \"o\"], [\"p6\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['o', 'p9', 'p10', 'p11']"
+   ],
+   "latency_s": 9.48,
+   "prompt_tokens": 2753,
+   "output_tokens": 444,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit loan application\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check credit history\"}, {\"id\": \"t4\", \"label\": \"verify income\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"decide\"}, {\"id\": \"t7\", \"label\": \"approve loan\"}, {\"id\": \"t8\", \"label\": \"sign contract\"}, {\"id\": \"t9\", \"label\": \"pay out money\"}, {\"id\": \"t10\", \"label\": \"notify rejection\"}, {\"id\": \"t11\", \"label\": null}, {\"id\": \"t12\", \"label\": null}, {\"id\": \"t13\", \"label\": null}, {\"id\": \"t14\", \"label\": null}, {\"id\": \"t15\", \"label\": null}, {\"id\": \"t16\", \"label\": null}, {\"id\": \"t17\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p2\"], [\"p1\", \"t3\"], [\"p2\", \"t4\"], [\"t3\", \"p3\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"p7\", \"t9\"], [\"t8\", \"p8\"], [\"t9\", \"p8\"], [\"p8\", \"t10\"], [\"t10\", \"p9\"], [\"p9\", \"t11\"], [\"p9\", \"t12\"], [\"p9\", \"t13\"], [\"p10\", \"t14\"], [\"p10\", \"t15\"], [\"p10\", \"t16\"], [\"p11\", \"t17\"], [\"t11\", \"o\"], [\"t12\", \"o\"], [\"t13\", \"o\"], [\"t14\", \"o\"], [\"t15\", \"o\"], [\"t16\", \"o\"], [\"t17\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17']",
+    "expected exactly one sink place, found ['o', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17']"
+   ],
+   "latency_s": 12.92,
+   "prompt_tokens": 3274,
+   "output_tokens": 659,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"loan application process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit loan application\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check credit history\"}, {\"id\": \"t4\", \"label\": \"verify income\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"decide\"}, {\"id\": \"t7\", \"label\": \"approve loan\"}, {\"id\": \"t8\", \"label\": \"sign contract\"}, {\"id\": \"t9\", \"label\": \"pay out money\"}, {\"id\": \"t10\", \"label\": \"notify rejection\"}, {\"id\": \"t11\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p2\"], [\"p1\", \"t3\"], [\"p2\", \"t4\"], [\"t3\", \"p3\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"p7\", \"t9\"], [\"t8\", \"p8\"], [\"t9\", \"p8\"], [\"p8\", \"t10\"], [\"t10\", \"p9\"], [\"p9\", \"t11\"], [\"p9\", \"p10\"], [\"p9\", \"p11\"], [\"p10\", \"t11\"], [\"p11\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [
+    "arc ['p9', 'p10'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p9', 'p11'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 10.15,
+   "prompt_tokens": 4052,
+   "output_tokens": 483,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 32.55,
+ "output_chars": 1031
+}

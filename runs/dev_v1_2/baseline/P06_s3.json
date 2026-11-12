@@ -1,0 +1,48 @@
+{
+ "approach": "baseline",
+ "case": "P06",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.5",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"Code Review and Deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": \"review code\"}, {\"id\": \"t3\", \"label\": \"request changes\"}, {\"id\": \"t4\", \"label\": \"revise code\"}, {\"id\": \"t5\", \"label\": \"merge code\"}, {\"id\": \"t6\", \"label\": \"deploy code\"}, {\"id\": \"t7\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t2\"], [\"p5\", \"t5\"], [\"t5\", \"p6\"], [\"p6\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "transition 't7' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p5', 'p7']",
+    "expected exactly one sink place, found ['o', 'p7']"
+   ],
+   "latency_s": 6.92,
+   "prompt_tokens": 2738,
+   "output_tokens": 291,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"Code Review and Deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": \"review code\"}, {\"id\": \"t3\", \"label\": \"request changes\"}, {\"id\": \"t4\", \"label\": \"revise code\"}, {\"id\": \"t5\", \"label\": \"merge code\"}, {\"id\": \"t6\", \"label\": \"deploy code\"}, {\"id\": \"t7\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t2\"], [\"p5\", \"t5\"], [\"t5\", \"p6\"], [\"p6\", \"t6\"], [\"t6\", \"o\"], [\"p5\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t5\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p5', 'p8', 'p9', 'p10', 'p11']",
+    "expected exactly one sink place, found ['o', 'p8', 'p9', 'p10', 'p11']"
+   ],
+   "latency_s": 7.6,
+   "prompt_tokens": 3106,
+   "output_tokens": 333,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"Code Review and Deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": \"review code\"}, {\"id\": \"t3\", \"label\": \"request changes\"}, {\"id\": \"t4\", \"label\": \"revise code\"}, {\"id\": \"t5\", \"label\": \"merge code\"}, {\"id\": \"t6\", \"label\": \"deploy code\"}, {\"id\": \"t7\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t2\"], [\"p5\", \"t5\"], [\"t5\", \"p6\"], [\"p6\", \"t6\"], [\"t6\", \"o\"], [\"p5\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t5\"], [\"p7\", \"t6\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p5']"
+   ],
+   "latency_s": 7.5,
+   "prompt_tokens": 3528,
+   "output_tokens": 323,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 22.01,
+ "output_chars": 710
+}

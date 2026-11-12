@@ -1,0 +1,48 @@
+{
+ "approach": "baseline",
+ "case": "P06",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": \"review code\"}, {\"id\": \"t3\", \"label\": \"request changes\"}, {\"id\": \"t4\", \"label\": \"revise code\"}, {\"id\": \"t5\", \"label\": \"approve code\"}, {\"id\": \"t6\", \"label\": \"merge code\"}, {\"id\": \"t7\", \"label\": \"deploy code\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p3\", \"t2\"], [\"p2\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t2\"], [\"p3\", \"t5\"], [\"t5\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"p5\"], [\"p5\", \"t7\"], [\"t7\", \"o\"], [\"p5\", \"t8\"], [\"t8\", \"p6\"], [\"p6\", \"t9\"], [\"t9\", \"p5\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 8.97,
+   "prompt_tokens": 2154,
+   "output_tokens": 381,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": \"review code\"}, {\"id\": \"t3\", \"label\": \"request changes\"}, {\"id\": \"t4\", \"label\": \"revise code\"}, {\"id\": \"t5\", \"label\": \"approve code\"}, {\"id\": \"t6\", \"label\": \"merge code\"}, {\"id\": \"t7\", \"label\": \"deploy code\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t2\"], [\"p3\", \"t5\"], [\"t5\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"p5\"], [\"p5\", \"t7\"], [\"t7\", \"o\"], [\"p5\", \"t8\"], [\"t8\", \"p6\"], [\"p6\", \"t9\"], [\"t9\", \"p5\"], [\"p6\", \"t6\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 9.0,
+   "prompt_tokens": 2608,
+   "output_tokens": 381,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": \"review code\"}, {\"id\": \"t3\", \"label\": \"request changes\"}, {\"id\": \"t4\", \"label\": \"revise code\"}, {\"id\": \"t5\", \"label\": \"approve code\"}, {\"id\": \"t6\", \"label\": \"merge code\"}, {\"id\": \"t7\", \"label\": \"deploy code\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t2\"], [\"p3\", \"t5\"], [\"t5\", \"p4\"], [\"p4\", \"t6\"], [\"t6\", \"o\"], [\"p4\", \"t7\"], [\"t7\", \"o\"], [\"p4\", \"t8\"], [\"t8\", \"p5\"], [\"p5\", \"t9\"], [\"t9\", \"p4\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 8.95,
+   "prompt_tokens": 3062,
+   "output_tokens": 372,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 26.92,
+ "output_chars": 817
+}

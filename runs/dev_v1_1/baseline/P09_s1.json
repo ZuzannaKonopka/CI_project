@@ -1,0 +1,146 @@
+{
+ "approach": "baseline",
+ "case": "P09",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"insurance claim process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit claim\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request info\"}, {\"id\": \"t4\", \"label\": \"provide info\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"o\"], [\"p5\", \"t7\"], [\"t7\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['o', 'p6', 'p7', 'p8', 'p9']"
+   ],
+   "latency_s": 7.56,
+   "prompt_tokens": 2152,
+   "output_tokens": 304,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit claim\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"check claim\"}, {\"id\": \"t3\", \"label\": \"request info\"}, {\"id\": \"t4\", \"label\": \"provide info\"}, {\"id\": \"t5\", \"label\": \"check claim\"}, {\"id\": \"t6\", \"label\": \"pay compensation\"}, {\"id\": \"t7\", \"label\": \"reject claim\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"o\"], [\"p5\", \"t7\"], [\"t7\", \"o\"]]}",
+   "errors": [],
+   "latency_s": 7.02,
+   "prompt_tokens": 2537,
+   "output_tokens": 288,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "insurance claim process",
+  "places": [
+   "i",
+   "o",
+   "p0",
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "transitions": [
+   {
+    "id": "t0",
+    "label": "submit claim"
+   },
+   {
+    "id": "t1",
+    "label": null
+   },
+   {
+    "id": "t2",
+    "label": "check claim"
+   },
+   {
+    "id": "t3",
+    "label": "request info"
+   },
+   {
+    "id": "t4",
+    "label": "provide info"
+   },
+   {
+    "id": "t5",
+    "label": "check claim"
+   },
+   {
+    "id": "t6",
+    "label": "pay compensation"
+   },
+   {
+    "id": "t7",
+    "label": "reject claim"
+   }
+  ],
+  "arcs": [
+   [
+    "i",
+    "t0"
+   ],
+   [
+    "t0",
+    "p0"
+   ],
+   [
+    "p0",
+    "t1"
+   ],
+   [
+    "t1",
+    "p1"
+   ],
+   [
+    "p1",
+    "t2"
+   ],
+   [
+    "t2",
+    "p2"
+   ],
+   [
+    "p2",
+    "t3"
+   ],
+   [
+    "t3",
+    "p3"
+   ],
+   [
+    "p3",
+    "t4"
+   ],
+   [
+    "t4",
+    "p4"
+   ],
+   [
+    "p4",
+    "t5"
+   ],
+   [
+    "t5",
+    "p5"
+   ],
+   [
+    "p5",
+    "t6"
+   ],
+   [
+    "t6",
+    "o"
+   ],
+   [
+    "p5",
+    "t7"
+   ],
+   [
+    "t7",
+    "o"
+   ]
+  ]
+ },
+ "n_repairs": 1,
+ "total_latency_s": 14.58,
+ "output_chars": 653
+}

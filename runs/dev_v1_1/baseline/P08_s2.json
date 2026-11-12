@@ -1,0 +1,55 @@
+{
+ "approach": "baseline",
+ "case": "P08",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"conference registration\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"register for conference\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"pay registration fee\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book workshop\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"send confirmation e-mail\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p1\", \"t4\"], [\"t5\", \"p3\"], [\"p2\", \"t6\"], [\"p3\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "transition 't3' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "transition 't4' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p4']",
+    "expected exactly one sink place, found ['o', 'p4']"
+   ],
+   "latency_s": 6.28,
+   "prompt_tokens": 2134,
+   "output_tokens": 238,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"conference registration\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"register for conference\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"pay registration fee\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book workshop\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"send confirmation e-mail\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p1\", \"t4\"], [\"t5\", \"p3\"], [\"p2\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"o\"]]}",
+   "errors": [
+    "transition 't3' needs at least one input and one output place",
+    "transition 't4' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p5']",
+    "expected exactly one sink place, found ['o', 'p3', 'p5']"
+   ],
+   "latency_s": 6.64,
+   "prompt_tokens": 2477,
+   "output_tokens": 250,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"conference registration\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"register for conference\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"pay registration fee\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"book workshop\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"send confirmation e-mail\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p1\", \"t4\"], [\"t4\", \"p3\"], [\"p2\", \"t5\"], [\"p3\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "transition 't3' needs at least one input and one output place",
+    "transition 't5' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p4', 'p5']",
+    "expected exactly one sink place, found ['o', 'p4', 'p5']"
+   ],
+   "latency_s": 6.44,
+   "prompt_tokens": 2820,
+   "output_tokens": 242,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 19.36,
+ "output_chars": 569
+}

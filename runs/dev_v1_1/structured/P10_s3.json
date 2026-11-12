@@ -1,0 +1,78 @@
+{
+ "approach": "structured",
+ "case": "P10",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"restaurant service\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"activity\": \"pay\", \"children\": [{\"activity\": \"pay in cash\"}, {\"activity\": \"pay by card\"}]}]}}",
+   "errors": [
+    "tree.children[3]: activity node must contain only 'activity', found ['activity', 'children']"
+   ],
+   "latency_s": 3.63,
+   "prompt_tokens": 802,
+   "output_tokens": 87,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"restaurant service\", \"tree\": {\"activity\": \"place order\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"pay in cash\"}, {\"activity\": \"pay by card\"}]}]}}",
+   "errors": [
+    "tree: activity node must contain only 'activity', found ['activity', 'children']"
+   ],
+   "latency_s": 3.56,
+   "prompt_tokens": 937,
+   "output_tokens": 81,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"restaurant service\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"pay in cash\"}, {\"activity\": \"pay by card\"}]}]}}",
+   "errors": [],
+   "latency_s": 3.66,
+   "prompt_tokens": 1063,
+   "output_tokens": 87,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "restaurant service",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "place order"
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "prepare meal"
+      },
+      {
+       "activity": "prepare drinks"
+      }
+     ]
+    },
+    {
+     "activity": "serve order"
+    },
+    {
+     "op": "or",
+     "children": [
+      {
+       "activity": "pay in cash"
+      },
+      {
+       "activity": "pay by card"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 2,
+ "total_latency_s": 10.85,
+ "output_chars": 310
+}

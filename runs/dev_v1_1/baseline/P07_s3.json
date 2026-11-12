@@ -1,0 +1,47 @@
+{
+ "approach": "baseline",
+ "case": "P07",
+ "seed": 3,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.0",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"car service\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"bring car to garage\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"inspect car\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"change oil\"}, {\"id\": \"t5\", \"label\": \"replace brakes\"}, {\"id\": \"t6\", \"label\": \"replace tyres\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"pay\"}, {\"id\": \"t9\", \"label\": \"collect car\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"t3\", \"p3\"], [\"p2\", \"t5\"], [\"t4\", \"p4\"], [\"p2\", \"t6\"], [\"t5\", \"p5\"], [\"t6\", \"p6\"], [\"p3\", \"t7\"], [\"p4\", \"t7\"], [\"p5\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p6', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 11.24,
+   "prompt_tokens": 2158,
+   "output_tokens": 467,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"car service\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\", \"p13\", \"p14\", \"p15\", \"p16\", \"p17\", \"p18\", \"p19\", \"p20\", \"p21\", \"p22\", \"p23\", \"p24\", \"p25\", \"p26\", \"p27\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"bring car to garage\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"inspect car\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"change oil\"}, {\"id\": \"t5\", \"label\": \"replace brakes\"}, {\"id\": \"t6\", \"label\": \"replace tyres\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"pay\"}, {\"id\": \"t9\", \"label\": \"collect car\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"t3\", \"p3\"], [\"p2\", \"t5\"], [\"t4\", \"p4\"], [\"p2\", \"t6\"], [\"t5\", \"p5\"], [\"t6\", \"p6\"], [\"p3\", \"t7\"], [\"p4\", \"t7\"], [\"p5\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']",
+    "expected exactly one sink place, found ['o', 'p6', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27']"
+   ],
+   "latency_s": 11.28,
+   "prompt_tokens": 2866,
+   "output_tokens": 467,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"car service\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"bring car to garage\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"inspect car\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"change oil\"}, {\"id\": \"t5\", \"label\": \"replace brakes\"}, {\"id\": \"t6\", \"label\": \"replace tyres\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"pay\"}, {\"id\": \"t9\", \"label\": \"collect car\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"p2\", \"t4\"], [\"t3\", \"p3\"], [\"p2\", \"t5\"], [\"t4\", \"p4\"], [\"p2\", \"t6\"], [\"t5\", \"p5\"], [\"t6\", \"p6\"], [\"p3\", \"t7\"], [\"p4\", \"t7\"], [\"p5\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "expected exactly one sink place, found ['o', 'p6']"
+   ],
+   "latency_s": 9.31,
+   "prompt_tokens": 3574,
+   "output_tokens": 373,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 31.84,
+ "output_chars": 797
+}
