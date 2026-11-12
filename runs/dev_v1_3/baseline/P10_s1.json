@@ -1,0 +1,49 @@
+{
+ "approach": "baseline",
+ "case": "P10",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.3",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"restaurant order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": \"prepare drinks\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"serve order\"}, {\"id\": \"t7\", \"label\": \"pay cash\"}, {\"id\": \"t8\", \"label\": \"pay card\"}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p2\", \"t1\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"p0\", \"t2\"], [\"p3\", \"t2\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"p4\", \"t6\"], [\"p5\", \"t7\"], [\"p6\", \"t8\"], [\"t9\", \"p6\"], [\"t5\", \"t9\"], [\"t6\", \"t9\"], [\"t7\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "arc ['t5', 't9'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t6', 't9'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t7', 't9'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 8.11,
+   "prompt_tokens": 3100,
+   "output_tokens": 361,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"restaurant order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": \"prepare drinks\"}, {\"id\": \"t5\", \"label\": \"serve order\"}, {\"id\": \"t6\", \"label\": \"pay cash\"}, {\"id\": \"t7\", \"label\": \"pay card\"}, {\"id\": \"t8\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p2\", \"t1\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"p0\", \"t2\"], [\"p3\", \"t2\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p5\", \"t5\"], [\"p4\", \"t5\"], [\"p5\", \"t6\"], [\"p6\", \"t6\"], [\"p5\", \"t7\"], [\"p7\", \"t7\"], [\"t8\", \"p7\"], [\"p6\", \"t8\"], [\"t8\", \"o\"], [\"p6\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "arc ['p6', 't9'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t9', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 8.02,
+   "prompt_tokens": 3572,
+   "output_tokens": 356,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"restaurant order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": \"prepare drinks\"}, {\"id\": \"t5\", \"label\": \"serve order\"}, {\"id\": \"t6\", \"label\": \"pay cash\"}, {\"id\": \"t7\", \"label\": \"pay card\"}, {\"id\": \"t8\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p2\", \"t1\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"p0\", \"t2\"], [\"p3\", \"t2\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p5\", \"t5\"], [\"p4\", \"t5\"], [\"p5\", \"t6\"], [\"p6\", \"t6\"], [\"p5\", \"t7\"], [\"p7\", \"t7\"], [\"t8\", \"p7\"], [\"p6\", \"t8\"], [\"t8\", \"p6\"], [\"p6\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "arc ['p6', 't9'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['t9', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+   ],
+   "latency_s": 8.05,
+   "prompt_tokens": 4010,
+   "output_tokens": 357,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 24.19,
+ "output_chars": 758
+}

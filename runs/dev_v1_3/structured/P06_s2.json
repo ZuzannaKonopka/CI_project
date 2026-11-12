@@ -1,0 +1,45 @@
+{
+ "approach": "structured",
+ "case": "P06",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.3",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"review code\"}, {\"activity\": \"revise code\"}]}], \"children2\": [{\"op\": \"and\", \"children\": [{\"activity\": \"approve code\"}, {\"activity\": \"merge code\"}]}, {\"activity\": \"deploy\"}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'op']"
+   ],
+   "latency_s": 3.79,
+   "prompt_tokens": 1666,
+   "output_tokens": 100,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"review code\"}, {\"activity\": \"revise code\"}]}], \"children2\": [{\"op\": \"and\", \"children\": [{\"activity\": \"approve code\"}, {\"activity\": \"merge code\"}]}, {\"activity\": \"deploy\"}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'op']"
+   ],
+   "latency_s": 3.83,
+   "prompt_tokens": 1819,
+   "output_tokens": 100,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"code review and deployment\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"write code\"}, {\"activity\": \"open pull request\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"review code\"}, {\"activity\": \"revise code\"}]}], \"children2\": [{\"op\": \"and\", \"children\": [{\"activity\": \"approve code\"}, {\"activity\": \"merge code\"}]}], \"children3\": [{\"activity\": \"deploy\"}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'children3', 'op']"
+   ],
+   "latency_s": 3.99,
+   "prompt_tokens": 1972,
+   "output_tokens": 105,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 11.61,
+ "output_chars": 375
+}

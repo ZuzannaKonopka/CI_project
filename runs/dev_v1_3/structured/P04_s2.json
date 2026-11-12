@@ -1,0 +1,45 @@
+{
+ "approach": "structured",
+ "case": "P04",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.3",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"online shop order\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check stock\"}, {\"tau\": true}]}], \"children2\": [{\"op\": \"or\", \"children\": [{\"activity\": \"process payment\"}, {\"tau\": true}]}], \"children3\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}], \"children4\": [{\"op\": \"xor\", \"children\": [{\"activity\": \"cancel order\"}, {\"tau\": true}]}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'children3', 'children4', 'op']"
+   ],
+   "latency_s": 4.33,
+   "prompt_tokens": 1671,
+   "output_tokens": 126,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"online shop order\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check stock\"}, {\"tau\": true}]}], \"children2\": [{\"op\": \"or\", \"children\": [{\"activity\": \"process payment\"}, {\"tau\": true}]}], \"children3\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}], \"children4\": [{\"op\": \"xor\", \"children\": [{\"activity\": \"cancel order\"}, {\"tau\": true}]}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'children3', 'children4', 'op']"
+   ],
+   "latency_s": 4.29,
+   "prompt_tokens": 1858,
+   "output_tokens": 126,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"online shop order\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check stock\"}, {\"tau\": true}]}], \"children2\": [{\"op\": \"or\", \"children\": [{\"activity\": \"process payment\"}, {\"tau\": true}]}], \"children3\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}], \"children4\": [{\"op\": \"xor\", \"children\": [{\"activity\": \"cancel order\"}, {\"tau\": true}]}]}}",
+   "errors": [
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'children3', 'children4', 'op']"
+   ],
+   "latency_s": 4.29,
+   "prompt_tokens": 2045,
+   "output_tokens": 126,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 12.92,
+ "output_chars": 431
+}

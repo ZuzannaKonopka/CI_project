@@ -1,0 +1,61 @@
+{
+ "approach": "structured",
+ "case": "P11",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.3",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"event organisation\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"set event date\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"book venue\"}, {\"activity\": \"send invitations\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"arrange catering\"}, {\"activity\": \"book band\"}, {\"activity\": \"hire photographer\"}]}, {\"activity\": \"hold event\"}]}}",
+   "errors": [],
+   "latency_s": 3.8,
+   "prompt_tokens": 1671,
+   "output_tokens": 94,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "event organisation",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "set event date"
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "activity": "book venue"
+      },
+      {
+       "activity": "send invitations"
+      }
+     ]
+    },
+    {
+     "op": "or",
+     "children": [
+      {
+       "activity": "arrange catering"
+      },
+      {
+       "activity": "book band"
+      },
+      {
+       "activity": "hire photographer"
+      }
+     ]
+    },
+    {
+     "activity": "hold event"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.8,
+ "output_chars": 350
+}

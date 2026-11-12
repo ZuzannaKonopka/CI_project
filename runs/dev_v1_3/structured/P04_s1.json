@@ -1,0 +1,36 @@
+{
+ "approach": "structured",
+ "case": "P04",
+ "seed": 1,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.3",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"online order process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check stock\"}, {\"tau\": true}]}]},\"tree\": {\"op\": \"and\", \"children\": [{\"activity\": \"process payment\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]}, \"tree\": {\"op\": \"or\", \"children\": [{\"activity\": \"cancel order\"}, {\"tau\": true}]} }",
+   "errors": [],
+   "latency_s": 4.48,
+   "prompt_tokens": 1671,
+   "output_tokens": 122,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "online order process",
+  "tree": {
+   "op": "or",
+   "children": [
+    {
+     "activity": "cancel order"
+    },
+    {
+     "tau": true
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 4.48,
+ "output_chars": 418
+}

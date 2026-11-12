@@ -1,0 +1,66 @@
+{
+ "approach": "structured",
+ "case": "P09",
+ "seed": 2,
+ "client": "ollama:qwen2.5:7b",
+ "prompt_version": "v1.3",
+ "max_repairs": 2,
+ "attempts": [
+  {
+   "raw": "{\"process_name\": \"insurance claim processing\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit insurance claim\"}, {\"activity\": \"check claim\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"request additional information\"}, {\"activity\": \"provide information\"}]}, {\"activity\": \"check claim\"}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}}",
+   "errors": [],
+   "latency_s": 3.9,
+   "prompt_tokens": 1664,
+   "output_tokens": 105,
+   "done_reason": "stop"
+  }
+ ],
+ "valid": true,
+ "document": {
+  "process_name": "insurance claim processing",
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit insurance claim"
+    },
+    {
+     "activity": "check claim"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "op": "and",
+       "children": [
+        {
+         "activity": "request additional information"
+        },
+        {
+         "activity": "provide information"
+        }
+       ]
+      },
+      {
+       "activity": "check claim"
+      }
+     ]
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "activity": "pay compensation"
+      },
+      {
+       "activity": "reject claim"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.9,
+ "output_chars": 418
+}
