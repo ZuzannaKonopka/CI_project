@@ -3,8 +3,8 @@
 Fairness rules
 --------------
 * Both approaches get the same task description, the same modelling rules,
-  the same control-flow knowledge, the same list of common mistakes, the same
-  final checklist and the same five worked examples (ATM, pizza, gym membership,
+  the same three decision patterns, the same scope rules for choices, parallel
+  branches and loops, the same list of common mistakes, the same final checklist and the same five worked examples (ATM, pizza, gym membership,
   car inspection, laptop repair) - each in its own output format. None of the
   examples is part of the benchmark.
 * The WF-net examples are generated from the process-tree examples by our own
@@ -20,7 +20,7 @@ from collections import deque
 from .tree import parse_tree, parse_tree_string
 from .wfnet import tree_to_wfnet
 
-PROMPT_VERSION = "v1.4"
+PROMPT_VERSION = "v1.5"
 
 COMMON_RULES = """Step 1 - list the activities ("activities"):
 - Read the text sentence by sentence. Every verb that describes something that is done (by a person,
@@ -37,23 +37,31 @@ COMMON_RULES = """Step 1 - list the activities ("activities"):
 - NOT activities: actors, states and conditions ("the items are in stock", "the documents are
   complete", "when both are ready"), waiting, and the start or end of the process.
 
-Step 2 - decisions and results:
-- "X checks whether ... ; if yes ... otherwise ..." -> keep "check ..." as an activity; the branches
-  start directly with their first action (no activity for the condition itself).
-- "X decides / the request is approved or rejected" -> one activity per named result
-  ("approve request" / "reject request") and NO separate "decide" or "evaluate" activity.
-- A step that ends with a result ("ends with a positive or negative assessment", "passes or fails")
-  -> the results are the activities: "<step> positive" / "<step> negative"; do not add the step
-  itself as a separate activity.
+Step 2 - decisions: use exactly ONE of these three patterns
+(A) A check with a condition: "X checks whether ...; if yes ..., otherwise ..."
+    -> keep "check ..." as one activity; the branches start directly with their first action.
+    The condition is NOT an activity: no "items in stock", "stock available", "documents complete".
+(B) A decision with named results: "X decides", "the request is approved or rejected",
+    "if the loan is approved ... otherwise ..."
+    -> one activity per result ("approve loan" / "reject loan") as the FIRST activity of each branch,
+    also when the text names the second result only by "otherwise"; NO "decide" or "evaluate" activity.
+(C) A step that ends with an assessment: "each interview ends with a positive or negative assessment",
+    "the test is passed or failed"
+    -> the results are the activities ("<step> positive" / "<step> negative"); the step itself is not
+    a separate activity.
 - An activity is written a second time only if the text describes it in two different branches
   (e.g. "notify customer" after a rejection and after a cancellation).
 
-Step 3 - control flow:
-- "then", "after that", "finally" -> sequence.
+Step 3 - control flow and scope:
+- "then", "after that", "finally", "in addition", "also" -> sequence (keep the order of the text).
 - "if ... otherwise", "either ... or" -> exclusive choice (exactly one branch).
+  A branch contains ALL steps described for that case, up to where the other case starts.
+  Steps after "finally", "at the end" or "in both cases" come AFTER the whole choice, not inside a branch.
 - "in any order", "while", "meanwhile", "both ... and ... independently" -> parallel (all branches).
-  Use parallel ONLY with such wording; otherwise keep the order of the text.
+  Only the activities named together in that sentence are parallel; the step before them and the step
+  after them stay in sequence. Without such wording never use parallel.
 - "and/or", "at least one of", "one, two or all" -> inclusive choice (one or more branches).
+  Only the options listed with "and/or" belong to it; the steps before and after stay in sequence.
 - "again", "repeat", "until", "is checked again" -> loop with two parts:
   do   = the step that is repeated (usually the check or test itself),
   redo = ALL corrective steps done between two repetitions, in their order - including the request
@@ -70,22 +78,27 @@ Step 3 - control flow:
   (the skip has no label and is NOT an activity in the activities list).
 
 Common mistakes (wrong -> right):
-- an activity "decide on application" -> only the results "approve application" / "reject application"
+- "check stock" followed by an activity "stock available" -> no condition activity (pattern A)
+- an activity "decide on application" -> only the results "approve application" / "reject application" (pattern B)
+- "otherwise, the customer is informed" without a result activity -> "reject ..." first, then "inform customer"
 - an activity "information complete" or "changes requested" -> no activity; the loop simply ends or repeats
 - a loop whose "do" is "request information" -> do = the check; redo = "request information", "provide information"
 - the check written before the loop and again inside it -> written once, as the "do" part of the loop
 - the decision that follows a loop placed inside "redo" -> placed after the loop
+- the final step ("finally ...") placed inside the last branch of a choice -> placed after the choice
+- parallel that also contains the step before or after the "in any order" activities -> only the named ones
 - parallel for steps that the text tells one after another -> sequence
 - an optional step without a skip -> exclusive choice between the step and the skip
 
 Final check before answering:
 1. Every activity from Step 1 appears in the model, and the model contains no other activity.
 2. Every action verb of the text has an activity (including those in "if" / "otherwise" clauses).
-3. No activity for a condition, a state or a loop outcome; no "decide" activity.
-4. Every loop has exactly two parts [do, redo], "do" is not repeated outside the loop, and the
+3. Each decision uses exactly one pattern (A, B or C); no condition activity, no "decide" activity.
+4. Every branch of a choice contains all steps of its case, and the steps after the choice are outside it.
+5. Parallel and inclusive choice contain only the activities named together in the text.
+6. Every loop has exactly two parts [do, redo], "do" is not repeated outside the loop, and the
    steps after the loop are outside it.
-5. Parallel is used only where the text says "in any order", "while", "meanwhile" or similar.
-6. Every optional step is a choice between the step and a skip."""
+7. Every optional step is a choice between the step and a skip."""
 
 STRUCTURED_SYSTEM = """You convert a textual process description into a PROCESS TREE in JSON.
 
@@ -131,7 +144,7 @@ How to express control flow:
   each combination executed in parallel (labels may then appear in several transitions).
 
 """ + COMMON_RULES + """
-7. Every place except "i" has an incoming arc, every place except "o" has an outgoing arc, and
+8. Every place except "i" has an incoming arc, every place except "o" has an outgoing arc, and
    every id used in "arcs" is listed in "places" or "transitions".
 
 Return only one JSON object:
