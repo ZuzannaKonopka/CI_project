@@ -23,19 +23,41 @@ class OllamaClient:
         self.name = f"ollama:{model}"
 
     def chat(self, messages, seed=0):
-        body = {"model": self.model, "messages": messages, "stream": False,
-                "options": {"temperature": self.temperature, "seed": seed, "num_ctx": self.num_ctx, "num_predict": self.num_predict}}
-        if self.json_mode:
-            body["format"] = "json"
         t0 = time.time()
-        r = requests.post(f"{self.host}/api/chat", json=body, timeout=self.timeout)
-        r.raise_for_status()
-        data = r.json()
-        return data["message"]["content"], {
-            "latency_s": round(time.time() - t0, 2),
-            "prompt_tokens": data.get("prompt_eval_count"), 
-            "output_tokens": data.get("eval_count"),
-            "done_reason": data.get("done_reason")}
+        for attempt in range(2):
+            body = {
+                "model": self.model,
+                "messages": messages,
+                "stream": False,
+                "options": {
+                    "temperature": self.temperature,
+                    "seed": seed + (attempt * 1000),
+                    "num_ctx": self.num_ctx,
+                    "num_predict": self.num_predict,
+                },
+            }
+            if self.json_mode:
+                body["format"] = "json"
+            r = requests.post(f"{self.host}/api/chat", json=body, timeout=self.timeout)
+            if r.status_code == 500:
+                if attempt == 0:
+                    time.sleep(1)
+                    continue
+                return "", {
+                    "latency_s": round(time.time() - t0, 2),
+                    "prompt_tokens": 0,
+                    "output_tokens": 0,
+                    "done_reason": "server_error_500",
+                }
+            r.raise_for_status()
+            data = r.json()
+            return data["message"]["content"], {
+                "latency_s": round(time.time() - t0, 2),
+                "prompt_tokens": data.get("prompt_eval_count"),
+                "output_tokens": data.get("eval_count"),
+                "done_reason": data.get("done_reason"),
+            }
+
 
 
 class OpenAICompatibleClient:
