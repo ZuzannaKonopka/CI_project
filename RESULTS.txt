@@ -1,0 +1,434 @@
+RESULTS
+v1.1
+P01 structured seed=1 valid=True repairs=0
+P01 structured seed=2 valid=True repairs=0
+P01 structured seed=3 valid=True repairs=0
+P01 baseline   seed=1 valid=False repairs=2
+P01 baseline   seed=2 valid=False repairs=2
+P01 baseline   seed=3 valid=False repairs=2
+P02 structured seed=1 valid=True repairs=0
+P02 structured seed=2 valid=True repairs=0
+P02 structured seed=3 valid=True repairs=0
+P02 baseline   seed=1 valid=True repairs=1
+P02 baseline   seed=2 valid=False repairs=2
+P02 baseline   seed=3 valid=False repairs=2
+P03 structured seed=1 valid=True repairs=0
+P03 structured seed=2 valid=True repairs=0
+P03 structured seed=3 valid=True repairs=0
+P03 baseline   seed=1 valid=True repairs=1
+P03 baseline   seed=2 valid=True repairs=1
+P03 baseline   seed=3 valid=True repairs=1
+P04 structured seed=1 valid=True repairs=0
+P04 structured seed=2 valid=True repairs=0
+P04 structured seed=3 valid=True repairs=0
+P04 baseline   seed=1 valid=False repairs=2
+P04 baseline   seed=2 valid=False repairs=2
+P04 baseline   seed=3 valid=False repairs=2
+P05 structured seed=1 valid=True repairs=0
+P05 structured seed=2 valid=True repairs=0
+P05 structured seed=3 valid=True repairs=0
+P05 baseline   seed=1 valid=False repairs=2
+P05 baseline   seed=2 valid=False repairs=2
+P05 baseline   seed=3 valid=False repairs=2
+P06 structured seed=1 valid=True repairs=0
+P06 structured seed=2 valid=True repairs=1
+P06 structured seed=3 valid=True repairs=1
+P06 baseline   seed=1 valid=True repairs=2
+P06 baseline   seed=2 valid=False repairs=2
+P06 baseline   seed=3 valid=True repairs=1
+P07 structured seed=1 valid=True repairs=0
+P07 structured seed=2 valid=True repairs=0
+P07 structured seed=3 valid=True repairs=0
+P07 baseline   seed=1 valid=False repairs=2
+P07 baseline   seed=2 valid=False repairs=2
+P07 baseline   seed=3 valid=False repairs=2
+P08 structured seed=1 valid=False repairs=2
+P08 structured seed=2 valid=False repairs=2
+P08 structured seed=3 valid=False repairs=2
+P08 baseline   seed=1 valid=False repairs=2
+P08 baseline   seed=2 valid=False repairs=2
+P08 baseline   seed=3 valid=False repairs=2
+P09 structured seed=1 valid=True repairs=0
+P09 structured seed=2 valid=True repairs=0
+P09 structured seed=3 valid=True repairs=0
+P09 baseline   seed=1 valid=True repairs=1
+P09 baseline   seed=2 valid=True repairs=2
+P09 baseline   seed=3 valid=False repairs=2
+P10 structured seed=1 valid=True repairs=1
+P10 structured seed=2 valid=True repairs=1
+P10 structured seed=3 valid=True repairs=1
+P10 baseline   seed=1 valid=True repairs=2
+P10 baseline   seed=2 valid=False repairs=2
+P10 baseline   seed=3 valid=False repairs=2
+P11 structured seed=1 valid=True repairs=0
+P11 structured seed=2 valid=True repairs=0
+P11 structured seed=3 valid=True repairs=0
+P11 baseline   seed=1 valid=False repairs=2
+P11 baseline   seed=2 valid=False repairs=2
+P11 baseline   seed=3 valid=True repairs=2
+P12 structured seed=1 valid=True repairs=0
+P12 structured seed=2 valid=True repairs=0
+P12 structured seed=3 valid=True repairs=0
+P12 baseline   seed=1 valid=False repairs=2
+P12 baseline   seed=2 valid=True repairs=1
+P12 baseline   seed=3 valid=False repairs=2
+# Results: dev_v1_1 (dev)
+
+Client: ollama:qwen2.5:7b | prompt: v1.1 | cases: 12 | runs per case and approach: 3
+
+## 1. Mean per approach (over all runs)
+
+| Measure | Proposed (tree) | Baseline (direct) |
+|---|---|---|
+| Validity | 0.917 ± 0.276 | 0.306 ± 0.461 |
+| Soundness | 0.917 ± 0.276 | 0.167 ± 0.373 |
+| Activity F1 | 0.793 ± 0.300 | 0.293 ± 0.444 |
+| Footprint sim. | 0.760 ± 0.265 | 0.129 ± 0.297 |
+| Trace precision | 0.302 ± 0.425 | 0.062 ± 0.216 |
+| Trace recall | 0.387 ± 0.453 | 0.036 ± 0.168 |
+| Trace F1 | 0.320 ± 0.432 | 0.037 ± 0.154 |
+| Repairs used | 0.3 | 1.8 |
+| Output length (chars) | 352.4 | 1087.6 |
+
+## 2. Paired comparison over cases (proposed - baseline)
+
+Runs are averaged per case first. Exact two-sided Wilcoxon signed-rank test; 95% bootstrap CI of the mean difference.
+
+| Measure | Mean diff | 95% CI | W / T / L | p |
+|---|---|---|---|---|
+| Validity | +0.611 | [+0.417, +0.806] | 10 / 2 / 0 | 0.002 |
+| Soundness | +0.750 | [+0.556, +0.917] | 11 / 1 / 0 | 0.001 |
+| Activity F1 | +0.500 | [+0.322, +0.668] | 10 / 1 / 1 | 0.002 |
+| Footprint sim. | +0.632 | [+0.448, +0.792] | 11 / 1 / 0 | 0.001 |
+| Trace precision | +0.239 | [+0.005, +0.498] | 6 / 4 / 2 | 0.141 |
+| Trace recall | +0.351 | [+0.089, +0.622] | 7 / 4 / 1 | 0.055 |
+| Trace F1 | +0.283 | [+0.040, +0.554] | 6 / 4 / 2 | 0.109 |
+
+## 3. Trace F1 per operator (cases containing the operator)
+
+| Operator | Cases | Proposed | Baseline |
+|---|---|---|---|
+| xor | 7 | 0.118 | 0.060 |
+| and | 5 | 0.343 | 0.004 |
+| or | 3 | 1.000 | 0.007 |
+| loop | 3 | 0.042 | 0.044 |
+| tau | 1 | 0.000 | 0.000 |
+
+## 4. Error types (share of runs)
+
+| Error type | Proposed | Baseline |
+|---|---|---|
+| correct | 25% | 0% |
+| extra / unmatched activity | 19% | 8% |
+| invalid after repairs | 8% | 69% |
+| missing activity | 42% | 3% |
+| unsound: cannot always complete | 0% | 14% |
+| unsound: dead transition | 0% | 11% |
+| unsound: tokens left behind | 0% | 3% |
+| wrong control flow | 17% | 14% |
+
+## 5. Trace F1 per case
+
+| Case | Operators | Proposed | Baseline |
+|---|---|---|---|
+| P01 | seq,xor,and | 0.000 | 0.000 |
+| P02 | seq,or | 1.000 | 0.000 |
+| P03 | seq,loop | 0.014 | 0.000 |
+| P04 | seq,xor,and | 0.049 | 0.000 |
+| P05 | seq,xor,and | 0.000 | 0.000 |
+| P06 | seq,loop | 0.000 | 0.000 |
+| P07 | seq,or | 1.000 | 0.000 |
+| P08 | seq,xor,tau | 0.000 | 0.000 |
+| P09 | seq,xor,loop | 0.111 | 0.133 |
+| P10 | seq,xor,and | 0.667 | 0.000 |
+| P11 | seq,and,or | 1.000 | 0.021 |
+| P12 | seq,xor | 0.000 | 0.286 |
+
+=======================================================================================
+v1.2
+P01 structured seed=1 valid=True repairs=1
+P01 structured seed=2 valid=True repairs=0
+P01 structured seed=3 valid=True repairs=0
+P01 baseline   seed=1 valid=False repairs=2
+P01 baseline   seed=2 valid=True repairs=1
+P01 baseline   seed=3 valid=False repairs=2
+P02 structured seed=1 valid=True repairs=0
+P02 structured seed=2 valid=True repairs=0
+P02 structured seed=3 valid=True repairs=0
+P02 baseline   seed=1 valid=False repairs=2
+P02 baseline   seed=2 valid=False repairs=2
+P02 baseline   seed=3 valid=False repairs=2
+P03 structured seed=1 valid=True repairs=0
+P03 structured seed=2 valid=True repairs=0
+P03 structured seed=3 valid=True repairs=0
+P03 baseline   seed=1 valid=False repairs=2
+P03 baseline   seed=2 valid=True repairs=2
+P03 baseline   seed=3 valid=True repairs=1
+P04 structured seed=1 valid=True repairs=0
+P04 structured seed=2 valid=True repairs=0
+P04 structured seed=3 valid=True repairs=0
+P04 baseline   seed=1 valid=True repairs=2
+P04 baseline   seed=2 valid=False repairs=2
+P04 baseline   seed=3 valid=True repairs=0
+P05 structured seed=1 valid=True repairs=0
+P05 structured seed=2 valid=True repairs=0
+P05 structured seed=3 valid=True repairs=0
+P05 baseline   seed=1 valid=True repairs=2
+P05 baseline   seed=2 valid=True repairs=1
+P05 baseline   seed=3 valid=False repairs=2
+P06 structured seed=1 valid=True repairs=0
+P06 structured seed=2 valid=True repairs=0
+P06 structured seed=3 valid=True repairs=0
+P06 baseline   seed=1 valid=False repairs=2
+P06 baseline   seed=2 valid=True repairs=1
+P06 baseline   seed=3 valid=True repairs=1
+P07 structured seed=1 valid=True repairs=0
+P07 structured seed=2 valid=True repairs=0
+P07 structured seed=3 valid=True repairs=0
+P07 baseline   seed=1 valid=False repairs=2
+P07 baseline   seed=2 valid=False repairs=2
+P07 baseline   seed=3 valid=False repairs=2
+P08 structured seed=1 valid=False repairs=2
+P08 structured seed=2 valid=False repairs=2
+P08 structured seed=3 valid=False repairs=2
+P08 baseline   seed=1 valid=True repairs=2
+P08 baseline   seed=2 valid=True repairs=2
+P08 baseline   seed=3 valid=True repairs=1
+P09 structured seed=1 valid=False repairs=2
+P09 structured seed=2 valid=True repairs=0
+P09 structured seed=3 valid=True repairs=0
+P09 baseline   seed=1 valid=False repairs=2
+P09 baseline   seed=2 valid=True repairs=1
+P09 baseline   seed=3 valid=False repairs=2
+P10 structured seed=1 valid=True repairs=0
+P10 structured seed=2 valid=True repairs=0
+P10 structured seed=3 valid=True repairs=0
+P10 baseline   seed=1 valid=False repairs=2
+P10 baseline   seed=2 valid=True repairs=1
+P10 baseline   seed=3 valid=False repairs=2
+P11 structured seed=1 valid=True repairs=0
+P11 structured seed=2 valid=True repairs=0
+P11 structured seed=3 valid=True repairs=0
+P11 baseline   seed=1 valid=False repairs=2
+P11 baseline   seed=2 valid=True repairs=2
+P11 baseline   seed=3 valid=True repairs=0
+P12 structured seed=1 valid=True repairs=0
+P12 structured seed=2 valid=True repairs=0
+P12 structured seed=3 valid=True repairs=0
+P12 baseline   seed=1 valid=False repairs=2
+P12 baseline   seed=2 valid=False repairs=2
+P12 baseline   seed=3 valid=False repairs=2
+# Results: dev_v1_2 (dev)
+
+Client: ollama:qwen2.5:7b | prompt: v1.2 | cases: 12 | runs per case and approach: 3
+
+## 1. Mean per approach (over all runs)
+
+| Measure | Proposed (tree) | Baseline (direct) |
+|---|---|---|
+| Validity | 0.889 ± 0.314 | 0.444 ± 0.497 |
+| Soundness | 0.889 ± 0.314 | 0.194 ± 0.396 |
+| Activity F1 | 0.816 ± 0.315 | 0.417 ± 0.471 |
+| Footprint sim. | 0.764 ± 0.301 | 0.164 ± 0.312 |
+| Trace precision | 0.409 ± 0.424 | 0.056 ± 0.196 |
+| Trace recall | 0.474 ± 0.409 | 0.069 ± 0.240 |
+| Trace F1 | 0.407 ± 0.404 | 0.060 ± 0.208 |
+| Repairs used | 0.2 | 1.7 |
+| Output length (chars) | 499.6 | 985.7 |
+
+## 2. Paired comparison over cases (proposed - baseline)
+
+Runs are averaged per case first. Exact two-sided Wilcoxon signed-rank test; 95% bootstrap CI of the mean difference.
+
+| Measure | Mean diff | 95% CI | W / T / L | p |
+|---|---|---|---|---|
+| Validity | +0.444 | [+0.139, +0.694] | 11 / 0 / 1 | 0.023 |
+| Soundness | +0.694 | [+0.389, +0.917] | 11 / 0 / 1 | 0.003 |
+| Activity F1 | +0.399 | [+0.103, +0.651] | 11 / 0 / 1 | 0.015 |
+| Footprint sim. | +0.600 | [+0.344, +0.811] | 11 / 0 / 1 | 0.003 |
+| Trace precision | +0.353 | [+0.092, +0.615] | 8 / 2 / 2 | 0.041 |
+| Trace recall | +0.405 | [+0.131, +0.669] | 8 / 2 / 2 | 0.020 |
+| Trace F1 | +0.347 | [+0.088, +0.598] | 8 / 2 / 2 | 0.049 |
+
+## 3. Trace F1 per operator (cases containing the operator)
+
+| Operator | Cases | Proposed | Baseline |
+|---|---|---|---|
+| xor | 7 | 0.266 | 0.056 |
+| and | 5 | 0.508 | 0.000 |
+| or | 3 | 0.908 | 0.000 |
+| loop | 3 | 0.100 | 0.111 |
+| tau | 1 | 0.000 | 0.389 |
+
+## 4. Error types (share of runs)
+
+| Error type | Proposed | Baseline |
+|---|---|---|
+| correct | 22% | 3% |
+| extra / unmatched activity | 31% | 17% |
+| invalid after repairs | 11% | 56% |
+| missing activity | 28% | 8% |
+| unsound: cannot always complete | 0% | 25% |
+| unsound: dead transition | 0% | 25% |
+| wrong control flow | 25% | 11% |
+
+## 5. Trace F1 per case
+
+| Case | Operators | Proposed | Baseline |
+|---|---|---|---|
+| P01 | seq,xor,and | 0.000 | 0.000 |
+| P02 | seq,or | 0.724 | 0.000 |
+| P03 | seq,loop | 0.014 | 0.333 |
+| P04 | seq,xor,and | 0.762 | 0.000 |
+| P05 | seq,xor,and | 0.111 | 0.000 |
+| P06 | seq,loop | 0.286 | 0.000 |
+| P07 | seq,or | 1.000 | 0.000 |
+| P08 | seq,xor,tau | 0.000 | 0.389 |
+| P09 | seq,xor,loop | 0.000 | 0.000 |
+| P10 | seq,xor,and | 0.667 | 0.000 |
+| P11 | seq,and,or | 1.000 | 0.000 |
+| P12 | seq,xor | 0.321 | 0.000 |
+
+=======================================================================================
+v1.3
+P01 structured seed=2 valid=True repairs=0
+P01 structured seed=3 valid=True repairs=0
+P01 baseline   seed=1 valid=False repairs=2
+P01 baseline   seed=2 valid=False repairs=2
+P01 baseline   seed=3 valid=False repairs=2
+P02 structured seed=1 valid=True repairs=0
+P02 structured seed=2 valid=True repairs=0
+P02 structured seed=3 valid=True repairs=0
+P02 baseline   seed=1 valid=False repairs=2
+P02 baseline   seed=2 valid=True repairs=1
+P02 baseline   seed=3 valid=False repairs=2
+P03 structured seed=1 valid=True repairs=0
+P03 structured seed=2 valid=True repairs=0
+P03 structured seed=3 valid=True repairs=0
+P03 baseline   seed=1 valid=True repairs=2
+P03 baseline   seed=2 valid=True repairs=2
+P03 baseline   seed=3 valid=True repairs=1
+P04 structured seed=1 valid=True repairs=0
+P04 structured seed=2 valid=True repairs=0
+P04 structured seed=3 valid=True repairs=0
+P04 baseline   seed=1 valid=True repairs=1
+P04 baseline   seed=2 valid=False repairs=2
+P04 baseline   seed=3 valid=False repairs=2
+P05 structured seed=1 valid=True repairs=0
+P05 structured seed=2 valid=True repairs=0
+P05 structured seed=3 valid=True repairs=0
+P05 baseline   seed=1 valid=False repairs=2
+P05 baseline   seed=2 valid=True repairs=2
+P05 baseline   seed=3 valid=False repairs=2
+P06 structured seed=1 valid=True repairs=0
+P06 structured seed=2 valid=True repairs=0
+P06 structured seed=3 valid=True repairs=0
+P06 baseline   seed=1 valid=False repairs=2
+P06 baseline   seed=2 valid=False repairs=2
+P06 baseline   seed=3 valid=False repairs=2
+P07 structured seed=1 valid=True repairs=0
+P07 structured seed=2 valid=True repairs=0
+P07 structured seed=3 valid=True repairs=0
+P07 baseline   seed=1 valid=True repairs=0
+P07 baseline   seed=2 valid=False repairs=2
+P07 baseline   seed=3 valid=True repairs=1
+P08 structured seed=1 valid=False repairs=2
+P08 structured seed=2 valid=False repairs=2
+P08 structured seed=3 valid=True repairs=2
+P08 baseline   seed=1 valid=True repairs=2
+P08 baseline   seed=2 valid=False repairs=2
+P08 baseline   seed=3 valid=True repairs=1
+P09 structured seed=1 valid=True repairs=1
+P09 structured seed=2 valid=True repairs=1
+P09 structured seed=3 valid=True repairs=0
+P09 baseline   seed=1 valid=True repairs=1
+P09 baseline   seed=2 valid=True repairs=1
+P09 baseline   seed=3 valid=False repairs=2
+P10 structured seed=1 valid=True repairs=0
+P10 structured seed=2 valid=True repairs=0
+P10 structured seed=3 valid=True repairs=0
+P10 baseline   seed=1 valid=False repairs=2
+P10 baseline   seed=2 valid=False repairs=2
+P10 baseline   seed=3 valid=False repairs=2
+P11 structured seed=1 valid=True repairs=0
+P11 structured seed=2 valid=True repairs=0
+P11 structured seed=3 valid=True repairs=0
+P11 baseline   seed=1 valid=True repairs=0
+P11 baseline   seed=2 valid=True repairs=1
+P11 baseline   seed=3 valid=False repairs=2
+P12 structured seed=1 valid=True repairs=0
+P12 structured seed=2 valid=True repairs=0
+P12 structured seed=3 valid=True repairs=0
+P12 baseline   seed=1 valid=False repairs=2
+P12 baseline   seed=2 valid=False repairs=2
+P12 baseline   seed=3 valid=False repairs=2
+# Results: dev_v1_3 (dev)
+
+Client: ollama:qwen2.5:7b | prompt: v1.3 | cases: 12 | runs per case and approach: 3
+
+## 1. Mean per approach (over all runs)
+
+| Measure | Proposed (tree) | Baseline (direct) |
+|---|---|---|
+| Validity | 0.944 ± 0.229 | 0.389 ± 0.487 |
+| Soundness | 0.944 ± 0.229 | 0.139 ± 0.346 |
+| Activity F1 | 0.870 ± 0.243 | 0.383 ± 0.482 |
+| Footprint sim. | 0.826 ± 0.236 | 0.120 ± 0.274 |
+| Trace precision | 0.475 ± 0.441 | 0.069 ± 0.240 |
+| Trace recall | 0.530 ± 0.426 | 0.076 ± 0.242 |
+| Trace F1 | 0.478 ± 0.430 | 0.053 ± 0.191 |
+| Repairs used | 0.3 | 1.7 |
+| Output length (chars) | 505.2 | 856.8 |
+
+## 2. Paired comparison over cases (proposed - baseline)
+
+Runs are averaged per case first. Exact two-sided Wilcoxon signed-rank test; 95% bootstrap CI of the mean difference.
+
+| Measure | Mean diff | 95% CI | W / T / L | p |
+|---|---|---|---|---|
+| Validity | +0.556 | [+0.306, +0.778] | 10 / 1 / 1 | 0.005 |
+| Soundness | +0.806 | [+0.556, +1.000] | 11 / 0 / 1 | 0.001 |
+| Activity F1 | +0.487 | [+0.254, +0.703] | 10 / 0 / 2 | 0.005 |
+| Footprint sim. | +0.707 | [+0.478, +0.890] | 10 / 0 / 2 | 0.002 |
+| Trace precision | +0.406 | [+0.117, +0.681] | 9 / 2 / 1 | 0.020 |
+| Trace recall | +0.454 | [+0.190, +0.711] | 8 / 2 / 2 | 0.020 |
+| Trace F1 | +0.425 | [+0.164, +0.680] | 9 / 2 / 1 | 0.020 |
+
+## 3. Trace F1 per operator (cases containing the operator)
+
+| Operator | Cases | Proposed | Baseline |
+|---|---|---|---|
+| xor | 7 | 0.367 | 0.024 |
+| and | 5 | 0.556 | 0.000 |
+| or | 3 | 0.956 | 0.000 |
+| loop | 3 | 0.132 | 0.156 |
+| tau | 1 | 0.333 | 0.167 |
+
+## 4. Error types (share of runs)
+
+| Error type | Proposed | Baseline |
+|---|---|---|
+| correct | 33% | 3% |
+| extra / unmatched activity | 33% | 3% |
+| invalid after repairs | 6% | 61% |
+| missing activity | 25% | 3% |
+| unsound: cannot always complete | 0% | 25% |
+| unsound: dead transition | 0% | 25% |
+| wrong control flow | 19% | 11% |
+
+## 5. Trace F1 per case
+
+| Case | Operators | Proposed | Baseline |
+|---|---|---|---|
+| P01 | seq,xor,and | 0.000 | 0.000 |
+| P02 | seq,or | 0.867 | 0.000 |
+| P03 | seq,loop | 0.014 | 0.467 |
+| P04 | seq,xor,and | 1.000 | 0.000 |
+| P05 | seq,xor,and | 0.000 | 0.000 |
+| P06 | seq,loop | 0.286 | 0.000 |
+| P07 | seq,or | 1.000 | 0.000 |
+| P08 | seq,xor,tau | 0.333 | 0.167 |
+| P09 | seq,xor,loop | 0.095 | 0.000 |
+| P10 | seq,xor,and | 0.778 | 0.000 |
+| P11 | seq,and,or | 1.000 | 0.000 |
+| P12 | seq,xor | 0.364 | 0.000 |

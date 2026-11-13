@@ -2,15 +2,22 @@
 
 Fairness rules
 --------------
-- Both approaches get the same task description, the same control-flow
-  knowledge (what sequence / choice / parallel / inclusive OR / loop mean and
-  how to express them) and the same two worked examples (ATM, pizza) - each in
-  its own output format. Neither example is part of the benchmark.
-- Both approaches get the same number of repair attempts; repair is triggered
+* Both approaches get the same task description, the same modelling rules,
+  the same control-flow knowledge and the same four worked examples
+  (ATM, pizza, gym membership, car inspection) - each in its own output format.
+  None of the examples is part of the benchmark.
+* The WF-net examples are generated from the process-tree examples by our own
+  converter (renumbered in flow order), so both formats show exactly the same process.
+* Both approaches first list the activities ("activities"), then build the model.
+* Both approaches get the same number of repair attempts; repair is triggered
   only by format/structure errors, never by soundness (soundness is measured).
 Change prompts only on the dev split and record every change in docs/prompt_log.md.
 """
 import json
+from collections import deque
+
+from .tree import parse_tree, parse_tree_string
+from .wfnet import tree_to_wfnet
 
 PROMPT_VERSION = "v1.3"
 
@@ -65,27 +72,32 @@ Final check before answering:
 STRUCTURED_SYSTEM = """You convert a textual process description into a PROCESS TREE in JSON.
 
 Node types:
-- activity:    {"activity": "<verb phrase>"}
-- silent step: {"tau": true}        (only to make something optional: {"op": "xor", "children": [X, {"tau": true}]})
+- activity:    {"activity": "<label from the activities list>"}
+- silent step: {"tau": true}   (exactly this, no other keys; only for skipping:
+               "optionally X" -> {"op": "xor", "children": [{"activity": "X"}, {"tau": true}]})
 - operator:    {"op": "<op>", "children": [<node>, <node>, ...]}
 
 Operators:
 - "seq":  children happen one after another, in the given order (>= 2 children)
 - "xor":  exactly one child happens (>= 2 children)
-- "and":  all children happen, in any order or at the same time (>= 2 children)
+- "and":  all children happen, in any order (>= 2 children)
 - "or":   one or more children happen, any non-empty combination (2-4 children)
 - "loop": exactly 2 children [do, redo]: "do" happens; then either the loop ends,
           or "redo" happens and "do" happens again (repeatable)
+          Pattern: {"op": "loop", "children": [X, {"op": "seq", "children": [A, B]}]}
 
 """ + COMMON_RULES + """
 
-Return only one JSON object: {"process_name": "<short name>", "tree": <node>}"""
+Return only one JSON object:
+{"process_name": "<short name>", "activities": ["<label>", ...], "tree": <node>}"""
 
 BASELINE_SYSTEM = """You convert a textual process description into a WORKFLOW NET (WF-net) in JSON.
 
 A WF-net is a Petri net with places (states) and transitions (activities):
 - exactly one start place "i" (no incoming arcs) and one end place "o" (no outgoing arcs);
+- name the other places "p1", "p2", ... and the transitions "t1", "t2", ... in the order of the flow;
 - every place and transition lies on a path from "i" to "o";
+- every transition has at least one input place and at least one output place;
 - arcs connect a place to a transition or a transition to a place (never place-place or transition-transition);
 - a transition with "label": null is silent (used for splits, joins, skips and loop entry/exit).
 
@@ -94,19 +106,21 @@ How to express control flow:
 - exclusive choice: alternative transitions share the same input place and the same output place;
 - parallel: a silent split transition puts tokens into one place per branch; a silent join waits for all branches;
 - optional step: a silent transition as an alternative to the step;
-- loop: after the "do" part, either a silent exit transition or the "redo" part leading back before "do";
+- loop: place before "do" -> "do" -> place after "do"; from that place either a silent exit transition
+  continues the process, or the "redo" transitions lead back to the place before "do"
+  (the loop is entered through a silent transition);
 - inclusive choice (one or more of A, B, C): an exclusive choice between all non-empty combinations,
   each combination executed in parallel (labels may then appear in several transitions).
 
 """ + COMMON_RULES + """
 
-Every place except "i" has an incoming arc, every place except "o" has an outgoing arc, and  
-every id used in "arcs" is listed in "places" or "transitions".
+Every place except "i" has an incoming arc, every place except "o" has an outgoing arc, and every id used in "arcs" is listed in "places" or "transitions".
 
 Return only one JSON object:
 {"process_name": "<short name>",
- "places": ["i", ..., "o"],
- "transitions": [{"id": "t1", "label": "<verb phrase>"}, {"id": "t2", "label": null}, ...],
+ "activities": ["<label>", ...],
+ "places": ["i", "p1", ..., "o"],
+ "transitions": [{"id": "t1", "label": "<label>"}, {"id": "t2", "label": null}, ...],
  "arcs": [["i", "t1"], ["t1", "p1"], ...]}"""
 
 # Worked examples: (process name, description, activities, process tree in compact notation)

@@ -1,0 +1,73 @@
+valid,sound,activity_p,activity_r,activity_f1,footprint_sim,trace_p,trace_r,trace_f1,unmatched_labels,language_exploded,n_traces_gen,n_traces_ref,case,split,operators,approach,seed,n_repairs,latency_s,output_chars,errors,client,prompt_version
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,9,P01,dev,"seq,xor,and",baseline,1,2,33.59,1021,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,9,P01,dev,"seq,xor,and",baseline,2,2,110.05,2795,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,9,P01,dev,"seq,xor,and",baseline,3,2,112.25,2795,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,,0,0,15,P02,dev,"seq,or",baseline,1,1,14.17,633,unsound: cannot always complete; unsound: dead transition,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,15,P02,dev,"seq,or",baseline,2,2,26.67,1077,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,15,P02,dev,"seq,or",baseline,3,2,39.15,1377,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,,0,0,4,P03,dev,"seq,loop",baseline,1,1,12.78,565,unsound: cannot always complete; unsound: dead transition,ollama:qwen2.5:7b,v1.1
+1,0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,,0,0,4,P03,dev,"seq,loop",baseline,2,1,12.38,559,unsound: cannot always complete; unsound: tokens left behind,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.76,0.0,0.0,0.0,,0,4,4,P03,dev,"seq,loop",baseline,3,1,12.96,594,wrong control flow,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,3,P04,dev,"seq,xor,and",baseline,1,2,23.1,718,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,3,P04,dev,"seq,xor,and",baseline,2,2,25.1,788,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,3,P04,dev,"seq,xor,and",baseline,3,2,31.26,1022,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,4,P05,dev,"seq,xor,and",baseline,1,2,27.71,944,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,4,P05,dev,"seq,xor,and",baseline,2,2,25.0,825,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,4,P05,dev,"seq,xor,and",baseline,3,2,27.53,910,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,0,0.75,1.0,0.8571428571428571,0.0,0.0,0.0,0.0,code approved; request changes,0,0,4,P06,dev,"seq,loop",baseline,1,2,60.45,1138,extra / unmatched activity; unsound: cannot always complete; unsound: dead transition,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,4,P06,dev,"seq,loop",baseline,2,2,24.03,762,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,0,0.8571428571428571,1.0,0.923076923076923,0.0,0.0,0.0,0.0,request changes,0,0,4,P06,dev,"seq,loop",baseline,3,1,13.56,613,extra / unmatched activity; unsound: cannot always complete; unsound: dead transition,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,15,P07,dev,"seq,or",baseline,1,2,24.08,581,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,15,P07,dev,"seq,or",baseline,2,2,85.27,2811,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,15,P07,dev,"seq,or",baseline,3,2,95.4,2796,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,2,P08,dev,"seq,xor,tau",baseline,1,2,18.49,539,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,2,P08,dev,"seq,xor,tau",baseline,2,2,16.36,451,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,2,P08,dev,"seq,xor,tau",baseline,3,2,17.63,525,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,1,0.7142857142857143,0.8333333333333334,0.7692307692307692,0.75,0.0,0.0,0.0,check claim again; provide info,0,2,8,P09,dev,"seq,xor,loop",baseline,1,1,16.75,796,extra / unmatched activity; missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,0.25,0.4,,0,2,8,P09,dev,"seq,xor,loop",baseline,2,2,21.74,667,wrong control flow,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,8,P09,dev,"seq,xor,loop",baseline,3,2,23.3,753,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.6111111111111112,0.0,0.0,0.0,,0,6,4,P10,dev,"seq,xor,and",baseline,1,2,22.15,676,wrong control flow,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,4,P10,dev,"seq,xor,and",baseline,2,2,22.56,647,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,4,P10,dev,"seq,xor,and",baseline,3,2,24.23,788,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,30,P11,dev,"seq,and,or",baseline,1,2,34.31,1086,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,30,P11,dev,"seq,and,or",baseline,2,2,86.6,2799,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.5102040816326531,0.5,0.03333333333333333,0.0625,,0,2,30,P11,dev,"seq,and,or",baseline,3,2,35.47,1054,wrong control flow,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,3,P12,dev,"seq,xor",baseline,1,2,40.24,1621,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,0.75,1.0,0.8571428571428571,,0,4,3,P12,dev,"seq,xor",baseline,2,1,15.9,707,wrong control flow,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,3,P12,dev,"seq,xor",baseline,3,2,23.22,719,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,1,0.8333333333333334,0.5555555555555556,0.6666666666666667,0.65,0.0,0.0,0.0,positive assessment,0,6,9,P01,dev,"seq,xor,and",structured,1,0,11.95,501,extra / unmatched activity; missing activity,ollama:qwen2.5:7b,v1.1
+1,1,0.8333333333333334,0.5555555555555556,0.6666666666666667,0.65,0.0,0.0,0.0,positive assessment,0,3,9,P01,dev,"seq,xor,and",structured,2,0,3.76,400,extra / unmatched activity; missing activity,ollama:qwen2.5:7b,v1.1
+1,1,0.8333333333333334,0.5555555555555556,0.6666666666666667,0.65,0.0,0.0,0.0,positive assessment,0,3,9,P01,dev,"seq,xor,and",structured,3,0,3.84,400,extra / unmatched activity; missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,15,15,P02,dev,"seq,or",structured,1,0,3.67,308,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,15,15,P02,dev,"seq,or",structured,2,0,3.51,308,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,15,15,P02,dev,"seq,or",structured,3,0,3.5,308,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.8,0.888888888888889,0.72,0.006993006993006993,0.25,0.01360544217687075,,0,143,4,P03,dev,"seq,loop",structured,1,0,3.61,299,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.8,0.888888888888889,0.72,0.006993006993006993,0.25,0.01360544217687075,,0,143,4,P03,dev,"seq,loop",structured,2,0,3.5,299,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.8,0.888888888888889,0.72,0.006993006993006993,0.25,0.01360544217687075,,0,143,4,P03,dev,"seq,loop",structured,3,0,3.44,293,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.16666666666666666,0.2857142857142857,0.6666666666666666,0.0,0.0,0.0,,0,2,3,P04,dev,"seq,xor,and",structured,1,0,4.36,421,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.16666666666666666,0.2857142857142857,0.6666666666666666,0.0,0.0,0.0,,0,2,3,P04,dev,"seq,xor,and",structured,2,0,4.31,443,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.6111111111111112,0.08333333333333333,0.6666666666666666,0.14814814814814814,,0,24,3,P04,dev,"seq,xor,and",structured,3,0,4.05,406,wrong control flow,ollama:qwen2.5:7b,v1.1
+1,1,0.8571428571428571,0.75,0.7999999999999999,0.6790123456790124,0.0,0.0,0.0,decide on loan,0,4,4,P05,dev,"seq,xor,and",structured,1,0,3.9,377,extra / unmatched activity; missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.625,0.7692307692307693,0.90625,0.0,0.0,0.0,,0,4,4,P05,dev,"seq,xor,and",structured,2,0,3.52,309,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.875,0.9333333333333333,0.78125,0.0,0.0,0.0,,0,4,4,P05,dev,"seq,xor,and",structured,3,0,3.85,393,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,0.8571428571428571,1.0,0.923076923076923,0.7959183673469388,0.0,0.0,0.0,request changes,0,3,4,P06,dev,"seq,loop",structured,1,0,3.97,377,extra / unmatched activity,ollama:qwen2.5:7b,v1.1
+1,1,0.8571428571428571,1.0,0.923076923076923,0.8775510204081632,0.0,0.0,0.0,request changes,0,3,4,P06,dev,"seq,loop",structured,2,1,7.41,348,extra / unmatched activity,ollama:qwen2.5:7b,v1.1
+1,1,0.8571428571428571,1.0,0.923076923076923,0.8775510204081632,0.0,0.0,0.0,request changes,0,3,4,P06,dev,"seq,loop",structured,3,1,7.38,348,extra / unmatched activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,15,15,P07,dev,"seq,or",structured,1,0,3.66,303,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,15,15,P07,dev,"seq,or",structured,2,0,3.58,303,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,15,15,P07,dev,"seq,or",structured,3,0,3.53,303,correct,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,2,P08,dev,"seq,xor,tau",structured,1,2,10.34,293,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,2,P08,dev,"seq,xor,tau",structured,2,2,10.2,293,invalid after repairs,ollama:qwen2.5:7b,v1.1
+0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0,0,2,P08,dev,"seq,xor,tau",structured,3,2,10.19,299,invalid after repairs,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.5,0.6666666666666666,0.6666666666666666,0.0,0.0,0.0,,0,4,8,P09,dev,"seq,xor,loop",structured,1,0,4.01,402,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.6944444444444444,0.125,0.25,0.16666666666666666,,0,16,8,P09,dev,"seq,xor,loop",structured,2,0,4.03,432,wrong control flow,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.6944444444444444,0.125,0.25,0.16666666666666666,,0,16,8,P09,dev,"seq,xor,loop",structured,3,0,3.96,432,wrong control flow,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.9444444444444444,0.5,1.0,0.6666666666666666,,0,8,4,P10,dev,"seq,xor,and",structured,1,1,7.25,304,wrong control flow,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.9444444444444444,0.5,1.0,0.6666666666666666,,0,8,4,P10,dev,"seq,xor,and",structured,2,1,7.19,310,wrong control flow,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,0.9444444444444444,0.5,1.0,0.6666666666666666,,0,8,4,P10,dev,"seq,xor,and",structured,3,1,7.18,310,wrong control flow,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,30,30,P11,dev,"seq,and,or",structured,1,0,3.8,344,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,30,30,P11,dev,"seq,and,or",structured,2,0,3.76,354,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,0,30,30,P11,dev,"seq,and,or",structured,3,0,3.71,348,correct,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.5714285714285714,0.7272727272727273,0.8775510204081632,0.0,0.0,0.0,,0,2,3,P12,dev,"seq,xor",structured,1,0,3.95,391,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.5714285714285714,0.7272727272727273,0.8775510204081632,0.0,0.0,0.0,,0,2,3,P12,dev,"seq,xor",structured,2,0,3.8,391,missing activity,ollama:qwen2.5:7b,v1.1
+1,1,1.0,0.8571428571428571,0.923076923076923,0.7551020408163265,0.0,0.0,0.0,,0,6,3,P12,dev,"seq,xor",structured,3,0,3.57,336,missing activity,ollama:qwen2.5:7b,v1.1

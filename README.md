@@ -411,7 +411,7 @@ python scripts/m1_case_studies.py     # results/m1_case_studies/
 ```bash
 ollama pull qwen2.5:7b                     # needs a running Ollama server (GPU recommended)
 python tests/run_all.py m2                 # 9 tests
-python scripts/m2_develop.py --run-name dev_v1_5    # final prompt v1.5, 72 generations
+python scripts/m2_develop.py --run-name dev_v1_<version>    # final prompt v1.5, 72 generations
 ```
 Outputs: `runs/dev_v1_5/` (raw records) and `results/dev_v1_5/` (`summary.md`, `per_run.csv`, `per_case.csv`, `paired_tests.csv`, `per_operator.csv`, `label_maps.json`, 3 figures). A stopped run can be restarted with the same command; finished generations are skipped.
 

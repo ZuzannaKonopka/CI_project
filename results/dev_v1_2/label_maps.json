@@ -1,0 +1,405 @@
+{
+ "P01|baseline|s1": {},
+ "P01|baseline|s2": {
+  "submit CV": "submit CV",
+  "screening positive": "screening positive",
+  "screening negative": "screening negative",
+  "technical interview": "technical interview positive",
+  "manager interview": "manager interview positive",
+  "receive offer": "make offer"
+ },
+ "P01|baseline|s3": {},
+ "P02|baseline|s1": {},
+ "P02|baseline|s2": {},
+ "P02|baseline|s3": {},
+ "P03|baseline|s1": {},
+ "P03|baseline|s2": {
+  "ask for supplementation": "request missing documents",
+  "submit documents": "submit documents",
+  "resubmit documents": "resubmit documents",
+  "register application": "register application",
+  "check completeness": "check completeness"
+ },
+ "P03|baseline|s3": {
+  "ask for supplementation": "request missing documents",
+  "submit documents": "submit documents",
+  "resubmit documents": "resubmit documents",
+  "register application": "register application",
+  "check documents": "check completeness"
+ },
+ "P04|baseline|s1": {
+  "ship package": "ship package",
+  "send invoice": "send invoice",
+  "process payment": "process payment",
+  "place order": "place order",
+  "cancel order": "cancel order",
+  "check items in stock": "check stock"
+ },
+ "P04|baseline|s2": {},
+ "P04|baseline|s3": {
+  "ship package": "ship package",
+  "send invoice": "send invoice",
+  "process payment": "process payment",
+  "place order": "place order",
+  "check stock": "check stock",
+  "cancel order": "cancel order"
+ },
+ "P05|baseline|s1": {
+  "pay out money": "pay out loan",
+  "verify income": "verify income",
+  "submit loan application": "submit loan application",
+  "sign contract": "sign contract",
+  "reject loan": "reject loan",
+  "check credit history": "check credit history",
+  "approve loan": "approve loan",
+  "notify rejection": "notify client of rejection"
+ },
+ "P05|baseline|s2": {
+  "pay out money": "pay out loan",
+  "verify income": "verify income",
+  "submit loan application": "submit loan application",
+  "sign contract": "sign contract",
+  "check credit history": "check credit history",
+  "notify rejection": "notify client of rejection"
+ },
+ "P05|baseline|s3": {},
+ "P06|baseline|s1": {},
+ "P06|baseline|s2": {
+  "write code": "write code",
+  "revise code": "revise code",
+  "review code": "review code",
+  "open pull request": "open pull request",
+  "merge code": "merge code",
+  "deploy code": "deploy code"
+ },
+ "P06|baseline|s3": {
+  "write code": "write code",
+  "revise code": "revise code",
+  "review code": "review code",
+  "open pull request": "open pull request",
+  "merge code": "merge code",
+  "deploy code": "deploy code"
+ },
+ "P07|baseline|s1": {},
+ "P07|baseline|s2": {},
+ "P07|baseline|s3": {},
+ "P08|baseline|s1": {
+  "send confirmation email": "receive confirmation",
+  "register for conference": "register for conference",
+  "pay registration fee": "pay registration fee",
+  "book workshop": "book workshop"
+ },
+ "P08|baseline|s2": {
+  "send confirmation email": "receive confirmation",
+  "register for conference": "register for conference",
+  "pay registration fee": "pay registration fee",
+  "book workshop place": "book workshop"
+ },
+ "P08|baseline|s3": {
+  "register for conference": "register for conference",
+  "pay registration fee": "pay registration fee",
+  "book workshop": "book workshop"
+ },
+ "P09|baseline|s1": {},
+ "P09|baseline|s2": {
+  "submit claim": "submit claim",
+  "reject claim": "reject claim",
+  "pay compensation": "pay compensation",
+  "check claim": "check claim",
+  "request information": "request additional information",
+  "provide information": "provide additional information"
+ },
+ "P09|baseline|s3": {},
+ "P10|baseline|s1": {},
+ "P10|baseline|s2": {
+  "serve order": "serve order",
+  "prepare meal": "prepare meal",
+  "prepare drinks": "prepare drinks",
+  "place order": "place order",
+  "pay cash": "pay in cash",
+  "pay card": "pay by card"
+ },
+ "P10|baseline|s3": {},
+ "P11|baseline|s1": {},
+ "P11|baseline|s2": {
+  "set event date": "set event date",
+  "send invitations": "send invitations",
+  "hold event": "hold event",
+  "hire photographer": "hire photographer",
+  "book venue": "book venue",
+  "book band": "book band",
+  "arrange catering": "arrange catering"
+ },
+ "P11|baseline|s3": {
+  "set event date": "set event date",
+  "send invitations": "send invitations",
+  "hold event": "hold event",
+  "hire photographer": "hire photographer",
+  "book venue": "book venue",
+  "book band": "book band",
+  "arrange catering": "arrange catering"
+ },
+ "P12|baseline|s1": {},
+ "P12|baseline|s2": {},
+ "P12|baseline|s3": {},
+ "P01|structured|s1": {
+  "submit CV": "submit CV",
+  "screening positive": "screening positive",
+  "screening negative": "screening negative",
+  "technical interview": "technical interview positive",
+  "manager interview": "manager interview positive",
+  "send offer": "make offer"
+ },
+ "P01|structured|s2": {
+  "submit CV": "submit CV",
+  "screening positive": "screening positive",
+  "screening negative": "screening negative",
+  "technical interview": "technical interview positive",
+  "manager interview": "manager interview positive",
+  "send offer": "make offer"
+ },
+ "P01|structured|s3": {
+  "submit CV": "submit CV",
+  "technical interview": "technical interview positive",
+  "manager interview": "manager interview positive"
+ },
+ "P02|structured|s1": {
+  "submit travel request": "submit travel request",
+  "submit expense report": "submit expense report",
+  "rent car": "rent car",
+  "book hotel": "book hotel",
+  "book flight": "book flight",
+  "approve travel request": "approve request"
+ },
+ "P02|structured|s2": {
+  "submit travel request": "submit travel request",
+  "submit expense report": "submit expense report",
+  "rent car": "rent car",
+  "book hotel": "book hotel",
+  "book flight": "book flight",
+  "approve travel request": "approve request"
+ },
+ "P02|structured|s3": {
+  "submit travel request": "submit travel request",
+  "submit expense report": "submit expense report",
+  "rent car": "rent car",
+  "book hotel": "book hotel",
+  "book flight": "book flight",
+  "approve request": "approve request"
+ },
+ "P03|structured|s1": {
+  "ask for supplementation": "request missing documents",
+  "submit documents": "submit documents",
+  "register application": "register application",
+  "check completeness": "check completeness"
+ },
+ "P03|structured|s2": {
+  "ask to supplement": "request missing documents",
+  "submit documents": "submit documents",
+  "register application": "register application",
+  "check completeness": "check completeness"
+ },
+ "P03|structured|s3": {
+  "ask for supplementation": "request missing documents",
+  "submit documents": "submit documents",
+  "register application": "register application",
+  "check documents": "check completeness"
+ },
+ "P04|structured|s1": {
+  "ship package": "ship package",
+  "send invoice": "send invoice",
+  "process payment": "process payment",
+  "place order": "place order",
+  "cancel order": "cancel order",
+  "check items in stock": "check stock"
+ },
+ "P04|structured|s2": {
+  "ship package": "ship package",
+  "send invoice": "send invoice",
+  "process payment": "process payment",
+  "place order": "place order",
+  "check stock": "check stock",
+  "cancel order": "cancel order"
+ },
+ "P04|structured|s3": {
+  "ship package": "ship package",
+  "send invoice": "send invoice",
+  "process payment": "process payment",
+  "place order": "place order",
+  "check stock": "check stock",
+  "cancel order": "cancel order"
+ },
+ "P05|structured|s1": {
+  "pay out money": "pay out loan",
+  "verify income": "verify income",
+  "submit loan application": "submit loan application",
+  "sign contract": "sign contract",
+  "check credit history": "check credit history",
+  "approve loan": "approve loan",
+  "notify rejection": "notify client of rejection"
+ },
+ "P05|structured|s2": {
+  "pay out money": "pay out loan",
+  "verify income": "verify income",
+  "submit loan application": "submit loan application",
+  "sign contract": "sign contract",
+  "check credit history": "check credit history",
+  "notify rejection": "notify client of rejection"
+ },
+ "P05|structured|s3": {
+  "pay out money": "pay out loan",
+  "verify income": "verify income",
+  "submit loan application": "submit loan application",
+  "sign contract": "sign contract",
+  "check credit history": "check credit history",
+  "notify rejection": "notify client of rejection"
+ },
+ "P06|structured|s1": {
+  "write code": "write code",
+  "revise code": "revise code",
+  "review code": "review code",
+  "open pull request": "open pull request",
+  "merge code": "merge code",
+  "deploy code": "deploy code"
+ },
+ "P06|structured|s2": {
+  "write code": "write code",
+  "revise code": "revise code",
+  "review code": "review code",
+  "open pull request": "open pull request",
+  "merge code": "merge code",
+  "deploy code": "deploy code"
+ },
+ "P06|structured|s3": {
+  "write code": "write code",
+  "revise code": "revise code",
+  "review code": "review code",
+  "open pull request": "open pull request",
+  "merge code": "merge code",
+  "deploy code": "deploy code"
+ },
+ "P07|structured|s1": {
+  "replace tyres": "replace tyres",
+  "replace brakes": "replace brakes",
+  "pay": "pay",
+  "inspect car": "inspect car",
+  "collect car": "collect car",
+  "change oil": "change oil",
+  "bring car to garage": "bring car to garage"
+ },
+ "P07|structured|s2": {
+  "replace tyres": "replace tyres",
+  "replace brakes": "replace brakes",
+  "pay": "pay",
+  "inspect car": "inspect car",
+  "collect car": "collect car",
+  "change oil": "change oil",
+  "bring car to garage": "bring car to garage"
+ },
+ "P07|structured|s3": {
+  "replace tyres": "replace tyres",
+  "replace brakes": "replace brakes",
+  "pay": "pay",
+  "inspect car": "inspect car",
+  "collect car": "collect car",
+  "change oil": "change oil",
+  "bring car to garage": "bring car to garage"
+ },
+ "P08|structured|s1": {},
+ "P08|structured|s2": {},
+ "P08|structured|s3": {},
+ "P09|structured|s1": {},
+ "P09|structured|s2": {
+  "submit claim": "submit claim",
+  "reject claim": "reject claim",
+  "pay compensation": "pay compensation",
+  "check claim": "check claim",
+  "request information": "request additional information",
+  "provide information": "provide additional information"
+ },
+ "P09|structured|s3": {
+  "submit claim": "submit claim",
+  "reject claim": "reject claim",
+  "pay compensation": "pay compensation",
+  "check claim": "check claim",
+  "request information": "request additional information",
+  "provide information": "provide additional information"
+ },
+ "P10|structured|s1": {
+  "serve order": "serve order",
+  "prepare meal": "prepare meal",
+  "prepare drinks": "prepare drinks",
+  "place order": "place order",
+  "pay cash": "pay in cash",
+  "pay card": "pay by card"
+ },
+ "P10|structured|s2": {
+  "serve order": "serve order",
+  "prepare meal": "prepare meal",
+  "prepare drinks": "prepare drinks",
+  "place order": "place order",
+  "pay in cash": "pay in cash",
+  "pay by card": "pay by card"
+ },
+ "P10|structured|s3": {
+  "serve order": "serve order",
+  "prepare meal": "prepare meal",
+  "prepare drinks": "prepare drinks",
+  "place order": "place order",
+  "pay in cash": "pay in cash",
+  "pay by card": "pay by card"
+ },
+ "P11|structured|s1": {
+  "event takes place": "hold event",
+  "set event date": "set event date",
+  "send invitations": "send invitations",
+  "hire photographer": "hire photographer",
+  "book venue": "book venue",
+  "book band": "book band",
+  "arrange catering": "arrange catering"
+ },
+ "P11|structured|s2": {
+  "event takes place": "hold event",
+  "set event date": "set event date",
+  "send invitations": "send invitations",
+  "hire photographer": "hire photographer",
+  "book venue": "book venue",
+  "book band": "book band",
+  "arrange catering": "arrange catering"
+ },
+ "P11|structured|s3": {
+  "event takes place": "hold event",
+  "set event date": "set event date",
+  "send invitations": "send invitations",
+  "hire photographer": "hire photographer",
+  "book venue": "book venue",
+  "book band": "book band",
+  "arrange catering": "arrange catering"
+ },
+ "P12|structured|s1": {
+  "refund customer": "issue refund",
+  "replace product": "send replacement",
+  "ship product back": "ship product back",
+  "request return": "request return",
+  "inspect product": "inspect product",
+  "reject request": "reject return",
+  "approve request": "approve return"
+ },
+ "P12|structured|s2": {
+  "refund customer": "issue refund",
+  "request return": "request return",
+  "inspect product": "inspect product",
+  "ship product": "ship product back",
+  "reject request": "reject return",
+  "approve request": "approve return"
+ },
+ "P12|structured|s3": {
+  "refund customer": "issue refund",
+  "send replacement": "send replacement",
+  "request return": "request return",
+  "inspect product": "inspect product",
+  "ship product": "ship product back",
+  "reject request": "reject return",
+  "approve request": "approve return"
+ }
+}

@@ -11,9 +11,9 @@ Model and settings for all runs: `ollama:qwen2.5:7b`, temperature 0.5, seeds 1�
 | Version | Date | Change | Reason for change | Run | Trace F1 dev (proposed / baseline) |
 |---|---|---|---|---|---|
 | v1.0 | 10.11.2026 | Initial prompts: operator definitions, modelling rules, two worked examples (ATM and pizza), JSON output format and repair message. | Initial prompt design for both approaches. | – (first run stopped after a request timeout in P01 baseline) | – |
-| v1.1 | 10.11.2026 | Prompt text unchanged; settings `num_predict=2048`, `num_ctx=16384`, timeout counts as a failed attempt. | First run: a P01 baseline request did not finish within 600 s. | `dev_v1` | 0.283 ± 0.362 / 0.032 ± 0.135 |
-| v1.2 | 12.11.2026 | Loop handling: explicit do/redo pattern, no activities for loop conditions; exact `{"tau": true}` syntax for optional steps; fourth worked example (car inspection) in both formats; WF-net examples generated from the trees by the converter. | Loop cases P03, P06, P09 scored 0.00–0.13 in all previous versions; P08 was invalid in all runs of v1.1. | `dev_v1_3` | 0.407 ± 0.404 / 0.060 ± 0.208 |
-| v1.3 | 13.11.2026 | Labels keep the verb, point of view and object of the text; the loop check is the "do" part and is not repeated outside the loop; duplicate labels only for different branches; final checklist (5 points, + arc check for the baseline); same for both approaches. | dev_v1_2: missing 28 % / extra 31 % activities, wrong control flow 25 %, loops 0.10, P08 0.00. | `dev_v1_3` | - |
+| v1.1 | 10.11.2026 | Prompt text unchanged; settings `num_predict=2048`, `num_ctx=16384`, timeout counts as a failed attempt. | First run: a P01 baseline request did not finish within 600 s. | `dev_v1_1` | 0.320 ± 0.432 / 0.037 ± 0.154 |
+| v1.2 | 10.11.2026 | Loop handling: explicit do/redo pattern, no activities for loop conditions; exact `{"tau": true}` syntax for optional steps; fourth worked example (car inspection) in both formats; WF-net examples generated from the trees by the converter. | Loop cases P03, P06, P09 scored 0.00–0.13 in all previous versions; P08 was invalid in all runs of v1.1. | `dev_v1_2` | 0.407 ± 0.404 / 0.060 ± 0.208 |
+| v1.3 | 13.11.2026 | Labels keep the verb, point of view and object of the text; the loop check is the "do" part and is not repeated outside the loop; duplicate labels only for different branches; final checklist (5 points, + arc check for the baseline); same for both approaches. | dev_v1_2: missing 28 % / extra 31 % activities, wrong control flow 25 %, loops 0.10, P08 0.00. | `dev_v1_3` |  0.478 ± 0.430 / 0.053 ± 0.191 |
 
 
 Values: mean ± standard deviation over 36 runs per approach (12 cases × 3 seeds), from `results/<run>/summary.md`.
@@ -22,8 +22,9 @@ Values: mean ± standard deviation over 36 runs per approach (12 cases × 3 seed
 
 | Version | Validity P / B | Soundness P / B | Activity F1 P / B | Trace F1 P / B | Trace F1 diff. [95 % CI] | W / T / L | p | Repairs P / B |
 |---|---|---|---|---|---|---|---|---|
-| v1.1 | 0.944 / 0.139 | 0.944 / 0.083 | 0.821 / 0.120 | 0.283 / 0.032 | +0.251 [+0.059, +0.467] | 7 / 4 / 1 | 0.039 | 0.4 / 2.0 |
-| v1.2 | 0.889 / 0.444 | 0.889 / 0.194 | 0.816 / 0.417 | 0.407 / 0.060 | +0.347 [+0.088, +0.598] | 8 / 2 / 2 | 0.049 | 0.2 / 1.7 |
+
+
+
 
 P = proposed (process tree), B = baseline (direct WF-net). Paired comparison over the 12 cases (runs averaged per case), exact two-sided Wilcoxon signed-rank test, 95 % bootstrap CI.
 
