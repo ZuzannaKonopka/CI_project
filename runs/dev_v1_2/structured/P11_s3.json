@@ -7,22 +7,31 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"event organisation\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"set date\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"book venue\"}, {\"activity\": \"send invitations\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"arrange catering\"}, {\"activity\": \"book a band\"}, {\"activity\": \"hire a photographer\"}]}, {\"activity\": \"hold event\"}]}}",
+   "raw": "{\"process_name\": \"event organisation\",\n\"activities\": [\"set event date\", \"book venue\", \"send invitations\", \"arrange catering\", \"book band\", \"hire photographer\", \"event takes place\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"set event date\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"book venue\"}, {\"activity\": \"send invitations\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"arrange catering\"}, {\"activity\": \"book band\"}, {\"activity\": \"hire photographer\"}]}, {\"activity\": \"event takes place\"}]}}",
    "errors": [],
-   "latency_s": 3.83,
-   "prompt_tokens": 1313,
-   "output_tokens": 95,
+   "latency_s": 4.3,
+   "prompt_tokens": 1752,
+   "output_tokens": 129,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
   "process_name": "event organisation",
+  "activities": [
+   "set event date",
+   "book venue",
+   "send invitations",
+   "arrange catering",
+   "book band",
+   "hire photographer",
+   "event takes place"
+  ],
   "tree": {
    "op": "seq",
    "children": [
     {
-     "activity": "set date"
+     "activity": "set event date"
     },
     {
      "op": "and",
@@ -42,20 +51,20 @@
        "activity": "arrange catering"
       },
       {
-       "activity": "book a band"
+       "activity": "book band"
       },
       {
-       "activity": "hire a photographer"
+       "activity": "hire photographer"
       }
      ]
     },
     {
-     "activity": "hold event"
+     "activity": "event takes place"
     }
    ]
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.83,
- "output_chars": 348
+ "total_latency_s": 4.3,
+ "output_chars": 500
 }

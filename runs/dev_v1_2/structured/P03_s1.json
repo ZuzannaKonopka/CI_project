@@ -7,42 +7,56 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}], \"do\": {\"activity\": \"resubmit documents\"}, \"redo\": {\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"activity\": \"register application\"}]}}]}}",
-   "errors": [
-    "tree.children[1]: operator node must contain only 'op' and 'children', found ['children', 'do', 'op', 'redo']",
-    "tree.children[1]: 'loop' needs exactly 2 children [do, redo], got 1"
-   ],
-   "latency_s": 4.29,
-   "prompt_tokens": 1305,
-   "output_tokens": 120,
-   "done_reason": "stop"
-  },
-  {
-   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}], \"do\": {\"activity\": \"resubmit documents\"}, \"redo\": {\"activity\": \"check completeness\"}, \"children\": [{\"activity\": \"register application\"}]}]}}",
-   "errors": [
-    "tree.children[1]: operator node must contain only 'op' and 'children', found ['children', 'do', 'op', 'redo']",
-    "tree.children[1]: 'loop' needs exactly 2 children [do, redo], got 1"
-   ],
-   "latency_s": 4.05,
-   "prompt_tokens": 1506,
-   "output_tokens": 113,
-   "done_reason": "stop"
-  },
-  {
-   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}], \"do\": {\"activity\": \"resubmit documents\"}, \"redo\": {\"op\": \"and\", \"children\": [{\"activity\": \"check completeness\"}, {\"activity\": \"register application\"}]}}]}}",
-   "errors": [
-    "tree.children[1]: operator node must contain only 'op' and 'children', found ['children', 'do', 'op', 'redo']",
-    "tree.children[1]: 'loop' needs exactly 2 children [do, redo], got 1"
-   ],
-   "latency_s": 4.16,
-   "prompt_tokens": 1700,
-   "output_tokens": 120,
+   "raw": "{\"process_name\": \"document submission\",\n\"activities\": [\"submit documents\", \"check completeness\", \"ask for supplementation\", \"resubmit documents\", \"register application\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask for supplementation\"}, {\"tau\": true}]}]}, {\"activity\": \"register application\"}]}}",
+   "errors": [],
+   "latency_s": 3.96,
+   "prompt_tokens": 1744,
+   "output_tokens": 103,
    "done_reason": "stop"
   }
  ],
- "valid": false,
- "document": null,
- "n_repairs": 2,
- "total_latency_s": 12.51,
- "output_chars": 437
+ "valid": true,
+ "document": {
+  "process_name": "document submission",
+  "activities": [
+   "submit documents",
+   "check completeness",
+   "ask for supplementation",
+   "resubmit documents",
+   "register application"
+  ],
+  "tree": {
+   "op": "seq",
+   "children": [
+    {
+     "activity": "submit documents"
+    },
+    {
+     "op": "loop",
+     "children": [
+      {
+       "activity": "check completeness"
+      },
+      {
+       "op": "xor",
+       "children": [
+        {
+         "activity": "ask for supplementation"
+        },
+        {
+         "tau": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "activity": "register application"
+    }
+   ]
+  }
+ },
+ "n_repairs": 0,
+ "total_latency_s": 3.96,
+ "output_chars": 430
 }

@@ -7,17 +7,25 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"travel request process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit travel request\"}, {\"activity\": \"approve travel request\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"book flight\"}, {\"activity\": \"book hotel\"}, {\"activity\": \"rent car\"}]}, {\"activity\": \"submit expense report\"}]}}",
+   "raw": "{\"process_name\": \"travel request process\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit travel request\"}, {\"activity\": \"approve travel request\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"book flight\"}, {\"activity\": \"book hotel\"}, {\"activity\": \"rent car\"}]}, {\"activity\": \"submit expense report\"}]}}",
    "errors": [],
-   "latency_s": 3.54,
-   "prompt_tokens": 1312,
-   "output_tokens": 79,
+   "latency_s": 3.98,
+   "prompt_tokens": 1751,
+   "output_tokens": 109,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
   "process_name": "travel request process",
+  "activities": [
+   "submit travel request",
+   "approve travel request",
+   "book flight",
+   "book hotel",
+   "rent car",
+   "submit expense report"
+  ],
   "tree": {
    "op": "seq",
    "children": [
@@ -28,7 +36,7 @@
      "activity": "approve travel request"
     },
     {
-     "op": "or",
+     "op": "and",
      "children": [
       {
        "activity": "book flight"
@@ -48,6 +56,6 @@
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.54,
- "output_chars": 308
+ "total_latency_s": 3.98,
+ "output_chars": 442
 }

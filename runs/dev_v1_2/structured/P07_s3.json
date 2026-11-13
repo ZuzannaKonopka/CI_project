@@ -7,17 +7,26 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"car service\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"bring car to garage\"}, {\"activity\": \"inspect car\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"change oil\"}, {\"activity\": \"replace brakes\"}, {\"activity\": \"replace tyres\"}]}, {\"activity\": \"pay\"}, {\"activity\": \"collect car\"}]}}",
+   "raw": "{\"process_name\": \"car service\",\n\"activities\": [\"bring car to garage\", \"inspect car\", \"change oil\", \"replace brakes\", \"replace tyres\", \"pay\", \"collect car\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"bring car to garage\"}, {\"activity\": \"inspect car\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"change oil\"}, {\"activity\": \"replace brakes\"}, {\"activity\": \"replace tyres\"}]}, {\"activity\": \"pay\"}, {\"activity\": \"collect car\"}]}}",
    "errors": [],
-   "latency_s": 3.52,
-   "prompt_tokens": 1312,
-   "output_tokens": 83,
+   "latency_s": 4.07,
+   "prompt_tokens": 1751,
+   "output_tokens": 115,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
   "process_name": "car service",
+  "activities": [
+   "bring car to garage",
+   "inspect car",
+   "change oil",
+   "replace brakes",
+   "replace tyres",
+   "pay",
+   "collect car"
+  ],
   "tree": {
    "op": "seq",
    "children": [
@@ -51,6 +60,6 @@
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.52,
- "output_chars": 303
+ "total_latency_s": 4.07,
+ "output_chars": 428
 }

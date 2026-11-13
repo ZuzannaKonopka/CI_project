@@ -7,17 +7,24 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"document submission\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check completeness\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask to supplement\"}, {\"tau\": true}]}]}, {\"activity\": \"register application\"}]}}",
+   "raw": "{\"process_name\": \"document submission\",\n\"activities\": [\"submit documents\", \"check documents\", \"ask for supplementation\", \"resubmit documents\", \"register application\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit documents\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check documents\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"ask for supplementation\"}, {\"tau\": true}]}]}, {\"activity\": \"register application\"}]}}",
    "errors": [],
-   "latency_s": 3.41,
-   "prompt_tokens": 1305,
-   "output_tokens": 77,
+   "latency_s": 3.82,
+   "prompt_tokens": 1744,
+   "output_tokens": 103,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
   "process_name": "document submission",
+  "activities": [
+   "submit documents",
+   "check documents",
+   "ask for supplementation",
+   "resubmit documents",
+   "register application"
+  ],
   "tree": {
    "op": "seq",
    "children": [
@@ -28,13 +35,13 @@
      "op": "loop",
      "children": [
       {
-       "activity": "check completeness"
+       "activity": "check documents"
       },
       {
        "op": "xor",
        "children": [
         {
-         "activity": "ask to supplement"
+         "activity": "ask for supplementation"
         },
         {
          "tau": true
@@ -50,6 +57,6 @@
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.41,
- "output_chars": 293
+ "total_latency_s": 3.82,
+ "output_chars": 424
 }

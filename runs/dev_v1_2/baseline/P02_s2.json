@@ -7,167 +7,43 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"travel request process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit travel request\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"approve travel request\"}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"]]}",
+   "raw": "{\"process_name\": \"travel request\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"approve travel request\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"book flight\"}, {\"id\": \"t6\", \"label\": \"book hotel\"}, {\"id\": \"t7\", \"label\": \"rent car\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p3\", \"t6\"], [\"p3\", \"t7\"], [\"t5\", \"p5\"], [\"t6\", \"p5\"], [\"t7\", \"p5\"], [\"p4\", \"t8\"], [\"p5\", \"t9\"], [\"t9\", \"o\"]]}",
    "errors": [
-    "expected exactly one source place, found ['i', 'p9']",
-    "expected exactly one sink place, found ['o', 'p9']"
+    "transition 't8' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p6', 'p7', 'p8', 'p9']",
+    "expected exactly one sink place, found ['p6', 'p7', 'p8', 'p9', 'o']"
    ],
-   "latency_s": 8.0,
-   "prompt_tokens": 2742,
-   "output_tokens": 361,
+   "latency_s": 7.89,
+   "prompt_tokens": 3587,
+   "output_tokens": 351,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"travel request process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit travel request\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"approve travel request\"}, {\"id\": \"t4\", \"label\": \"book flight\"}, {\"id\": \"t5\", \"label\": \"book hotel\"}, {\"id\": \"t6\", \"label\": \"rent car\"}, {\"id\": \"t7\", \"label\": null}, {\"id\": \"t8\", \"label\": \"submit expense report\"}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"]]}",
-   "errors": [],
-   "latency_s": 7.97,
-   "prompt_tokens": 3160,
-   "output_tokens": 357,
+   "raw": "{\"process_name\": \"travel request\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"approve travel request\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"book flight\"}, {\"id\": \"t6\", \"label\": \"book hotel\"}, {\"id\": \"t7\", \"label\": \"rent car\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"p4\", \"t7\"], [\"t5\", \"p5\"], [\"t6\", \"p6\"], [\"t7\", \"p7\"], [\"p5\", \"t8\"], [\"p6\", \"t8\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p9']",
+    "expected exactly one sink place, found ['p9', 'o']"
+   ],
+   "latency_s": 8.54,
+   "prompt_tokens": 4041,
+   "output_tokens": 375,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"travel request\",\n\"activities\": [\"submit travel request\", \"approve travel request\", \"book flight\", \"book hotel\", \"rent car\", \"submit expense report\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit travel request\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"approve travel request\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"book flight\"}, {\"id\": \"t6\", \"label\": \"book hotel\"}, {\"id\": \"t7\", \"label\": \"rent car\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"submit expense report\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"p4\", \"t7\"], [\"t5\", \"p5\"], [\"t6\", \"p6\"], [\"t7\", \"p7\"], [\"p5\", \"t8\"], [\"p6\", \"t8\"], [\"p7\", \"t8\"], [\"t8\", \"p9\"], [\"p9\", \"t9\"], [\"t9\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p8']",
+    "expected exactly one sink place, found ['p8', 'o']"
+   ],
+   "latency_s": 8.39,
+   "prompt_tokens": 4479,
+   "output_tokens": 375,
    "done_reason": "stop"
   }
  ],
- "valid": true,
- "document": {
-  "process_name": "travel request process",
-  "places": [
-   "i",
-   "o",
-   "p0",
-   "p1",
-   "p2",
-   "p3",
-   "p4",
-   "p5",
-   "p6",
-   "p7",
-   "p8"
-  ],
-  "transitions": [
-   {
-    "id": "t0",
-    "label": "submit travel request"
-   },
-   {
-    "id": "t1",
-    "label": null
-   },
-   {
-    "id": "t2",
-    "label": null
-   },
-   {
-    "id": "t3",
-    "label": "approve travel request"
-   },
-   {
-    "id": "t4",
-    "label": "book flight"
-   },
-   {
-    "id": "t5",
-    "label": "book hotel"
-   },
-   {
-    "id": "t6",
-    "label": "rent car"
-   },
-   {
-    "id": "t7",
-    "label": null
-   },
-   {
-    "id": "t8",
-    "label": "submit expense report"
-   },
-   {
-    "id": "t9",
-    "label": null
-   }
-  ],
-  "arcs": [
-   [
-    "i",
-    "t0"
-   ],
-   [
-    "t0",
-    "p0"
-   ],
-   [
-    "p0",
-    "t1"
-   ],
-   [
-    "t1",
-    "p1"
-   ],
-   [
-    "p1",
-    "t2"
-   ],
-   [
-    "t2",
-    "p2"
-   ],
-   [
-    "p2",
-    "t3"
-   ],
-   [
-    "t3",
-    "p3"
-   ],
-   [
-    "p3",
-    "t4"
-   ],
-   [
-    "t4",
-    "p4"
-   ],
-   [
-    "p4",
-    "t5"
-   ],
-   [
-    "t5",
-    "p5"
-   ],
-   [
-    "p5",
-    "t6"
-   ],
-   [
-    "t6",
-    "p6"
-   ],
-   [
-    "p6",
-    "t7"
-   ],
-   [
-    "t7",
-    "p7"
-   ],
-   [
-    "p7",
-    "t8"
-   ],
-   [
-    "t8",
-    "p8"
-   ],
-   [
-    "p8",
-    "t9"
-   ],
-   [
-    "t9",
-    "o"
-   ]
-  ]
- },
- "n_repairs": 1,
- "total_latency_s": 15.98,
- "output_chars": 794
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 24.81,
+ "output_chars": 890
 }

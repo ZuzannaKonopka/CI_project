@@ -7,33 +7,65 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"online order process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check stock\"}, {\"tau\": true}]}]},\"tree\": {\"op\": \"and\", \"children\": [{\"activity\": \"process payment\"}, {\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}}",
+   "raw": "{\"process_name\": \"online order processing\",\n\"activities\": [\"place order\", \"check stock\", \"process payment\", \"send invoice\", \"ship package\", \"cancel order\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"activity\": \"check stock\"}, {\"op\": \"xor\", \"children\": [{\"op\": \"seq\", \"children\": [{\"activity\": \"process payment\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]}, {\"activity\": \"cancel order\"}]}]}}",
    "errors": [],
-   "latency_s": 3.61,
-   "prompt_tokens": 1313,
-   "output_tokens": 87,
+   "latency_s": 4.17,
+   "prompt_tokens": 1752,
+   "output_tokens": 123,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
-  "process_name": "online order process",
+  "process_name": "online order processing",
+  "activities": [
+   "place order",
+   "check stock",
+   "process payment",
+   "send invoice",
+   "ship package",
+   "cancel order"
+  ],
   "tree": {
-   "op": "and",
+   "op": "seq",
    "children": [
     {
-     "activity": "process payment"
+     "activity": "place order"
     },
     {
-     "activity": "send invoice"
+     "activity": "check stock"
     },
     {
-     "activity": "ship package"
+     "op": "xor",
+     "children": [
+      {
+       "op": "seq",
+       "children": [
+        {
+         "activity": "process payment"
+        },
+        {
+         "op": "and",
+         "children": [
+          {
+           "activity": "send invoice"
+          },
+          {
+           "activity": "ship package"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "activity": "cancel order"
+      }
+     ]
     }
    ]
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.61,
- "output_chars": 308
+ "total_latency_s": 4.17,
+ "output_chars": 461
 }

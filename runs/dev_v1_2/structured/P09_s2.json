@@ -7,56 +7,67 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"insurance claim process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit insurance claim\"}, {\"activity\": \"check claim\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"request additional information\"}, {\"tau\": true}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"provide additional information\"}, {\"activity\": \"check claim\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}}",
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim again\", \"pay compensation\", \"reject claim\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit claim\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"check claim\"}, {\"op\": \"seq\", \"children\": [{\"activity\": \"request information\"}, {\"activity\": \"provide information\"}]}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check claim again\"}, {\"op\": \"seq\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}]}}",
    "errors": [],
-   "latency_s": 3.99,
-   "prompt_tokens": 1306,
-   "output_tokens": 111,
+   "latency_s": 4.61,
+   "prompt_tokens": 1745,
+   "output_tokens": 145,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
-  "process_name": "insurance claim process",
+  "process_name": "insurance claim",
+  "activities": [
+   "submit claim",
+   "check claim",
+   "request information",
+   "provide information",
+   "check claim again",
+   "pay compensation",
+   "reject claim"
+  ],
   "tree": {
    "op": "seq",
    "children": [
     {
-     "activity": "submit insurance claim"
+     "activity": "submit claim"
     },
     {
-     "activity": "check claim"
+     "op": "loop",
+     "children": [
+      {
+       "activity": "check claim"
+      },
+      {
+       "op": "seq",
+       "children": [
+        {
+         "activity": "request information"
+        },
+        {
+         "activity": "provide information"
+        }
+       ]
+      }
+     ]
     },
     {
      "op": "xor",
      "children": [
       {
-       "activity": "request additional information"
+       "activity": "check claim again"
       },
       {
-       "tau": true
-      }
-     ]
-    },
-    {
-     "op": "and",
-     "children": [
-      {
-       "activity": "provide additional information"
-      },
-      {
-       "activity": "check claim"
-      }
-     ]
-    },
-    {
-     "op": "or",
-     "children": [
-      {
-       "activity": "pay compensation"
-      },
-      {
-       "activity": "reject claim"
+       "op": "seq",
+       "children": [
+        {
+         "activity": "pay compensation"
+        },
+        {
+         "activity": "reject claim"
+        }
+       ]
       }
      ]
     }
@@ -64,6 +75,6 @@
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.99,
- "output_chars": 439
+ "total_latency_s": 4.61,
+ "output_chars": 571
 }

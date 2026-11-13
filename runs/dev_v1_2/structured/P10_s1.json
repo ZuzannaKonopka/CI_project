@@ -7,27 +7,25 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"restaurant order\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"activity\": \"pay\", \"children\": [{\"activity\": \"pay in cash\"}, {\"activity\": \"pay by card\"}]}]}}",
-   "errors": [
-    "tree.children[3]: activity node must contain only 'activity', found ['activity', 'children']"
-   ],
-   "latency_s": 3.72,
-   "prompt_tokens": 1299,
-   "output_tokens": 87,
-   "done_reason": "stop"
-  },
-  {
-   "raw": "{\"process_name\": \"restaurant order\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"pay in cash\"}, {\"activity\": \"pay by card\"}]}]}}",
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"prepare meal\"}, {\"activity\": \"prepare drinks\"}]}, {\"activity\": \"serve order\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"pay cash\"}, {\"activity\": \"pay card\"}]}]}}",
    "errors": [],
-   "latency_s": 3.61,
-   "prompt_tokens": 1434,
-   "output_tokens": 87,
+   "latency_s": 4.1,
+   "prompt_tokens": 1738,
+   "output_tokens": 112,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
   "process_name": "restaurant order",
+  "activities": [
+   "place order",
+   "prepare meal",
+   "prepare drinks",
+   "serve order",
+   "pay cash",
+   "pay card"
+  ],
   "tree": {
    "op": "seq",
    "children": [
@@ -52,17 +50,17 @@
      "op": "or",
      "children": [
       {
-       "activity": "pay in cash"
+       "activity": "pay cash"
       },
       {
-       "activity": "pay by card"
+       "activity": "pay card"
       }
      ]
     }
    ]
   }
  },
- "n_repairs": 1,
- "total_latency_s": 7.33,
- "output_chars": 308
+ "n_repairs": 0,
+ "total_latency_s": 4.1,
+ "output_chars": 406
 }

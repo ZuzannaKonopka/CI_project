@@ -7,44 +7,193 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"restaurant order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": \"prepare drinks\"}, {\"id\": \"t5\", \"label\": \"serve order\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": \"pay cash\"}, {\"id\": \"t8\", \"label\": \"pay card\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p1\", \"t2\"], [\"t3\", \"p2\"], [\"t4\", \"p3\"], [\"t1\", \"p4\"], [\"t2\", \"p5\"], [\"p6\", \"t3\"], [\"p6\", \"t4\"], [\"p5\", \"t5\"], [\"t5\", \"p6\"], [\"p4\", \"t6\"], [\"p7\", \"t7\"], [\"p8\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"]]}",
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"place order\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"prepare drinks\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": \"serve order\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"pay cash\"}, {\"id\": \"t10\", \"label\": \"pay card\"}, {\"id\": \"t11\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p1\", \"t3\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"t4\", \"p4\"], [\"p2\", \"t5\"], [\"t5\", \"p5\"], [\"p3\", \"t6\"], [\"t6\", \"p6\"], [\"p3\", \"t7\"], [\"t7\", \"p7\"], [\"p4\", \"t8\"], [\"t8\", \"p8\"], [\"p5\", \"t9\"], [\"t9\", \"p9\"], [\"p6\", \"t10\"], [\"t10\", \"p9\"], [\"p7\", \"t11\"], [\"t11\", \"p9\"], [\"p8\", \"t11\"], [\"t11\", \"p9\"], [\"p9\", \"o\"]]}",
    "errors": [
-    "transition 't6' needs at least one input and one output place",
-    "expected exactly one source place, found ['i', 'p1', 'p7', 'p8']",
-    "expected exactly one sink place, found ['o', 'p2', 'p3']"
+    "arc ['p9', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
    ],
-   "latency_s": 7.42,
-   "prompt_tokens": 2729,
-   "output_tokens": 317,
+   "latency_s": 9.55,
+   "prompt_tokens": 3574,
+   "output_tokens": 440,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"restaurant order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": \"prepare drinks\"}, {\"id\": \"t5\", \"label\": \"serve order\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": \"pay cash\"}, {\"id\": \"t8\", \"label\": \"pay card\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p1\", \"t2\"], [\"t3\", \"p2\"], [\"t4\", \"p3\"], [\"t1\", \"p4\"], [\"t2\", \"p5\"], [\"p6\", \"t3\"], [\"p6\", \"t4\"], [\"p5\", \"t5\"], [\"t5\", \"p6\"], [\"p6\", \"t6\"], [\"t6\", \"p7\"], [\"p7\", \"t7\"], [\"p7\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"]]}",
-   "errors": [
-    "expected exactly one source place, found ['i', 'p1', 'p8']",
-    "expected exactly one sink place, found ['o', 'p2', 'p3', 'p4', 'p8']"
-   ],
-   "latency_s": 7.7,
-   "prompt_tokens": 3131,
-   "output_tokens": 325,
-   "done_reason": "stop"
-  },
-  {
-   "raw": "{\"process_name\": \"restaurant order\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"place order\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": \"prepare drinks\"}, {\"id\": \"t5\", \"label\": \"serve order\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": \"pay cash\"}, {\"id\": \"t8\", \"label\": \"pay card\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p1\", \"t2\"], [\"t3\", \"p2\"], [\"t4\", \"p3\"], [\"t1\", \"p4\"], [\"t2\", \"p5\"], [\"p6\", \"t3\"], [\"p6\", \"t4\"], [\"p5\", \"t5\"], [\"t5\", \"p6\"], [\"p6\", \"t6\"], [\"t6\", \"p7\"], [\"p7\", \"t7\"], [\"p7\", \"t8\"], [\"t7\", \"p8\"], [\"t8\", \"p8\"], [\"p8\", \"t6\"], [\"p8\", \"t5\"], [\"p2\", \"o\"], [\"p3\", \"o\"], [\"p4\", \"o\"]]}",
-   "errors": [
-    "arc ['p2', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['p3', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['p4', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
-   ],
-   "latency_s": 8.25,
-   "prompt_tokens": 3529,
-   "output_tokens": 364,
+   "raw": "{\"process_name\": \"restaurant order\",\n\"activities\": [\"place order\", \"prepare meal\", \"prepare drinks\", \"serve order\", \"pay cash\", \"pay card\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"place order\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"prepare meal\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"prepare drinks\"}, {\"id\": \"t6\", \"label\": null}, {\"id\": \"t7\", \"label\": \"serve order\"}, {\"id\": \"t8\", \"label\": null}, {\"id\": \"t9\", \"label\": \"pay cash\"}, {\"id\": \"t10\", \"label\": \"pay card\"}, {\"id\": \"t11\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p1\", \"t3\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"t4\", \"p4\"], [\"p2\", \"t5\"], [\"t5\", \"p5\"], [\"p3\", \"t6\"], [\"t6\", \"p6\"], [\"p3\", \"t7\"], [\"t7\", \"p7\"], [\"p4\", \"t8\"], [\"t8\", \"p8\"], [\"p5\", \"t9\"], [\"t9\", \"o\"], [\"p6\", \"t10\"], [\"t10\", \"o\"], [\"p7\", \"t11\"], [\"t11\", \"o\"], [\"p8\", \"t11\"], [\"t11\", \"o\"]]}",
+   "errors": [],
+   "latency_s": 9.37,
+   "prompt_tokens": 4074,
+   "output_tokens": 425,
    "done_reason": "stop"
   }
  ],
- "valid": false,
- "document": null,
- "n_repairs": 2,
- "total_latency_s": 23.37,
- "output_chars": 770
+ "valid": true,
+ "document": {
+  "process_name": "restaurant order",
+  "activities": [
+   "place order",
+   "prepare meal",
+   "prepare drinks",
+   "serve order",
+   "pay cash",
+   "pay card"
+  ],
+  "places": [
+   "i",
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7",
+   "p8",
+   "o"
+  ],
+  "transitions": [
+   {
+    "id": "t1",
+    "label": "place order"
+   },
+   {
+    "id": "t2",
+    "label": null
+   },
+   {
+    "id": "t3",
+    "label": "prepare meal"
+   },
+   {
+    "id": "t4",
+    "label": null
+   },
+   {
+    "id": "t5",
+    "label": "prepare drinks"
+   },
+   {
+    "id": "t6",
+    "label": null
+   },
+   {
+    "id": "t7",
+    "label": "serve order"
+   },
+   {
+    "id": "t8",
+    "label": null
+   },
+   {
+    "id": "t9",
+    "label": "pay cash"
+   },
+   {
+    "id": "t10",
+    "label": "pay card"
+   },
+   {
+    "id": "t11",
+    "label": null
+   }
+  ],
+  "arcs": [
+   [
+    "i",
+    "t1"
+   ],
+   [
+    "t1",
+    "p1"
+   ],
+   [
+    "p1",
+    "t2"
+   ],
+   [
+    "t2",
+    "p2"
+   ],
+   [
+    "p1",
+    "t3"
+   ],
+   [
+    "t3",
+    "p3"
+   ],
+   [
+    "p2",
+    "t4"
+   ],
+   [
+    "t4",
+    "p4"
+   ],
+   [
+    "p2",
+    "t5"
+   ],
+   [
+    "t5",
+    "p5"
+   ],
+   [
+    "p3",
+    "t6"
+   ],
+   [
+    "t6",
+    "p6"
+   ],
+   [
+    "p3",
+    "t7"
+   ],
+   [
+    "t7",
+    "p7"
+   ],
+   [
+    "p4",
+    "t8"
+   ],
+   [
+    "t8",
+    "p8"
+   ],
+   [
+    "p5",
+    "t9"
+   ],
+   [
+    "t9",
+    "o"
+   ],
+   [
+    "p6",
+    "t10"
+   ],
+   [
+    "t10",
+    "o"
+   ],
+   [
+    "p7",
+    "t11"
+   ],
+   [
+    "t11",
+    "o"
+   ],
+   [
+    "p8",
+    "t11"
+   ],
+   [
+    "t11",
+    "o"
+   ]
+  ]
+ },
+ "n_repairs": 1,
+ "total_latency_s": 18.92,
+ "output_chars": 947
 }

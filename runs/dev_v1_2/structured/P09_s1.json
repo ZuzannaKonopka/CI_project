@@ -7,52 +7,39 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"insurance claim process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit insurance claim\"}, {\"activity\": \"check claim\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"request additional information\"}, {\"tau\": true}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}}",
-   "errors": [],
-   "latency_s": 3.71,
-   "prompt_tokens": 1306,
-   "output_tokens": 86,
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim again\", \"pay compensation\", \"reject claim\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit claim\"}, {\"activity\": \"check claim\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"request information\"}, {\"activity\": \"provide information\"}, {\"activity\": \"check claim again\"}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}}",
+   "errors": [
+    "tree.children[2]: 'loop' needs exactly 2 children [do, redo], got 3"
+   ],
+   "latency_s": 4.41,
+   "prompt_tokens": 1745,
+   "output_tokens": 125,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim again\", \"pay compensation\", \"reject claim\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit claim\"}, {\"activity\": \"check claim\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"request information\"}, {\"activity\": \"provide information\"}, {\"activity\": \"check claim again\"}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}}",
+   "errors": [
+    "tree.children[2]: 'loop' needs exactly 2 children [do, redo], got 3"
+   ],
+   "latency_s": 4.32,
+   "prompt_tokens": 1926,
+   "output_tokens": 125,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"insurance claim\",\n\"activities\": [\"submit claim\", \"check claim\", \"request information\", \"provide information\", \"check claim again\", \"pay compensation\", \"reject claim\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit claim\"}, {\"activity\": \"check claim\"}, {\"op\": \"loop\", \"children\": [{\"activity\": \"request information\"}, {\"activity\": \"provide information\"}, {\"op\": \"seq\", \"children\": [{\"activity\": \"check claim again\"}, {\"tau\": true}]}]}, {\"op\": \"xor\", \"children\": [{\"activity\": \"pay compensation\"}, {\"activity\": \"reject claim\"}]}]}}",
+   "errors": [
+    "tree.children[2]: 'loop' needs exactly 2 children [do, redo], got 3"
+   ],
+   "latency_s": 4.52,
+   "prompt_tokens": 2107,
+   "output_tokens": 140,
    "done_reason": "stop"
   }
  ],
- "valid": true,
- "document": {
-  "process_name": "insurance claim process",
-  "tree": {
-   "op": "seq",
-   "children": [
-    {
-     "activity": "submit insurance claim"
-    },
-    {
-     "activity": "check claim"
-    },
-    {
-     "op": "xor",
-     "children": [
-      {
-       "activity": "request additional information"
-      },
-      {
-       "tau": true
-      }
-     ]
-    },
-    {
-     "op": "xor",
-     "children": [
-      {
-       "activity": "pay compensation"
-      },
-      {
-       "activity": "reject claim"
-      }
-     ]
-    }
-   ]
-  }
- },
- "n_repairs": 0,
- "total_latency_s": 3.71,
- "output_chars": 334
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 13.25,
+ "output_chars": 557
 }

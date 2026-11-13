@@ -7,48 +7,42 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"Code Review Process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"review code\"}, {\"id\": \"t4\", \"label\": \"request changes\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"revise code\"}, {\"id\": \"t7\", \"label\": \"review code\"}, {\"id\": \"t8\", \"label\": \"merge code\"}, {\"id\": \"t9\", \"label\": \"deploy code\"}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": \"merge code\"}, {\"id\": \"t12\", \"label\": \"deploy code\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"], [\"p8\", \"t10\"], [\"t10\", \"p9\"], [\"p9\", \"t11\"], [\"t11\", \"p10\"], [\"p10\", \"t12\"], [\"t12\", \"p11\"], [\"p11\", \"t13\"], [\"t13\", \"p12\"], [\"p12\", \"t14\"], [\"t14\", \"o\"]]}",
+   "raw": "{\"process_name\": \"code review and merge\",\n\"activities\": [\"write code\", \"open pull request\", \"review code\", \"request changes\", \"revise code\", \"merge code\", \"deploy code\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"write code\"}, {\"id\": \"t2\", \"label\": \"open pull request\"}, {\"id\": \"t3\", \"label\": \"review code\"}, {\"id\": \"t4\", \"label\": \"request changes\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"revise code\"}, {\"id\": \"t7\", \"label\": \"merge code\"}, {\"id\": \"t8\", \"label\": \"deploy code\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"t5\", \"p5\"], [\"p4\", \"t6\"], [\"t6\", \"p6\"], [\"p5\", \"t3\"], [\"t3\", \"p7\"], [\"p6\", \"t7\"], [\"t7\", \"p8\"], [\"p7\", \"t8\"], [\"p8\", \"o\"], [\"p9\", \"t9\"], [\"p10\", \"t10\"], [\"p9\", \"p10\"], [\"p9\", \"t7\"], [\"p10\", \"t7\"]]}",
    "errors": [
-    "arc ['p11', 't13'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['t13', 'p12'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['p12', 't14'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['t14', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+    "arc ['p8', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p9', 'p10'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
    ],
-   "latency_s": 10.69,
-   "prompt_tokens": 2738,
-   "output_tokens": 518,
+   "latency_s": 9.37,
+   "prompt_tokens": 3583,
+   "output_tokens": 426,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"Code Review Process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"review code\"}, {\"id\": \"t4\", \"label\": \"request changes\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"revise code\"}, {\"id\": \"t7\", \"label\": \"review code\"}, {\"id\": \"t8\", \"label\": \"merge code\"}, {\"id\": \"t9\", \"label\": \"deploy code\"}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": \"merge code\"}, {\"id\": \"t12\", \"label\": \"deploy code\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"], [\"p8\", \"t10\"], [\"t10\", \"p9\"], [\"p9\", \"t11\"], [\"t11\", \"p10\"], [\"p10\", \"t12\"], [\"t12\", \"p11\"], [\"p11\", \"t13\"], [\"t13\", \"p12\"], [\"p12\", \"t14\"], [\"t14\", \"o\"]]}",
+   "raw": "{\"process_name\": \"code review and merge\",\n\"activities\": [\"write code\", \"open pull request\", \"review code\", \"request changes\", \"revise code\", \"merge code\", \"deploy code\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"write code\"}, {\"id\": \"t2\", \"label\": \"open pull request\"}, {\"id\": \"t3\", \"label\": \"review code\"}, {\"id\": \"t4\", \"label\": \"request changes\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"revise code\"}, {\"id\": \"t7\", \"label\": \"merge code\"}, {\"id\": \"t8\", \"label\": \"deploy code\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"t5\", \"p5\"], [\"p4\", \"t6\"], [\"t6\", \"p6\"], [\"p5\", \"t3\"], [\"t3\", \"p7\"], [\"p6\", \"t7\"], [\"t7\", \"p8\"], [\"p7\", \"t8\"], [\"p8\", \"t9\"], [\"p9\", \"t10\"], [\"t9\", \"o\"], [\"t10\", \"o\"]]}",
    "errors": [
-    "arc ['p11', 't13'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['t13', 'p12'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['p12', 't14'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['t14', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+    "transition 't8' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p9', 'p10']",
+    "expected exactly one sink place, found ['p10', 'o']"
    ],
-   "latency_s": 10.68,
-   "prompt_tokens": 3401,
-   "output_tokens": 518,
+   "latency_s": 9.03,
+   "prompt_tokens": 4098,
+   "output_tokens": 407,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"Code Review Process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"p11\", \"p12\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"write code\"}, {\"id\": \"t1\", \"label\": \"open pull request\"}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"review code\"}, {\"id\": \"t4\", \"label\": \"request changes\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"revise code\"}, {\"id\": \"t7\", \"label\": \"review code\"}, {\"id\": \"t8\", \"label\": \"merge code\"}, {\"id\": \"t9\", \"label\": \"deploy code\"}, {\"id\": \"t10\", \"label\": null}, {\"id\": \"t11\", \"label\": \"merge code\"}, {\"id\": \"t12\", \"label\": \"deploy code\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"t5\", \"p5\"], [\"p5\", \"t6\"], [\"t6\", \"p6\"], [\"p6\", \"t7\"], [\"t7\", \"p7\"], [\"p7\", \"t8\"], [\"t8\", \"p8\"], [\"p8\", \"t9\"], [\"t9\", \"o\"], [\"p8\", \"t10\"], [\"t10\", \"p9\"], [\"p9\", \"t11\"], [\"t11\", \"p10\"], [\"p10\", \"t12\"], [\"t12\", \"p11\"], [\"p11\", \"t13\"], [\"t13\", \"p12\"], [\"p12\", \"t14\"], [\"t14\", \"o\"]]}",
+   "raw": "{\"process_name\": \"code review and merge\",\n\"activities\": [\"write code\", \"open pull request\", \"review code\", \"request changes\", \"revise code\", \"merge code\", \"deploy code\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"p9\", \"p10\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"write code\"}, {\"id\": \"t2\", \"label\": \"open pull request\"}, {\"id\": \"t3\", \"label\": \"review code\"}, {\"id\": \"t4\", \"label\": \"request changes\"}, {\"id\": \"t5\", \"label\": null}, {\"id\": \"t6\", \"label\": \"revise code\"}, {\"id\": \"t7\", \"label\": \"merge code\"}, {\"id\": \"t8\", \"label\": \"deploy code\"}, {\"id\": \"t9\", \"label\": null}, {\"id\": \"t10\", \"label\": null}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"t5\", \"p5\"], [\"p4\", \"t6\"], [\"t6\", \"p6\"], [\"p5\", \"t3\"], [\"t3\", \"p7\"], [\"p6\", \"t7\"], [\"t7\", \"p8\"], [\"p7\", \"t8\"], [\"p8\", \"t9\"], [\"p9\", \"t10\"], [\"t9\", \"o\"], [\"t10\", \"o\"], [\"p9\", \"p10\"], [\"p10\", \"t7\"]]}",
    "errors": [
-    "arc ['p11', 't13'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['t13', 'p12'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['p12', 't14'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
-    "arc ['t14', 'o'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+    "arc ['p9', 'p10'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
    ],
-   "latency_s": 10.68,
-   "prompt_tokens": 4064,
-   "output_tokens": 518,
+   "latency_s": 9.42,
+   "prompt_tokens": 4590,
+   "output_tokens": 425,
    "done_reason": "stop"
   }
  ],
  "valid": false,
  "document": null,
  "n_repairs": 2,
- "total_latency_s": 32.05,
- "output_chars": 1079
+ "total_latency_s": 27.82,
+ "output_chars": 965
 }

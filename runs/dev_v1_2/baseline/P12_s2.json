@@ -7,43 +7,44 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"product return process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"request return\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"reject request\"}, {\"id\": \"t4\", \"label\": \"approve request\"}, {\"id\": \"t5\", \"label\": \"ship product back\"}, {\"id\": \"t6\", \"label\": \"inspect product\"}, {\"id\": \"t7\", \"label\": \"return refund\"}, {\"id\": \"t8\", \"label\": \"return replacement\"}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t2\", \"p1\"], [\"t1\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"p4\", \"t8\"], [\"t9\", \"p4\"], [\"t7\", \"o\"], [\"t8\", \"o\"], [\"p1\", \"t9\"], [\"t9\", \"o\"]]}",
+   "raw": "{\"process_name\": \"product return\",\n\"activities\": [\"request return\", \"reject request\", \"approve request\", \"ship product back\", \"inspect product\", \"refund customer\", \"replace product\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"request return\"}, {\"id\": \"t2\", \"label\": \"reject request\"}, {\"id\": \"t3\", \"label\": \"approve request\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"ship product back\"}, {\"id\": \"t6\", \"label\": \"inspect product\"}, {\"id\": \"t7\", \"label\": \"refund customer\"}, {\"id\": \"t8\", \"label\": \"replace product\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"t2\", \"p2\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"p4\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"]]}",
    "errors": [
-    "transition 't3' needs at least one input and one output place",
+    "transition 't4' needs at least one input and one output place",
     "expected exactly one source place, found ['i', 'p5', 'p6', 'p7', 'p8']",
-    "expected exactly one sink place, found ['o', 'p5', 'p6', 'p7', 'p8']"
+    "expected exactly one sink place, found ['p5', 'p6', 'p7', 'p8', 'o']"
    ],
-   "latency_s": 8.09,
-   "prompt_tokens": 2735,
-   "output_tokens": 355,
+   "latency_s": 7.63,
+   "prompt_tokens": 3580,
+   "output_tokens": 320,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"product return process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"request return\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"reject request\"}, {\"id\": \"t4\", \"label\": \"approve request\"}, {\"id\": \"t5\", \"label\": \"ship product back\"}, {\"id\": \"t6\", \"label\": \"inspect product\"}, {\"id\": \"t7\", \"label\": \"return refund\"}, {\"id\": \"t8\", \"label\": \"return replacement\"}, {\"id\": \"t9\", \"label\": null}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"p1\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"t4\"], [\"t4\", \"p2\"], [\"p2\", \"t5\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"p4\", \"t8\"], [\"t9\", \"p4\"], [\"t7\", \"o\"], [\"t8\", \"o\"], [\"p1\", \"t9\"], [\"t9\", \"o\"]]}",
+   "raw": "{\"process_name\": \"product return\",\n\"activities\": [\"request return\", \"reject request\", \"approve request\", \"ship product back\", \"inspect product\", \"refund customer\", \"replace product\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"request return\"}, {\"id\": \"t2\", \"label\": \"reject request\"}, {\"id\": \"t3\", \"label\": \"approve request\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"ship product back\"}, {\"id\": \"t6\", \"label\": \"inspect product\"}, {\"id\": \"t7\", \"label\": \"refund customer\"}, {\"id\": \"t8\", \"label\": \"replace product\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"t2\", \"p2\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"p4\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"], [\"p4\", \"p5\"], [\"p4\", \"p6\"], [\"p4\", \"p7\"], [\"p4\", \"p8\"], [\"p5\", \"t7\"], [\"p6\", \"t7\"], [\"p7\", \"t8\"], [\"p8\", \"t8\"]]}",
    "errors": [
-    "transition 't3' needs at least one input and one output place",
-    "expected exactly one source place, found ['i', 'p5', 'p6', 'p7', 'p8']",
-    "expected exactly one sink place, found ['o', 'p5', 'p6', 'p7', 'p8']"
+    "arc ['p4', 'p5'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p4', 'p6'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p4', 'p7'] must connect a place and a transition (unknown id or place-place / transition-transition arc)",
+    "arc ['p4', 'p8'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
    ],
-   "latency_s": 8.14,
-   "prompt_tokens": 3187,
-   "output_tokens": 355,
+   "latency_s": 8.7,
+   "prompt_tokens": 4003,
+   "output_tokens": 384,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"product return process\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"request return\"}, {\"id\": \"t1\", \"label\": \"reject request\"}, {\"id\": \"t2\", \"label\": \"approve request\"}, {\"id\": \"t3\", \"label\": \"ship product back\"}, {\"id\": \"t4\", \"label\": \"inspect product\"}, {\"id\": \"t5\", \"label\": \"return refund\"}, {\"id\": \"t6\", \"label\": \"return replacement\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"p0\", \"t2\"], [\"t1\", \"o\"], [\"t2\", \"p1\"], [\"p1\", \"t3\"], [\"p1\", \"p2\"], [\"t3\", \"p3\"], [\"p3\", \"t4\"], [\"t4\", \"p4\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"t5\", \"o\"], [\"t6\", \"o\"]]}",
+   "raw": "{\"process_name\": \"product return\",\n\"activities\": [\"request return\", \"reject request\", \"approve request\", \"ship product back\", \"inspect product\", \"refund customer\", \"replace product\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"p6\", \"p7\", \"p8\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"request return\"}, {\"id\": \"t2\", \"label\": \"reject request\"}, {\"id\": \"t3\", \"label\": \"approve request\"}, {\"id\": \"t4\", \"label\": null}, {\"id\": \"t5\", \"label\": \"ship product back\"}, {\"id\": \"t6\", \"label\": \"inspect product\"}, {\"id\": \"t7\", \"label\": \"refund customer\"}, {\"id\": \"t8\", \"label\": \"replace product\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"p1\", \"t3\"], [\"t3\", \"p2\"], [\"t2\", \"p2\"], [\"p2\", \"t4\"], [\"p2\", \"t5\"], [\"t5\", \"p3\"], [\"p3\", \"t6\"], [\"t6\", \"p4\"], [\"p4\", \"t7\"], [\"p4\", \"t8\"], [\"t7\", \"o\"], [\"t8\", \"o\"], [\"p4\", \"t4\"], [\"t4\", \"p5\"], [\"t4\", \"p6\"], [\"t4\", \"p7\"], [\"t4\", \"p8\"]]}",
    "errors": [
-    "arc ['p1', 'p2'] must connect a place and a transition (unknown id or place-place / transition-transition arc)"
+    "expected exactly one sink place, found ['p5', 'p6', 'p7', 'p8', 'o']"
    ],
-   "latency_s": 6.96,
-   "prompt_tokens": 3639,
-   "output_tokens": 264,
+   "latency_s": 8.45,
+   "prompt_tokens": 4532,
+   "output_tokens": 360,
    "done_reason": "stop"
   }
  ],
  "valid": false,
  "document": null,
  "n_repairs": 2,
- "total_latency_s": 23.19,
- "output_chars": 622
+ "total_latency_s": 24.78,
+ "output_chars": 880
 }

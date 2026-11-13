@@ -19,13 +19,17 @@ from collections import deque
 from .tree import parse_tree, parse_tree_string
 from .wfnet import tree_to_wfnet
 
-PROMPT_VERSION = "v1.5"
+PROMPT_VERSION = "v1.3"
 
 COMMON_RULES = """Step 1 - list the activities ("activities"):
 - One activity for every action in the text, in the order of the text. Do not invent or omit actions.
-- Label = "<verb> <object>" in active voice and base form, using the words of the text,
-  without the actor and without articles: "the invoice is sent by the shop" -> "send invoice",
+- Label = "<verb> <object>" in base form, using the verb and the nouns of the text,
+  without the actor and without articles:
+  "the invoice is sent by the shop" -> "send invoice",
   "the bank checks the client's credit history" -> "check credit history".
+- Keep the verb and the point of view of the text: "the participant receives a confirmation e-mail"
+  -> "receive confirmation e-mail" (not "send confirmation e-mail").
+- Keep the object: "the code is deployed" -> "deploy code" (not just "deploy").
 - Use exactly the same label every time the same activity occurs.
 - NOT activities: actors, states and conditions ("the items are in stock", "the documents are
   complete", "when both are ready"), waiting, and the start or end of the process.
@@ -36,6 +40,8 @@ Step 2 - decisions:
 - "X decides / the request is approved or rejected / the result is positive or negative" -> one
   activity per named result ("approve loan" / "reject loan", "screening positive" /
   "screening negative") and NO separate "decide" or "evaluate" activity.
+- An activity is written a second time only if the text describes it in two different branches
+  (e.g. "notify customer" after a rejection and after a cancellation).
 
 Step 3 - control flow:
 - "then", "after that", "finally" -> sequence.
@@ -48,12 +54,20 @@ Step 3 - control flow:
   redo = the corrective steps done between two repetitions (in their order).
   Typical text: "X is checked; if a problem is found, A and B are done and X is checked again;
   when X is fine, C follows" -> loop(do = X, redo = A then B), then C.
+  The check X is the "do" part of the loop: do NOT write X again before the loop, after the loop
+  or inside "redo" - the loop already repeats it.
   The steps before the loop and after it are NOT part of the loop. Do not create activities for the
   loop condition or for its outcome ("documents complete", "changes requested", "defects found",
   "code approved", "claim complete").
 - "optionally", "can also" -> exclusive choice between the step and skipping it
   (the skip has no label and is NOT an activity in the activities list).
-Every activity from Step 1 must appear in the model, and no other activity."""
+
+Final check before answering:
+1. Every activity from Step 1 appears in the model, and the model contains no other activity.
+2. No activity for a condition, a state or a loop outcome; no "decide" activity.
+3. Every loop has exactly two parts [do, redo], and "do" is not repeated outside the loop.
+4. Parallel is used only where the text says "in any order", "while", "meanwhile" or similar.
+5. Every optional step is a choice between the step and a skip."""
 
 STRUCTURED_SYSTEM = """You convert a textual process description into a PROCESS TREE in JSON.
 
@@ -100,8 +114,8 @@ How to express control flow:
 
 """ + COMMON_RULES + """
 
-Before answering, check: every place except "i" has an incoming arc, every place except "o" has an
-outgoing arc, and every id used in "arcs" is listed in "places" or "transitions".
+Every place except "i" has an incoming arc, every place except "o" has an outgoing arc, and  
+every id used in "arcs" is listed in "places" or "transitions".
 
 Return only one JSON object:
 {"process_name": "<short name>",

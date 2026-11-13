@@ -7,122 +7,43 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"document submission\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit documents\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": null}, {\"id\": \"t3\", \"label\": \"check completeness\"}, {\"id\": \"t4\", \"label\": \"ask to supplement\"}, {\"id\": \"t5\", \"label\": \"resubmit documents\"}, {\"id\": \"t6\", \"label\": \"register application\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p1\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t5\"], [\"t5\", \"p1\"], [\"p3\", \"t6\"], [\"t6\", \"o\"]]}",
+   "raw": "{\"process_name\": \"document submission\",\n\"activities\": [\"submit documents\", \"check completeness\", \"ask to supplement\", \"resubmit documents\", \"register application\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit documents\"}, {\"id\": \"t2\", \"label\": \"check completeness\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"ask to supplement\"}, {\"id\": \"t5\", \"label\": \"resubmit documents\"}, {\"id\": \"t6\", \"label\": \"register application\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p4\", \"t5\"], [\"p4\", \"t6\"], [\"t6\", \"o\"]]}",
    "errors": [
-    "expected exactly one source place, found ['i', 'p4', 'p5']",
-    "expected exactly one sink place, found ['o', 'p4', 'p5']"
+    "transition 't5' needs at least one input and one output place",
+    "expected exactly one source place, found ['i', 'p5']",
+    "expected exactly one sink place, found ['p5', 'o']"
    ],
-   "latency_s": 6.47,
-   "prompt_tokens": 2735,
-   "output_tokens": 259,
+   "latency_s": 6.5,
+   "prompt_tokens": 3580,
+   "output_tokens": 253,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"document submission\", \"places\": [\"i\", \"o\", \"p0\", \"p1\", \"p2\", \"p3\"], \"transitions\": [{\"id\": \"t0\", \"label\": \"submit documents\"}, {\"id\": \"t1\", \"label\": null}, {\"id\": \"t2\", \"label\": \"check completeness\"}, {\"id\": \"t3\", \"label\": \"ask to supplement\"}, {\"id\": \"t4\", \"label\": \"resubmit documents\"}, {\"id\": \"t5\", \"label\": \"register application\"}], \"arcs\": [[\"i\", \"t0\"], [\"t0\", \"p0\"], [\"p0\", \"t2\"], [\"t2\", \"p1\"], [\"p1\", \"t1\"], [\"t1\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p2\"], [\"p2\", \"t4\"], [\"t4\", \"p3\"], [\"p3\", \"t2\"], [\"t2\", \"p3\"], [\"p3\", \"t5\"], [\"t5\", \"o\"]]}",
-   "errors": [],
-   "latency_s": 6.04,
-   "prompt_tokens": 3059,
-   "output_tokens": 239,
+   "raw": "{\"process_name\": \"document submission\",\n\"activities\": [\"submit documents\", \"check completeness\", \"ask to supplement\", \"resubmit documents\", \"register application\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit documents\"}, {\"id\": \"t2\", \"label\": \"check completeness\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"ask to supplement\"}, {\"id\": \"t5\", \"label\": \"resubmit documents\"}, {\"id\": \"t6\", \"label\": \"register application\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p4\", \"t5\"], [\"t5\", \"p2\"], [\"p2\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p5']",
+    "expected exactly one sink place, found ['p5', 'o']"
+   ],
+   "latency_s": 6.73,
+   "prompt_tokens": 3912,
+   "output_tokens": 261,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"document submission\",\n\"activities\": [\"submit documents\", \"check completeness\", \"ask to supplement\", \"resubmit documents\", \"register application\"],\n\"places\": [\"i\", \"p1\", \"p2\", \"p3\", \"p4\", \"p5\", \"o\"],\n\"transitions\": [{\"id\": \"t1\", \"label\": \"submit documents\"}, {\"id\": \"t2\", \"label\": \"check completeness\"}, {\"id\": \"t3\", \"label\": null}, {\"id\": \"t4\", \"label\": \"ask to supplement\"}, {\"id\": \"t5\", \"label\": \"resubmit documents\"}, {\"id\": \"t6\", \"label\": \"register application\"}],\n\"arcs\": [[\"i\", \"t1\"], [\"t1\", \"p1\"], [\"p1\", \"t2\"], [\"t2\", \"p2\"], [\"p2\", \"t3\"], [\"t3\", \"p3\"], [\"p2\", \"t4\"], [\"t4\", \"p4\"], [\"p3\", \"t5\"], [\"p4\", \"t5\"], [\"t5\", \"p2\"], [\"p2\", \"t6\"], [\"t6\", \"o\"]]}",
+   "errors": [
+    "expected exactly one source place, found ['i', 'p5']",
+    "expected exactly one sink place, found ['p5', 'o']"
+   ],
+   "latency_s": 6.55,
+   "prompt_tokens": 4236,
+   "output_tokens": 261,
    "done_reason": "stop"
   }
  ],
- "valid": true,
- "document": {
-  "process_name": "document submission",
-  "places": [
-   "i",
-   "o",
-   "p0",
-   "p1",
-   "p2",
-   "p3"
-  ],
-  "transitions": [
-   {
-    "id": "t0",
-    "label": "submit documents"
-   },
-   {
-    "id": "t1",
-    "label": null
-   },
-   {
-    "id": "t2",
-    "label": "check completeness"
-   },
-   {
-    "id": "t3",
-    "label": "ask to supplement"
-   },
-   {
-    "id": "t4",
-    "label": "resubmit documents"
-   },
-   {
-    "id": "t5",
-    "label": "register application"
-   }
-  ],
-  "arcs": [
-   [
-    "i",
-    "t0"
-   ],
-   [
-    "t0",
-    "p0"
-   ],
-   [
-    "p0",
-    "t2"
-   ],
-   [
-    "t2",
-    "p1"
-   ],
-   [
-    "p1",
-    "t1"
-   ],
-   [
-    "t1",
-    "p2"
-   ],
-   [
-    "p2",
-    "t3"
-   ],
-   [
-    "t3",
-    "p2"
-   ],
-   [
-    "p2",
-    "t4"
-   ],
-   [
-    "t4",
-    "p3"
-   ],
-   [
-    "p3",
-    "t2"
-   ],
-   [
-    "t2",
-    "p3"
-   ],
-   [
-    "p3",
-    "t5"
-   ],
-   [
-    "t5",
-    "o"
-   ]
-  ]
- },
- "n_repairs": 1,
- "total_latency_s": 12.51,
- "output_chars": 559
+ "valid": false,
+ "document": null,
+ "n_repairs": 2,
+ "total_latency_s": 19.79,
+ "output_chars": 676
 }

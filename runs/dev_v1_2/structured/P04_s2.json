@@ -7,30 +7,65 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"online shop order\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"check stock\"}, {\"tau\": true}]}]},\"tree\": {\"op\": \"and\", \"children\": [{\"activity\": \"process payment\"}, {\"op\": \"or\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]},\"tree\": {\"op\": \"or\", \"children\": [{\"activity\": \"cancel order\"}, {\"tau\": true}]} }",
+   "raw": "{\"process_name\": \"online shop order\",\n\"activities\": [\"place order\", \"check stock\", \"process payment\", \"send invoice\", \"ship package\", \"cancel order\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"place order\"}, {\"activity\": \"check stock\"}, {\"op\": \"xor\", \"children\": [{\"op\": \"seq\", \"children\": [{\"activity\": \"process payment\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"send invoice\"}, {\"activity\": \"ship package\"}]}]}, {\"activity\": \"cancel order\"}]}]}}",
    "errors": [],
-   "latency_s": 4.16,
-   "prompt_tokens": 1313,
-   "output_tokens": 122,
+   "latency_s": 4.17,
+   "prompt_tokens": 1752,
+   "output_tokens": 123,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
   "process_name": "online shop order",
+  "activities": [
+   "place order",
+   "check stock",
+   "process payment",
+   "send invoice",
+   "ship package",
+   "cancel order"
+  ],
   "tree": {
-   "op": "or",
+   "op": "seq",
    "children": [
     {
-     "activity": "cancel order"
+     "activity": "place order"
     },
     {
-     "tau": true
+     "activity": "check stock"
+    },
+    {
+     "op": "xor",
+     "children": [
+      {
+       "op": "seq",
+       "children": [
+        {
+         "activity": "process payment"
+        },
+        {
+         "op": "and",
+         "children": [
+          {
+           "activity": "send invoice"
+          },
+          {
+           "activity": "ship package"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "activity": "cancel order"
+      }
+     ]
     }
    ]
   }
  },
  "n_repairs": 0,
- "total_latency_s": 4.16,
- "output_chars": 414
+ "total_latency_s": 4.17,
+ "output_chars": 455
 }

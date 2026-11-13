@@ -7,17 +7,40 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"HR process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit CV\"}, {\"activity\": \"screening\"}, {\"op\": \"xor\", \"children\": [{\"op\": \"and\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}, {\"tau\": true}]}, {\"op\": \"and\", \"children\": [{\"op\": \"or\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}, {\"op\": \"or\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"manager interview\"}]}]}, {\"op\": \"and\", \"children\": [{\"activity\": \"positive assessment\"}, {\"activity\": \"positive assessment\"}]}, {\"activity\": \"receive offer\"}]} }",
+   "raw": "{\"process_name\": \"job application\",\n\"activities\": [\"submit CV\", \"perform screening\", \"screening positive\", \"screening negative\", \"technical interview\", \"manager interview\", \"positive assessment\", \"negative assessment\", \"send offer\", \"reject application\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit CV\"}, {\"activity\": \"perform screening\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"screening positive\"}, {\"activity\": \"screening negative\"}]}, {\"op\": \"and\", \"children\": [{\"op\": \"seq\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"positive assessment\"}, {\"activity\": \"manager interview\"}, {\"activity\": \"positive assessment\"}]}, {\"op\": \"tau\"}]}, {\"activity\": \"send offer\"}, {\"tau\": true}, {\"activity\": \"reject application\"}]}}",
+   "errors": [
+    "tree.children[3].children[1]: unknown operator 'tau', use one of ['and', 'loop', 'or', 'seq', 'xor']",
+    "tree.children[3].children[1]: 'tau' needs a list 'children'"
+   ],
+   "latency_s": 12.5,
+   "prompt_tokens": 1770,
+   "output_tokens": 181,
+   "done_reason": "stop"
+  },
+  {
+   "raw": "{\"process_name\": \"job application\",\n\"activities\": [\"submit CV\", \"perform screening\", \"screening positive\", \"screening negative\", \"technical interview\", \"manager interview\", \"positive assessment\", \"negative assessment\", \"send offer\", \"reject application\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit CV\"}, {\"activity\": \"perform screening\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"screening positive\"}, {\"activity\": \"screening negative\"}]}, {\"op\": \"and\", \"children\": [{\"op\": \"seq\", \"children\": [{\"activity\": \"technical interview\"}, {\"activity\": \"positive assessment\"}, {\"activity\": \"manager interview\"}, {\"activity\": \"positive assessment\"}]}, {\"tau\": true}]}, {\"activity\": \"send offer\"}, {\"activity\": \"reject application\"}]}}",
    "errors": [],
-   "latency_s": 12.33,
-   "prompt_tokens": 1331,
-   "output_tokens": 165,
+   "latency_s": 4.96,
+   "prompt_tokens": 2036,
+   "output_tokens": 175,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
-  "process_name": "HR process",
+  "process_name": "job application",
+  "activities": [
+   "submit CV",
+   "perform screening",
+   "screening positive",
+   "screening negative",
+   "technical interview",
+   "manager interview",
+   "positive assessment",
+   "negative assessment",
+   "send offer",
+   "reject application"
+  ],
   "tree": {
    "op": "seq",
    "children": [
@@ -25,19 +48,36 @@
      "activity": "submit CV"
     },
     {
-     "activity": "screening"
+     "activity": "perform screening"
     },
     {
      "op": "xor",
      "children": [
       {
-       "op": "and",
+       "activity": "screening positive"
+      },
+      {
+       "activity": "screening negative"
+      }
+     ]
+    },
+    {
+     "op": "and",
+     "children": [
+      {
+       "op": "seq",
        "children": [
         {
          "activity": "technical interview"
         },
         {
+         "activity": "positive assessment"
+        },
+        {
          "activity": "manager interview"
+        },
+        {
+         "activity": "positive assessment"
         }
        ]
       },
@@ -47,50 +87,15 @@
      ]
     },
     {
-     "op": "and",
-     "children": [
-      {
-       "op": "or",
-       "children": [
-        {
-         "activity": "technical interview"
-        },
-        {
-         "activity": "manager interview"
-        }
-       ]
-      },
-      {
-       "op": "or",
-       "children": [
-        {
-         "activity": "technical interview"
-        },
-        {
-         "activity": "manager interview"
-        }
-       ]
-      }
-     ]
+     "activity": "send offer"
     },
     {
-     "op": "and",
-     "children": [
-      {
-       "activity": "positive assessment"
-      },
-      {
-       "activity": "positive assessment"
-      }
-     ]
-    },
-    {
-     "activity": "receive offer"
+     "activity": "reject application"
     }
    ]
   }
  },
- "n_repairs": 0,
- "total_latency_s": 12.33,
- "output_chars": 630
+ "n_repairs": 1,
+ "total_latency_s": 17.46,
+ "output_chars": 738
 }

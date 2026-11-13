@@ -7,17 +7,26 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"loan application process\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit loan application\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"check credit history\"}, {\"activity\": \"verify income\"}]}, {\"activity\": \"decide\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"sign contract\"}, {\"activity\": \"pay out money\"}]}, {\"activity\": \"notify rejection\"}]}}",
+   "raw": "{\"process_name\": \"loan application\",\n\"activities\": [\"submit loan application\", \"check credit history\", \"verify income\", \"decide on loan\", \"sign contract\", \"pay out money\", \"notify rejection\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"submit loan application\"}, {\"op\": \"and\", \"children\": [{\"activity\": \"check credit history\"}, {\"activity\": \"verify income\"}]}, {\"activity\": \"decide on loan\"}, {\"op\": \"xor\", \"children\": [{\"op\": \"seq\", \"children\": [{\"activity\": \"sign contract\"}, {\"activity\": \"pay out money\"}]}, {\"activity\": \"notify rejection\"}]}]}}",
    "errors": [],
-   "latency_s": 3.73,
-   "prompt_tokens": 1323,
-   "output_tokens": 96,
+   "latency_s": 4.6,
+   "prompt_tokens": 1762,
+   "output_tokens": 143,
    "done_reason": "stop"
   }
  ],
  "valid": true,
  "document": {
-  "process_name": "loan application process",
+  "process_name": "loan application",
+  "activities": [
+   "submit loan application",
+   "check credit history",
+   "verify income",
+   "decide on loan",
+   "sign contract",
+   "pay out money",
+   "notify rejection"
+  ],
   "tree": {
    "op": "seq",
    "children": [
@@ -36,26 +45,31 @@
      ]
     },
     {
-     "activity": "decide"
+     "activity": "decide on loan"
     },
     {
      "op": "xor",
      "children": [
       {
-       "activity": "sign contract"
+       "op": "seq",
+       "children": [
+        {
+         "activity": "sign contract"
+        },
+        {
+         "activity": "pay out money"
+        }
+       ]
       },
       {
-       "activity": "pay out money"
+       "activity": "notify rejection"
       }
      ]
-    },
-    {
-     "activity": "notify rejection"
     }
    ]
   }
  },
  "n_repairs": 0,
- "total_latency_s": 3.73,
- "output_chars": 369
+ "total_latency_s": 4.61,
+ "output_chars": 554
 }

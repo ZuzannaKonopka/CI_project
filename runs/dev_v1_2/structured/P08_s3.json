@@ -7,39 +7,39 @@
  "max_repairs": 2,
  "attempts": [
   {
-   "raw": "{\"process_name\": \"conference registration\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop place\"}, {\"tau\": true}]}], \"children\": [{\"activity\": \"receive confirmation e-mail\"}]}}",
+   "raw": "{\"process_name\": \"conference registration\",\n\"activities\": [\"register for conference\", \"pay registration fee\", \"book workshop place\", \"send confirmation email\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop place\"}, {\"tau\": true}]}], \"children2\": [{\"activity\": \"send confirmation email\"}]} }",
    "errors": [
-    "tree: 'seq' needs at least 2 children, got 1"
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'op']"
    ],
-   "latency_s": 3.39,
-   "prompt_tokens": 1288,
-   "output_tokens": 75,
+   "latency_s": 3.81,
+   "prompt_tokens": 1727,
+   "output_tokens": 98,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"conference registration\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop place\"}, {\"tau\": true}]}], \"children\": [{\"activity\": \"receive confirmation e-mail\"}]}}",
+   "raw": "{\"process_name\": \"conference registration\",\n\"activities\": [\"register for conference\", \"pay registration fee\", \"book workshop place\", \"send confirmation email\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop place\"}, {\"tau\": true}]}], \"children2\": [{\"activity\": \"send confirmation email\"}]}}",
    "errors": [
-    "tree: 'seq' needs at least 2 children, got 1"
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'op']"
    ],
-   "latency_s": 3.46,
-   "prompt_tokens": 1407,
-   "output_tokens": 75,
+   "latency_s": 3.82,
+   "prompt_tokens": 1884,
+   "output_tokens": 98,
    "done_reason": "stop"
   },
   {
-   "raw": "{\"process_name\": \"conference registration\", \"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop place\"}, {\"tau\": true}]}], \"children\": [{\"activity\": \"receive confirmation e-mail\"}]}}",
+   "raw": "{\"process_name\": \"conference registration\",\n\"activities\": [\"register for conference\", \"pay registration fee\", \"book workshop place\", \"send confirmation email\"],\n\"tree\": {\"op\": \"seq\", \"children\": [{\"activity\": \"register for conference\"}, {\"activity\": \"pay registration fee\"}, {\"op\": \"xor\", \"children\": [{\"activity\": \"book workshop place\"}, {\"tau\": true}]}], \"children2\": [{\"activity\": \"send confirmation email\"}]}}",
    "errors": [
-    "tree: 'seq' needs at least 2 children, got 1"
+    "tree: operator node must contain only 'op' and 'children', found ['children', 'children2', 'op']"
    ],
-   "latency_s": 3.47,
-   "prompt_tokens": 1526,
-   "output_tokens": 75,
+   "latency_s": 3.88,
+   "prompt_tokens": 2041,
+   "output_tokens": 98,
    "done_reason": "stop"
   }
  ],
  "valid": false,
  "document": null,
  "n_repairs": 2,
- "total_latency_s": 10.32,
- "output_chars": 299
+ "total_latency_s": 11.51,
+ "output_chars": 413
 }
