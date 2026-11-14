@@ -223,19 +223,22 @@ To check that the measures detect real modelling errors, each typical error was 
 
 **Goal:** run both pipelines end-to-end with a real LLM on the 12 dev cases, develop the prompt there, then freeze the setup. Both approaches were run with Qwen 2.5 7B (Ollama, local GPU) in 5 prompt versions × 72 generations = 360 dev generations. The final prompt v1.5 and `config.json` are frozen for Milestone 3.
 
+
 ### What was built
 | Component | Where | Notes |
 |---|---|---|
-| Prompts for both approaches | `nl2wfnet/prompts.py` | same 3-step rules, same wording cues, same 4 worked examples (ATM, pizza, gym, car inspection – not in the benchmark); `PROMPT_VERSION = "v1.5"` |
+| Prompts for both approaches | `nl2wfnet/prompts.py` | same rules, decision patterns, scope rules, list of common mistakes, final checklist and 5 worked examples (ATM, pizza, gym, car inspection, laptop repair – not in the benchmark); `PROMPT_VERSION = "v1.5"` |
+| Prompt history | `docs/PROMPTS_versions.md`, `docs/prompt_log.md` | full text of every version; every change with its reason, run and result |
 | LLM clients | `nl2wfnet/llm.py` | Ollama (used for all results), any OpenAI-compatible server, manual chat-UI workflow |
 | Configurations | `config.json`, `configs/{ollama,openai,manual}.json` | selected with `--config` |
 | Generation + repair loop | `nl2wfnet/pipeline.py` | JSON mode; up to 2 repairs for format/structure errors, identical for both approaches; a timeout counts as a failed attempt |
-| Run records | `runs/<run>/<approach>/<case>_s<seed>.json` | prompt version, model, seed, every raw answer, validator errors, repairs, tokens, latency |
+| Run records | `runs/<run>/<approach>/<case>_s<seed>.json` | prompt version, model, seed, every raw answer, validator errors, repairs, tokens, latency, `done_reason` |
 | Label matching | `nl2wfnet/labels.py` | stemmed token overlap + character similarity, synonyms, antonym guard, manual overrides (`data/label_overrides.json`); every mapping stored in `results/<run>/label_maps.json` |
 | Evaluation and report | `nl2wfnet/metrics.py`, `report.py` | 4 dimensions, error taxonomy, paired statistics, tables, figures |
+| Raw results of all dev runs | `RESULTS.txt` | console output (validity and repairs per generation) and `summary.md` of `dev_v1_1` … `dev_v1_5` |
 | Prompt export for ChatGPT | `scripts/m2_export_chat_prompts.py` | dev cases only |
-| Prompt log | `docs/prompt_log.md` | every version, reason, run and result |
-| Tests | `tests/test_m2_*.py` | 9 tests with local fake Ollama / OpenAI servers (no real LLM needed) |
+| Tests | `tests/test_m2_*.py` | 10 tests with local fake Ollama / OpenAI servers (no real LLM needed) |
+
 
 ### Models and settings
 | Setting | Value | Why |
@@ -245,20 +248,31 @@ To check that the measures detect real modelling errors, each typical error was 
 | Temperature | 0.5 | variation between seeds, so 3 runs per case are meaningful |
 | Seeds | 1, 2, 3 | repeated runs per case and approach |
 | Output | JSON mode (`format: json`) | forces syntactically valid JSON |
-| Context (`num_ctx`) | 16384 tokens | system prompt + 4 examples (≈ 3 000 tokens for the baseline) + repairs |
+| Context (`num_ctx`) | 16384 tokens | system prompt + 5 worked examples (≈ 4 000 tokens for the baseline) + repairs |
 | Max. answer (`num_predict`) | 2048 tokens | prevents endless generation |
 | Timeout | 600 s, counts as a failed attempt | a hanging request uses one repair instead of stopping the run |
+| Server error (HTTP 500) | one retry with seed + 1000; a second error returns an empty answer (= failed attempt) | an occasional Ollama error does not stop the run; the rule is the same for both approaches and is logged in `done_reason` |
 | Repairs | max. 2, only for format/structure errors | same budget for both approaches; soundness is never repaired, it is measured |
 
-### The final prompt (v1.5)
-Each request has 10 messages: system prompt → 4 worked examples (user description + expected answer) → task. The user messages are identical for both approaches.
 
-| Part | Proposed (process tree) | Baseline (WF-net) |
+### The final prompt (v1.5)
+Each request has 12 messages: system prompt → 5 worked examples (description + expected answer) → task. The user messages are identical for both approaches.
+
+| Part | Content (identical for both approaches) |
+|---|---|
+| Step 1 – activities | read sentence by sentence; every action verb is an activity, also in "if" / "otherwise" clauses; label = "verb object", keeping verb, point of view and object of the text; actors, states and conditions are not activities |
+| Step 2 – decisions | exactly one of three patterns: (A) check with a condition → keep "check …", no condition activity; (B) decision with named results → one result activity at the start of each branch, no "decide"; (C) step ending with an assessment → the results are the activities |
+| Step 3 – control flow and scope | wording cues for seq / xor / and / or / optional; a branch contains all steps of its case; steps after "finally" come after the choice; parallel and OR contain only the activities named together; loop pattern do = repeated check, redo = all corrective steps, the following step or decision after the loop |
+| Common mistakes | 11 typical errors as wrong → right pairs |
+| Final checklist | 7 points (+ point 8 for the baseline: arcs and places connected) |
+| Worked examples | ATM (loop, OR, optional), pizza (parallel, choice), gym (decision with named results), car inspection (loop), laptop repair (loop followed by a choice) |
+
+| | Proposed (process tree) | Baseline (WF-net) |
 |---|---|---|
-| Shared rules | Step 1 activities: one per action, label = "verb object", active voice; actors, states and conditions are not activities. Step 2 decisions: a check stays an activity; approved/rejected → one activity per result, no "decide" step. Step 3 control flow: wording cues, explicit loop pattern (do = repeated check, redo = corrections), optional step = xor with τ. | same |
-| Answer format | `{"process_name", "activities", "tree"}`, 5 operators with arity rules | `{"process_name", "activities", "places", "transitions", "arcs"}`, how to build each construct, self-check of arcs |
-| Worked examples | ATM (loop, OR, optional), pizza (parallel, choice), gym (decision with named results), car inspection (loop) as process trees | the same 4 processes as WF-nets, generated from the trees by our converter |
+| Answer format | `{"process_name", "activities", "tree"}`, 5 operators with arity rules and loop pattern | `{"process_name", "activities", "places", "transitions", "arcs"}`, how to build each construct |
+| Worked examples | as process trees | the same 5 processes as WF-nets, generated from the trees by our converter |
 | Repair message | `Your JSON is not valid: - <validator errors> Fix only these problems, keep all activities, and return the complete corrected JSON object only.` | same |
+
 
 ### Fairness rules
 - Same model, temperature, seeds, context size and JSON mode for both approaches.
@@ -267,40 +281,51 @@ Each request has 10 messages: system prompt → 4 worked examples (user descript
 - Prompts were changed only on dev cases; every change is in `docs/prompt_log.md`. Test cases P13–P20 were never used.
 
 ### Prompt development (12 dev cases, 72 generations per version)
+
+| Version | Main change | Reason (from the previous dev run) |
+|---|---|---|
+| v1.0 | first prompt: operator definitions, modelling rules, 2 worked examples | – (run stopped after a request timeout) |
+| v1.1 | same text; `num_ctx` 16384, `num_predict` 2048, timeout = failed attempt | a baseline request did not finish within 600 s |
+| v1.2 | labelling and decision rules, activities list first, explicit loop pattern, tau syntax, 4 worked examples | loops 0.00–0.11, P08 invalid, 42 % missing activities |
+| v1.3 | labels keep verb / point of view / object; check written once as loop "do"; final checklist | 28 % missing / 31 % extra activities, loops 0.10 |
+| v1.4 | every action verb is an activity; results of a step; complete redo; common mistakes; 5th example | 25 % missing / 33 % extra activities, loops 0.13 |
+| **v1.5** | three decision patterns A / B / C; scope rules for choices, parallel and OR; 11 common mistakes | wrong control flow 31 %, AND 0.29, OR 0.76 |
+
 | Version | Validity P / B | Soundness P / B | Activity F1 P / B | Trace F1 P / B | Trace F1 diff. [95 % CI] | W / T / L | p | Repairs P / B |
 |---|---|---|---|---|---|---|---|---|
-| v1.1 | 0.944 / 0.139 | 0.944 / 0.083 | 0.821 / 0.120 | 0.283 / 0.032 | +0.251 [+0.059, +0.467] | 7 / 4 / 1 | 0.039 | 0.4 / 2.0 |
-| v1.2 | 0.861 / 0.222 | 0.861 / 0.139 | 0.703 / 0.194 | 0.314 / 0.015 | +0.299 [+0.084, +0.539] | 7 / 5 / 0 | 0.016 | 0.4 / 1.9 |
-| v1.3 | 0.778 / 0.194 | 0.778 / 0.083 | 0.651 / 0.156 | 0.309 / 0.004 | +0.305 [+0.108, +0.526] | 6 / 6 / 0 | 0.031 | 0.6 / 1.9 |
-| v1.4 | 0.861 / 0.222 | 0.861 / 0.111 | 0.760 / 0.180 | 0.308 / 0.000 | +0.308 [+0.107, +0.533] | 9 / 3 / 0 | 0.004 | 0.5 / 1.8 |
-| v1.5 | 0.889 / 0.444 | 0.889 / 0.194 | 0.816 / 0.417 | 0.407 / 0.060 | +0.347 [+0.088, +0.598] | 8 / 2 / 2 | 0.049 | 0.2 / 1.7 |
+| v1.1 | 0.917 / 0.306 | 0.917 / 0.167 | 0.793 / 0.293 | 0.320 / 0.037 | +0.283 [+0.040, +0.554] | 6 / 4 / 2 | 0.109 | 0.3 / 1.8 |
+| v1.2 | 0.889 / 0.444 | 0.889 / 0.194 | 0.816 / 0.417 | 0.407 / 0.060 | +0.347 [+0.088, +0.598] | 8 / 2 / 2 | 0.049 | 0.2 / 1.7 |
+| v1.3 | 0.944 / 0.389 | 0.944 / 0.139 | 0.870 / 0.383 | 0.478 / 0.053 | +0.425 [+0.164, +0.680] | 9 / 2 / 1 | 0.020 | 0.3 / 1.7 |
+| v1.4 | 0.944 / 0.444 | 0.944 / 0.194 | 0.853 / 0.437 | 0.452 / 0.091 | +0.362 [+0.146, +0.579] | 9 / 2 / 1 | 0.020 | 0.3 / 1.6 |
+| **v1.5** | 0.917 / 0.556 | 0.917 / 0.139 | 0.854 / 0.544 | **0.479 / 0.076** | +0.404 [+0.177, +0.611] | 9 / 2 / 1 | 0.014 | 0.3 / 1.4 |
 
-P = proposed, B = baseline; means over 36 runs per approach; paired test over the 12 cases. v1.0 has no result: its first run stopped after a request timeout and was restarted with the v1.1 settings (run `dev_v1`). Rule changes in v1.2–v1.4 did not move trace F1 (0.28–0.31); the explicit loop pattern in v1.5 raised it to 0.41. **v1.5 was selected and frozen** (best trace F1 for both approaches).
+P = proposed, B = baseline; means over 36 runs per approach; paired test over the 12 cases. **v1.5 was selected and frozen** by the rule fixed before its run (highest trace F1 of the proposed approach). Its advantage over v1.3 (0.479 vs. 0.478) is negligible; v1.5 also has the best loop handling (0.54 vs. 0.13), the highest baseline validity and the smallest p-value. Details: `docs/prompt_log.md`.
+
 
 ### Dev results with the final prompt (run `dev_v1_5`)
-From `results/dev_v1_5/summary.md` (client `ollama:qwen2.5:7b`, prompt v1.5, 12 cases, 3 runs per case and approach). Mean ± SD over 36 runs; paired comparison over cases (runs averaged per case first), exact two-sided Wilcoxon signed-rank test, 95 % bootstrap CI.
+From `RESULTS.txt` / `results/dev_v1_5/summary.md` (client `ollama:qwen2.5:7b`, prompt v1.5, 12 cases, 3 runs per case and approach). Mean ± SD over 36 runs; paired comparison over cases (runs averaged per case first), exact two-sided Wilcoxon signed-rank test, 95 % bootstrap CI.
 
 | Measure | Proposed (tree) | Baseline (direct) | Mean diff [95 % CI] | W / T / L | p |
 |---|---|---|---|---|---|
-| Validity | 0.889 ± 0.314 | 0.444 ± 0.497 | +0.444 [+0.139, +0.694] | 11 / 0 / 1 | 0.023 |
-| Soundness | 0.889 ± 0.314 | 0.194 ± 0.396 | +0.694 [+0.389, +0.917] | 11 / 0 / 1 | 0.003 |
-| Activity F1 | 0.816 ± 0.315 | 0.417 ± 0.471 | +0.399 [+0.103, +0.651] | 11 / 0 / 1 | 0.015 |
-| Footprint similarity | 0.764 ± 0.301 | 0.164 ± 0.312 | +0.600 [+0.344, +0.811] | 11 / 0 / 1 | 0.003 |
-| Trace precision | 0.409 ± 0.424 | 0.056 ± 0.196 | +0.353 [+0.092, +0.615] | 8 / 2 / 2 | 0.041 |
-| Trace recall | 0.474 ± 0.409 | 0.069 ± 0.240 | +0.405 [+0.131, +0.669] | 8 / 2 / 2 | 0.020 |
-| **Trace F1 (primary)** | 0.407 ± 0.404 | 0.060 ± 0.208 | +0.347 [+0.088, +0.598] | 8 / 2 / 2 | 0.049 |
-| Repairs used | 0.2 | 1.7 | – | – | – |
-| Output length (chars) | 499.6 | 986.1 | – | – | – |
+| Validity | 0.917 ± 0.276 | 0.556 ± 0.497 | +0.361 [+0.167, +0.583] | 8 / 3 / 1 | 0.020 |
+| Soundness | 0.917 ± 0.276 | 0.139 ± 0.346 | +0.778 [+0.556, +0.972] | 10 / 2 / 0 | 0.002 |
+| Activity F1 | 0.854 ± 0.288 | 0.544 ± 0.488 | +0.310 [+0.117, +0.508] | 8 / 2 / 2 | 0.023 |
+| Footprint similarity | 0.811 ± 0.279 | 0.117 ± 0.295 | +0.695 [+0.479, +0.874] | 11 / 0 / 1 | 0.001 |
+| Trace precision | 0.526 ± 0.429 | 0.075 ± 0.241 | +0.451 [+0.198, +0.695] | 9 / 2 / 1 | 0.014 |
+| Trace recall | 0.519 ± 0.398 | 0.076 ± 0.242 | +0.442 [+0.205, +0.666] | 9 / 2 / 1 | 0.010 |
+| **Trace F1 (primary)** | 0.479 ± 0.377 | 0.076 ± 0.241 | +0.404 [+0.177, +0.611] | 9 / 2 / 1 | 0.014 |
+| Repairs used | 0.3 | 1.4 | – | – | – |
+| Output length (chars) | 486.7 | 831.6 | – | – | – |
 
 **Trace F1 per operator** (cases containing the operator):
 
 | Operator | Cases | Proposed | Baseline |
 |---|---|---|---|
-| xor | 7 | 0.266 | 0.056 |
-| and | 5 | 0.508 | 0.000 |
-| or | 3 | 0.908 | 0.000 |
-| loop | 3 | 0.100 | 0.111 |
-| τ (optional step) | 1 | 0.000 | 0.389 |
+| xor | 7 | 0.425 | 0.024 |
+| and | 5 | 0.366 | 0.000 |
+| or | 3 | 0.717 | 0.000 |
+| loop | 3 | 0.541 | 0.247 |
+| τ (optional step) | 1 | 0.333 | 0.167 |
 
 **Trace F1 per case:**
 
@@ -308,41 +333,43 @@ From `results/dev_v1_5/summary.md` (client `ollama:qwen2.5:7b`, prompt v1.5, 12 
 |---|---|---|---|---|
 | P01 | seq, xor, and | 0.000 | 0.000 | tie |
 | P02 | seq, or | 0.724 | 0.000 | win |
-| P03 | seq, loop | 0.014 | 0.333 | loss |
-| P04 | seq, xor, and | 0.762 | 0.000 | win |
-| P05 | seq, xor, and | 0.111 | 0.000 | win |
+| P03 | seq, loop | 0.338 | 0.741 | loss |
+| P04 | seq, xor, and | 0.591 | 0.000 | win |
+| P05 | seq, xor, and | 0.000 | 0.000 | tie |
 | P06 | seq, loop | 0.286 | 0.000 | win |
-| P07 | seq, or | 1.000 | 0.000 | win |
-| P08 | seq, xor, tau | 0.000 | 0.389 | loss |
-| P09 | seq, xor, loop | 0.000 | 0.000 | tie |
+| P07 | seq, or | 0.857 | 0.000 | win |
+| P08 | seq, xor, tau | 0.333 | 0.167 | win |
+| P09 | seq, xor, loop | 1.000 | 0.000 | win |
 | P10 | seq, xor, and | 0.667 | 0.000 | win |
-| P11 | seq, and, or | 1.000 | 0.000 | win |
-| P12 | seq, xor | 0.321 | 0.000 | win |
+| P11 | seq, and, or | 0.571 | 0.000 | win |
+| P12 | seq, xor | 0.386 | 0.000 | win |
 
 **Error types** (share of runs; a run can have several):
 
 | Error type | Proposed | Baseline |
 |---|---|---|
-| correct | 22% | 3% |
-| extra / unmatched activity | 31% | 17% |
-| invalid after repairs | 11% | 56% |
-| missing activity | 28% | 8% |
-| unsound: cannot always complete | 0% | 25% |
-| unsound: dead transition | 0% | 25% |
-| wrong control flow | 25% | 11% |
+| correct | 22% | 6% |
+| extra / unmatched activity | 25% | 11% |
+| invalid after repairs | 8% | 44% |
+| missing activity | 22% | 3% |
+| unsound: cannot always complete | 0% | 42% |
+| unsound: dead transition | 0% | 42% |
+| wrong control flow | 39% | 8% |
 
 ### Interpretation
-- **Validity and soundness (H1, H2 on dev):** 89 % of the process trees are valid, and every valid tree is a sound WF-net (validity = soundness). Direct generation gives 44 % valid answers, but only 19 % sound nets: most valid direct nets cannot always complete or contain dead transitions.
-- **Behaviour (H3 on dev):** trace F1 0.407 vs. 0.060, difference +0.347 [+0.088, +0.598], 8 wins / 2 ties / 2 losses, p = 0.049. The difference was significant (p < 0.05) in every prompt version.
-- **Where the tree helps most:** inclusive OR (0.91 vs. 0.00) and parallel branches (0.51 vs. 0.00) – the converter builds these structures, while the directly generated nets never reproduced them.
-- **What remains hard:** loops (0.10 vs. 0.11) and the optional step (P08: 0.00 vs. 0.39); losses in P03 and P08; P01 is 0 for both (the exact model needs one branch per combination of interview outcomes).
-- **Error profile:** the proposed approach fails on content (missing / extra activities, wrong control flow), the baseline on structure (invalid or unsound nets).
+- **Validity and soundness (H1, H2 on dev):** 92 % of the process trees are valid, and every valid tree is a sound WF-net (validity = soundness = 0.917). Direct generation gives 56 % valid answers but only 14 % sound nets: three quarters of the valid direct nets cannot always complete and contain dead transitions.
+- **Behaviour (H3 on dev):** trace F1 0.479 vs. 0.076, difference +0.404 [+0.177, +0.611], 9 wins / 2 ties / 1 loss, p = 0.014. From v1.2 on the difference was significant (p < 0.05) in every prompt version.
+- **Where the tree helps most:** inclusive OR (0.72 vs. 0.00), exclusive choice (0.43 vs. 0.02) and parallel branches (0.37 vs. 0.00) – the converter builds these structures, while the directly generated nets almost never reproduce them.
+- **What remains hard:** P01 and P05 are 0 for both approaches (P01 needs one branch per combination of interview outcomes); the only loss is the loop case P03 (0.34 vs. 0.74).
+- **Error profile:** the proposed approach fails on content and control flow (wrong control flow 39 %, missing 22 % / extra 25 % activities), the baseline on structure (44 % invalid after repairs, 42 % unsound).
+- **Prompt development:** the largest gains came from the loop pattern (v1.2) and from explicit label and decision rules (v1.3, v1.5); longer rule lists alone (v1.4) did not help.
 
-### Tests (9 for Milestone 2)
+### Tests (10 for Milestone 2)
 | File | Tests | What is guaranteed |
 |---|---|---|
-| `test_m2_clients.py` | 5 | fake OpenAI server: request body, seed, temperature, JSON mode, key read from the environment; a key in the config is rejected; manual workflow writes the prompt and reads the answer; all config files build a client; identical user messages and valid worked examples in both formats |
+| `test_m2_clients.py` | 6 | fake OpenAI server: request body, seed, temperature, JSON mode, key read from the environment; a key in the config is rejected; manual workflow writes the prompt and reads the answer; all config files build a client; identical user messages and valid worked examples in both formats; Ollama retries once after an HTTP 500 with another seed |
 | `test_m2_pipeline.py` | 4 | JSON extraction from fenced answers; fake Ollama server; repair loop sends validator errors back and accepts the fix; repair budget of 2 respected |
+
 
 ---
 
@@ -368,7 +395,7 @@ A negative or mixed result is a valid answer and will be reported as such.
 ## **Project structure**
 ```
 natural_lang_WFnet_project/
-├── README.md, requirements.txt, config.json
+├── README.md, RESULTS.txt, requirements.txt, config.json
 ├── configs/             # ollama.json, openai.json, manual.json
 ├── nl2wfnet/            # library
 │   ├── tree.py          # process-tree JSON, validation, compact notation
@@ -384,9 +411,9 @@ natural_lang_WFnet_project/
 │   ├── stats.py         # Wilcoxon exact test, bootstrap CI
 │   └── report.py        # tables and figures
 ├── scripts/             # m1_*, m2_*, m3_*, generate.py, evaluate.py
-├── tests/               # test_m1_*.py (53), test_m2_*.py (9), test_m3_stats.py (2), run_all.py
+├── tests/               # test_m1_*.py (53), test_m2_*.py (10), test_m3_stats.py (2), run_all.py
 ├── data/                # benchmark_v1.xlsx, benchmark.json, label_overrides.json, examples/ (hand-written)
-├── docs/                # prompt_log.md (all prompt versions and results)
+├── docs/                # prompt_log.md (changes, reasons, results), PROMPTS_versions.md (full text of every prompt)
 ├── schema/              # process_tree.schema.json
 ├── outputs/reference/   # PNML, DOT, PNG of 20 reference WF-nets + benchmark_report.csv
 ├── runs/                # raw LLM records (created by scripts)
@@ -413,7 +440,6 @@ ollama pull qwen2.5:7b                     # needs a running Ollama server (GPU 
 python tests/run_all.py m2                 # 9 tests
 python scripts/m2_develop.py --run-name dev_v1_<version>    # final prompt v1.5, 72 generations
 ```
-Outputs: `runs/dev_v1_5/` (raw records) and `results/dev_v1_5/` (`summary.md`, `per_run.csv`, `per_case.csv`, `paired_tests.csv`, `per_operator.csv`, `label_maps.json`, 3 figures). A stopped run can be restarted with the same command; finished generations are skipped.
 
 #### OpenAI-compatible server
 ```bash

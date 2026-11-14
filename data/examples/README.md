@@ -1,4 +1,4 @@
-# Hand-written examples used in Milestone 1
+# **Hand-written examples used in Milestone 1**
 
 These files are written by hand to demonstrate and test the checks. They are **not** LLM outputs.
 
